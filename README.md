@@ -1,0 +1,2 @@
+# web_dev_ulp
+ Laravel's universal packages are a collection of related modules with clearly defined contracts (interfaces). They enable integration with other backend services (e.g., Go microservices), delegating processing to them and exposing functionality via APIs (REST/GraphQL). This architecture allows for the use of any frontend framework (Vue, React, etc.)—the choice depends on the project's requirements and complexity.
