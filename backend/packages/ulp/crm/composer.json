@@ -1,0 +1,22 @@
+{
+  "name": "ulp/crm",
+  "description": "A package that uses core as a foundation and provides the ability to manage customer relationships and sales.",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Ulp\\Crm\\": "src/",
+      "Ulp\\Crm\\Database\\Seeders\\": "database/seeders/"
+
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ulp\\Crm\\Providers\\CrmServiceProvider"
+      ]
+    }
+  },
+  "require": {}
+}
