@@ -1,0 +1,23 @@
+FROM php:8.3-fpm
+
+RUN apt-get update && apt-get install -y \
+  libpq-dev \
+  libzip-dev \
+  unzip \
+  zip \
+  git \
+  curl \
+  libonig-dev \
+  libxml2-dev \
+  libpng-dev \
+  libjpeg-dev \
+  libfreetype6-dev \
+  && docker-php-ext-install pdo pdo_mysql
+
+RUN curl -sS https://getcomposer.org/installer | php && \
+  mv composer.phar /usr/local/bin/composer
+
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
+WORKDIR /var/www/
