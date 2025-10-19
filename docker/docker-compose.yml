@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    container_name: laravel_app
+    working_dir: /var/www
+    environment:
+      - PROJECT=${PROJECT}
+      - RUN_SEEDERS=${RUN_SEEDERS}
+    volumes:
+      - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
+      - ../backend/packages/ulp:/var/www/packages/ulp
+      - ./scripts/laravel_app_config.sh:/docker/scripts/laravel_app_config.sh
+    command: ["sh", "/docker/scripts/laravel_app_config.sh"]
+    networks:
+      - laravel
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    container_name: laravel_nginx
+    ports:
+      - "8081:80"
+    environment:
+      - PROJECT=${PROJECT}
+    volumes:
+      - ./templates/default.conf.template:/etc/nginx/templates/default.conf.template
+      - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
+    networks:
+      - laravel
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${PROJECT}
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: laravel_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - /home/user/Programing/themes/phpmyadmin/boodark-nord:/var/www/html/themes/boodark-nord:ro
+      - /home/user/Programing/themes/phpmyadmin/config.inc.php:/var/www/html/config.inc.php:ro
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - laravel
+    depends_on:
+      - mysql
+    
+  # fr_node:
+  #   image: node:20
+  #   container_name: vue_node
+  #   working_dir: /var/www/html/frontend/${PROJECT}
+  #   environment:
+  #     - PROJECT=${PROJECT}
+  #   volumes:
+  #     - ../frontend/projects/${PROJECT}:/var/www/html/frontend/${PROJECT}
+  #     - ../frontend/packages/cms_ui:/var/www/packages/cms_ui
+  #     - ./.env:/docker/.env:ro
+  #   command: ["sh", "-c", "npm install && npm install dotenv && npm run dev -- --port 5174 --host 0.0.0.0"]
+  #   ports:
+  #     - "5174:5174"
+  #   networks:
+  #     - laravel
+  #   depends_on:
+  #     - app
+
+  # node:
+  #   image: node:20
+  #   container_name: laravel_node
+  #   working_dir: /var/www/packages/ulp
+  #   environment:
+  #     - APP_URL=http://localhost:8081
+  #   volumes:
+  #     - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
+  #     - ../backend/packages/ulp:/var/www/packages/ulp
+  #     - ./.env:/docker/.env:ro
+  #   command: ["sh", "-c", "npm install && npm install dotenv && npm run dev"]
+  #   ports:
+  #     - "5173:5173"
+  #   networks:
+  #     - laravel
+  #   depends_on:
+  #     - app
+
+networks:
+  laravel:
+    driver: bridge
+
+volumes:
+  mysql_data:
