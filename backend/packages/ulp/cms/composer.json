@@ -1,0 +1,21 @@
+{
+  "name": "ulp/cms",
+  "description": "A package that uses core as a base and gives you the ability to manage content and pages.",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Ulp\\Cms\\": "src/",
+      "Ulp\\Cms\\Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ulp\\Cms\\Providers\\CmsServiceProvider"
+      ]
+    }
+  },
+  "require": {}
+}
