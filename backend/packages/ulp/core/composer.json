@@ -1,0 +1,21 @@
+{
+  "name": "ulp/core",
+  "description": "A basic package with component abstractions and base views for the package layer.",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Ulp\\Core\\": "src/",
+      "Ulp\\Core\\Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ulp\\Core\\Providers\\CoreServiceProvider"
+      ]
+    }
+  },
+  "require": {}
+}
