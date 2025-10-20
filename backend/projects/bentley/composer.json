@@ -5,10 +5,27 @@
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../packages/ulp/core"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/ulp/cms"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/ulp/crm"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "ulp/core": "*",
+        "ulp/cms": "*",
+        "ulp/crm": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
