@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Cms;
+namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +10,7 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Cms\User::class;
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\User::class;
   protected const ROUTE_NAME = 'cms.users.';
 
   protected function titles(): array {

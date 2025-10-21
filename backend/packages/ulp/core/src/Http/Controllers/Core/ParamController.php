@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Cms;
+namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +12,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Cms\Param::class;
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Param::class;
   protected const ROUTE_NAME = 'cms.params.';
 
   protected function titles(): array {
