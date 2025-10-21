@@ -10,7 +10,7 @@ trait DefaultController {
 
   /**
    * This constant defines the Blade view namespace and directory prefix used 
-   * when rendering CRUD (Create, Read, Update, Delete) components in the CMS.
+   * when rendering CRUD (Create, Read, Update, Delete) components in the CORE.
    * 
    * @var string
    */
@@ -74,13 +74,13 @@ trait DefaultController {
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
       'buttons' => $data['buttons'],
-      // 'table' => new \Ulp\Core\View\FormFields\Extra\Fields\TableControl([
-      //   'type' => 'intex',
-      //   'labels' => $data['labels'],
-      //   'filterable' => $data['filterable'],
-      //   'data' => $data['data'],
-      //   'destinations' => $data['destinations'],
-      // ]),
+      'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
+        'type' => 'intex',
+        'labels' => $data['labels'],
+        'filterable' => $data['filterable'],
+        'data' => $data['data'],
+        'destinations' => $data['destinations'],
+      ]),
     ]);
   }
 
