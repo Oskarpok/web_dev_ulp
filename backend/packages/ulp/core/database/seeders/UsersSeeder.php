@@ -3,7 +3,7 @@
 namespace Ulp\Core\Database\Seeders;
 
 use Ulp\Core\Enums\UsersType;
-use Ulp\Core\Models\Cms\User;
+use Ulp\Core\Models\Core\User;
 
 class UsersSeeder extends \Illuminate\Database\Seeder {
   /**

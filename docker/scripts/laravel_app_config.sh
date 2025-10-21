@@ -15,7 +15,7 @@ php artisan migrate --force --no-interaction
 
 # Seeders
 if [ "$RUN_SEEDERS" = "true" ]; then
-  php artisan db:seed --class="" || true
+  php artisan db:seed --class="Ulp\\Core\\Database\\Seeders\\DatabaseSeeder" || true
 fi
 
 exec php-fpm
