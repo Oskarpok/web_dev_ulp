@@ -1,4 +1,4 @@
-@extends('cms::layouts.app')
+@extends('core::layouts.app')
 @section('content')
 <div class="bg-gray-950 p-6 text-gray-200 rounded-2xl">
   <div class="flex items-center justify-between mb-6 p-4 
