@@ -13,7 +13,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Param::class;
-  protected const ROUTE_NAME = 'cms.params.';
+  protected const ROUTE_NAME = 'core.params.';
 
   protected function titles(): array {
     return [

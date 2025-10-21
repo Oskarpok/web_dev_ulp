@@ -11,7 +11,7 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\User::class;
-  protected const ROUTE_NAME = 'cms.users.';
+  protected const ROUTE_NAME = 'core.users.';
 
   protected function titles(): array {
     return [
