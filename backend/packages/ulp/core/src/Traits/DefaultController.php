@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ulp\Core\Traits;
 
 use Illuminate\Http\Request;
+use Ulp\Core\View\FormFields\Helpers\FieldUtils;
 
 trait DefaultController {
 
@@ -95,7 +96,7 @@ trait DefaultController {
       'title' => $this->titles()['create'] ?? '',
       'controls' => $cont,
       'route' => route(static::ROUTE_NAME . 'store'),
-      'hasFile' => $this->hasFieldType($cont['fields'], 'file'),
+      'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
     ]);
   }
 
@@ -139,7 +140,7 @@ trait DefaultController {
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'controls' => $cont,
-      'hasFile' => $this->hasFieldType($cont['fields'], 'file'),
+      'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
     ]);
   }
 
@@ -201,22 +202,6 @@ trait DefaultController {
     if (method_exists($this, $hook)) {
       $this->$hook(...$params);
     }
-  }
-
-  /**
-   * Checks if the given array of fields contains field of the specified type.
-   *
-   * @param array $controls Array of field objects
-   * @param string $type The type of field to look for
-   * @return bool Returns true if a field of the given type found else false
-   */
-  protected function hasFieldType(array $controls, string $type): bool {
-    foreach ($controls as $field) {
-      if($field?->getType() === $type) {
-        return true;
-      }
-    }
-    return false;
   }
 
 }
