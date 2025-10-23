@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pl">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" 
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-			crossorigin="anonymous" 
-			referrerpolicy="no-referrer"/>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer"/>
+    @vite(['core/resources/css/core.css','core/resources/js/core.js'])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	</head>
 	<body class="cms-primary-color text-white">

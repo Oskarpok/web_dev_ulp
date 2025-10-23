@@ -86,23 +86,23 @@ services:
   #   depends_on:
   #     - app
 
-  # node:
-  #   image: node:20
-  #   container_name: laravel_node
-  #   working_dir: /var/www/packages/ulp
-  #   environment:
-  #     - APP_URL=http://localhost:8081
-  #   volumes:
-  #     - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
-  #     - ../backend/packages/ulp:/var/www/packages/ulp
-  #     - ./.env:/docker/.env:ro
-  #   command: ["sh", "-c", "npm install && npm install dotenv && npm run dev"]
-  #   ports:
-  #     - "5173:5173"
-  #   networks:
-  #     - laravel
-  #   depends_on:
-  #     - app
+  bg_node:
+    image: node:20
+    container_name: laravel_node
+    working_dir: /var/www/packages/ulp
+    environment:
+      - APP_URL=http://localhost:8081
+    volumes:
+      - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
+      - ../backend/packages/ulp:/var/www/packages/ulp
+      - ./.env:/docker/.env:ro
+    command: ["sh", "-c", "npm install && npm install dotenv && npm run dev"]
+    ports:
+      - "5173:5173"
+    networks:
+      - laravel
+    depends_on:
+      - app
 
 networks:
   laravel:
