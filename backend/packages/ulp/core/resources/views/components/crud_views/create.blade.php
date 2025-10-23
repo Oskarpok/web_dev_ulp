@@ -4,7 +4,7 @@
   <form method="POST" action="{{ $route }}">
     @csrf
     <div class="flex items-center justify-between mb-6 p-4
-      bg-[cms-background-color] rounded-lg shadow">
+      bg-[core-background-color] rounded-lg shadow">
       <h1 class="text-xl font-semibold py-2">
         {!! $title !!}
       </h1>

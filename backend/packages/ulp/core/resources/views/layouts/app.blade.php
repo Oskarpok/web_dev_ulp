@@ -9,12 +9,12 @@
     @vite(['core/resources/css/core.css','core/resources/js/core.js'])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	</head>
-	<body class="cms-primary-color text-white">
+	<body class="core-primary-color text-white">
 		<div class="flex">
       <aside class="w-64 h-screen bg-[#030712] text-white flex flex-col">
         <div class="flex items-center justify-center h-16 border-b border-gray-700">
-          <i class="fa-solid fa-layer-group cms-secondary-color text-2xl"></i>
-          <span class="cms-secondary-color font-bold text-xl">UAR CMS</span>
+          <i class="fa-solid fa-layer-group core-secondary-color text-2xl"></i>
+          <span class="core-secondary-color font-bold text-xl">UAR core</span>
         </div>
 
         <div class="flex flex-col items-center py-4 border-b border-gray-700">
@@ -32,7 +32,7 @@
           <div>
             <h3 class="text-gray-500 uppercase tracking-wide mb-2">Dashboard</h3>
             <a href="#" class="flex items-center px-2 py-2 bg-gray-800 rounded 
-              cms-secondary-color">
+              core-secondary-color">
               <span>Dashboard</span>
             </a>
           </div>
@@ -40,11 +40,11 @@
         </nav>
       </aside>
 			<div class="flex flex-col flex-1">
-        <header class="w-full bg-[cms-background-color] p-4 shadow flex 
+        <header class="w-full bg-[core-background-color] p-4 shadow flex 
           items-center justify-between text-gray-200">
           <div class="flex items-center gap-3">
             <i class="fa-solid fa-layer-group text-white text-2xl"></i>
-            <h1 class="text-xl font-semibold">UAR CMS</h1>
+            <h1 class="text-xl font-semibold">UAR core</h1>
           </div>
           <div class="flex items-center gap-6">
 
@@ -73,7 +73,7 @@
 
               <div id="userDropdown" 
                 class="hidden absolute right-0 mt-2 w-48 border border-gray-500 
-                cms-primary-color rounded-md shadow-lg z-50">
+                core-primary-color rounded-md shadow-lg z-50">
 
                 <a href="/profile" 
                   class="block px-4 py-2 text-sm text-white hover:text-green-400">
@@ -101,11 +101,11 @@
 				</main>
 			</div>
 		</div>
-		<footer class="bg-[cms-background-color] text-gray-400 py-6 text-center 
+		<footer class="bg-[core-background-color] text-gray-400 py-6 text-center 
       border-t border-gray-700">
         <p>
           &copy; 2025 
-          <span class="text-white font-semibold">UAR CMS</span>
+          <span class="text-white font-semibold">UAR core</span>
           All rights reserved.
         </p>
     </footer>

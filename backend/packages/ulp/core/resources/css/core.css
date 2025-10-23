@@ -3,43 +3,43 @@
 
 @layer base {
 
-  .cms-primary-color {
+  .core-primary-color {
     @apply bg-gray-900
   }
 
-  .cms-secondary-color{
+  .core-secondary-color{
     @apply text-green-400
   }
 
-  .cms-background-color{
+  .core-background-color{
     @apply bg-[#0f172a]
   }
 
-  .cms-btn {
+  .core-btn {
     @apply flex items-center gap-2 px-4 py-2 rounded transition cursor-pointer;
   }
 
-  .cms-btn-primary {
+  .core-btn-primary {
     @apply bg-emerald-600 hover:bg-emerald-500 text-white;
   }
 
-  .cms-btn-secondary {
+  .core-btn-secondary {
     @apply bg-gray-900 hover:bg-gray-800 text-green-400;
   }
 
-  .cms-btn-background {
+  .core-btn-background {
     @apply bg-[#0f172a] hover:bg-[#1e293b] text-white;
   }
 
-  .cms-btn-outline {
+  .core-btn-outline {
     @apply border border-gray-400 hover:bg-gray-700 text-white;
   }
 
-  .cms-btn-readonly {
+  .core-btn-readonly {
     @apply bg-gray-500 cursor-not-allowed pointer-events-none;
   }
 
-  .cms-btn-wrapper {
+  .core-btn-wrapper {
     @apply w-full flex justify-start mb-2;
   }
 
