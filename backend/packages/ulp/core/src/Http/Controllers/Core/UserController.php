@@ -45,6 +45,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected function prepareFormFields($data = null): array {
     $currentRoute = Route::currentRouteName();
+    $validationRules = self::MODEL_CLASS::validationRules();
     return [
       'fields' => [
         //
