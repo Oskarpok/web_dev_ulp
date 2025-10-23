@@ -6,9 +6,6 @@ namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
-use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
@@ -38,12 +35,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
       ], 
       'destinations' => self::ROUTE_NAME,
       'buttons' => [
-        // new ButtonsTypeController([
-        //   'type' => 'anchore',
-        //   'route' => route(self::ROUTE_NAME . 'create'),
-        //   'label' => 'Dodaj parametr',
-        //   'icone' => 'fa-solid fa-plus',
-        // ]),
+        //
       ],
     ];
   }
@@ -52,82 +44,12 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
     $currentRoute = Route::currentRouteName();
     $validationRules = self::MODEL_CLASS::validationRules();
     return [
-      // 'fields' => [
-      //   (function($currentRoute, $id) {
-      //     if($currentRoute !== self::ROUTE_NAME . 'create') {
-      //       return new TextTypeController([
-      //         'type' => 'number',
-      //         'name' => 'id',
-      //         'label' => 'ID',
-      //         'value' => $id,
-      //         'readonly' => true,
-      //       ]);
-      //     }
-      //   })($currentRoute, $data?->id),
-      //   new TextTypeController([
-      //     'type' => 'text',
-      //     'name' => 'name',
-      //     'label' => 'Nazwa',
-      //     'value' => $data?->name,
-      //     'required' => true,
-      //     'validation' => $validationRules['name'],
-      //     'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-      //       ? false : true,
-      //   ]),
-      //   new \Ulp\Core\View\FormFields\Select\SelectTypeControl([
-      //     'type' => 'select',
-      //     'name' => 'type',
-      //     'label' => 'Type',
-      //     'options' => \Ulp\Core\Enums\ParamsType::toArray() ?? [],
-      //     'required' => true,
-      //     'value' => $data?->type,
-      //     'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-      //       ? false : true,
-      //   ]),
-
-
-      //   // value
-
-      //   (function($currentRoute, $created_at) {
-      //     if($currentRoute !== self::ROUTE_NAME . 'create') {
-      //       return new DateTimeTypeControl([
-      //         'type' => 'date_time',
-      //         'name' => 'created_at',
-      //         'label' => 'Utworzony',
-      //         'readonly' => true,
-      //         'value' => $created_at,
-      //       ]);
-      //     }
-      //   })($currentRoute, $data?->created_at),
-      //   (function($currentRoute, $updated_at) {
-      //     if($currentRoute !== self::ROUTE_NAME . 'create') {
-      //       return new DateTimeTypeControl([
-      //         'type' => 'date_time',
-      //         'name' => 'updated_at',
-      //         'label' => 'Zaktualizowany',
-      //         'readonly' => true,
-      //         'value' => $updated_at,
-      //       ]);
-      //     }
-      //   })($currentRoute, $data?->updated_at),
-      // ],
-      // 'buttons' => [
-      //   (function($currentRoute) {
-      //     if ($currentRoute !== self::ROUTE_NAME . 'show') {
-      //       return new ButtonsTypeController([
-      //         'type' => 'submit',
-      //         'label' => 'Zapisz',
-      //         'icone' => 'fa-solid fa-file',
-      //       ]);
-      //     }
-      //   })($currentRoute),
-      //   new ButtonsTypeController([
-      //     'type' => 'anchore',
-      //     'route' => route(self::ROUTE_NAME . 'index'),
-      //     'label' => 'Powrut',
-      //     'icone' => 'fa-solid fa-arrow-left',
-      //   ]),
-      // ]
+      'fields' => [
+        //
+      ],
+      'buttons' => [
+        //
+      ]
     ];
   }
 

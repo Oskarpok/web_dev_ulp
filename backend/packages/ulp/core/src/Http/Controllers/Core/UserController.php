@@ -6,7 +6,6 @@ namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
@@ -39,12 +38,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
       ], 
       'destinations' => self::ROUTE_NAME,
       'buttons' => [
-        // new ButtonsTypeController([
-        //   'type' => 'anchore',
-        //   'route' => self::ROUTE_NAME . 'create',
-        //   'label' => 'Dodaj urzytkownika',
-        //   'icone' => 'fa-solid fa-plus',
-        // ]),
+        //
       ],
     ];
   }
