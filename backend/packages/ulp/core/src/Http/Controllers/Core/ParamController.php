@@ -30,8 +30,8 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
         'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at',
       ],
       'filterable' => [
-        'id' => true, 'name' => true, 'type' => true, 'value' => false, 
-        'created_at' => true, 'updated_at' => true,
+        'id' => true, 'name' => true, 'type' => true, 
+        'value' => false, 'created_at' => true, 'updated_at' => true,
       ], 
       'destinations' => self::ROUTE_NAME,
       'buttons' => [
