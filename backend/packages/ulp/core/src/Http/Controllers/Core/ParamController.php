@@ -34,23 +34,15 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
         'value' => false, 'created_at' => true, 'updated_at' => true,
       ], 
       'destinations' => self::ROUTE_NAME,
-      'buttons' => [
-        //
-      ],
     ];
   }
 
-  protected function prepareFormFields($data = null): array {
+  protected function getFormFields($data = null): array {
     $currentRoute = Route::currentRouteName();
     $validationRules = self::MODEL_CLASS::validationRules();
     return [
-      'fields' => [
-        //
-      ],
-      'buttons' => [
-        //
-      ]
+
     ];
   }
-
+  
 }

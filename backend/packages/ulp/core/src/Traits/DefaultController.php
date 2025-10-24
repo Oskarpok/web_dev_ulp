@@ -6,6 +6,7 @@ namespace Ulp\Core\Traits;
 
 use Illuminate\Http\Request;
 use Ulp\Core\View\FormFields\Helpers\FieldUtils;
+use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 trait DefaultController {
 
@@ -37,7 +38,7 @@ trait DefaultController {
    *
    * @return array List of fields elements for the given controller.
    */
-  abstract protected function prepareFormFields(): array;
+  abstract protected function getFormFields(): array;
 
   /**
    * Return an array of vie index requaier data.
@@ -47,7 +48,7 @@ trait DefaultController {
   abstract protected function indexPrepare(Request $request): array;
 
   /**
-   * Return an array of title for each views.
+   * Return an array of title for views elements etc in controler.
    * 
    * @return array List of titles
    */
@@ -63,6 +64,36 @@ trait DefaultController {
   }
 
   /**
+   * Prepares widowed crud form elements based on their specific fields, 
+   * depending on the controller used.
+   * 
+   * @return array List of used fields
+   */
+  protected function prepareFormFields($data = null): array {
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+    return [
+      'fields' => $this->getFormFields($data),
+      'buttons' => [
+        (function($currentRoute) {
+          if ($currentRoute !== static::ROUTE_NAME . 'show') {
+            return new ButtonsTypeController([
+            'type' => 'submit',
+            'label' => 'Save',
+            'icone' => 'fa-solid fa-file',
+            ]);
+          }
+        })($currentRoute),
+        new ButtonsTypeController([
+          'type' => 'anchore',
+          'route' => route(static::ROUTE_NAME . 'index'),
+          'label' => 'Return',
+          'icone' => 'fa-solid fa-arrow-left',
+        ]),
+      ]
+    ];
+  }
+
+  /**
    * Prepares the data for the index view by calling the indexPrepare()
    * method with the current request, and then returns the corresponding
    * Blade view with the prepared data.
@@ -74,7 +105,14 @@ trait DefaultController {
     $data = $this->indexPrepare($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
-      'buttons' => $data['buttons'],
+      'buttons' => [
+        new ButtonsTypeController([
+          'type' => 'anchore',
+          'route' => route(static::ROUTE_NAME . 'create'),
+          'label' => $this->titles()['recordAddButton'] ?? 'Add',
+          'icone' => 'fa-solid fa-plus',
+        ]),
+      ],
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
         'type' => 'intex',
         'labels' => $data['labels'],
