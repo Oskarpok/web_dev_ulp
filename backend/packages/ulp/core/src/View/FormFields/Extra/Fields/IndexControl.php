@@ -23,6 +23,6 @@ class IndexControl extends \Ulp\Core\View\FormFields\Extra\BaseExtraField {
   }
 
   protected function resolveView(): string {
-    return 'core::components.form_fields.cms_extra.intex';
+    return 'core::components.form_fields.core_extra.intex';
   }
 }
