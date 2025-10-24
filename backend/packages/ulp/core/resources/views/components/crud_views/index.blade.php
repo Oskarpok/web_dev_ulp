@@ -9,7 +9,6 @@
       flasss message 
       <div class="flex gap-x-2">
         @foreach($buttons as $button)     
-          @continue(is_null($button))   
           {!! $button->render() !!}
         @endforeach
       </div>

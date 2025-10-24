@@ -8,7 +8,6 @@
     </h1>
     <div class="flex gap-x-2">
       @foreach ($controls['buttons'] as $button)
-        @continue(is_null($button))
         {!! $button->render() !!}
       @endforeach
     </div>
@@ -16,7 +15,6 @@
   <div class="w-full mx-auto text-gray-200 border border-gray-600 p-6 
     shadow rounded-2xl space-y-6 flex flex-wrap gap-5 place-items-center">
     @foreach ($controls['fields'] as $field)
-      @continue(is_null($field))
       {!! $field->render() !!}
     @endforeach
   </div>
