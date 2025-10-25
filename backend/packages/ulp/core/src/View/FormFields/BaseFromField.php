@@ -11,7 +11,7 @@ namespace Ulp\Core\View\FormFields;
  * they inherit directly from BaseControl because they don't need the following 
  * attributes. The auxiliary class was created for cleaner, better architecture.
  */
-abstract class BaseFromControl extends BaseControl {
+abstract class BaseFromField extends BaseField {
 
   protected string $name;
   protected string $label;
