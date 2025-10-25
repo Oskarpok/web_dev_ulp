@@ -6,6 +6,7 @@ namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Ulp\Core\View\FormFields\Text\TextTypeController;
 
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
@@ -40,6 +41,19 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
     $currentRoute = Route::currentRouteName();
     $validationRules = self::MODEL_CLASS::validationRules();
     return [
+      (function($currentRoute, $id) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return new TextTypeController([
+            'type' => 'number',
+            'name' => 'id',
+            'label' => 'ID',
+            'value' => $id,
+            'readonly' => true,
+          ]);
+        }
+      })($currentRoute, $data?->id),
+
+
 
     ];
   }
