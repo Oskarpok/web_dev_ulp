@@ -118,7 +118,7 @@ trait DefaultController {
         'labels' => $data['labels'],
         'filterable' => $data['filterable'],
         'data' => $data['data'],
-        'destinations' => $data['destinations'],
+        'destinations' => static::ROUTE_NAME,
       ]),
     ]);
   }

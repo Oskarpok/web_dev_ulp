@@ -35,8 +35,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
         'id' => true, 'first_name' => true, 'sur_name' => true, 
         'phone' => true, 'email' => true, 'type' => true, 'is_active' => true,
         'email_verified_at' => true, 'created_at' => true, 'updated_at' => true,
-      ], 
-      'destinations' => self::ROUTE_NAME,
+      ],
     ];
   }
 
