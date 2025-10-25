@@ -10,6 +10,7 @@ class TextTypeController extends \Ulp\Core\View\FormFields\BaseControl {
     return [
       'text' => Fields\TextControl::class,
       'number' => Fields\NumberControl::class,
+      'text_area' => Fields\TextAreaControl::class,
     ];
   }
 
