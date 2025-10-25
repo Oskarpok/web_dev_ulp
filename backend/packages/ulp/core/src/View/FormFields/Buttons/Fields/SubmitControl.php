@@ -11,7 +11,7 @@ class SubmitControl extends \Ulp\Core\View\FormFields\Buttons\BaseButtonsField {
   }
 
   protected function resolveView(): string {
-    return 'core::components.form_fields.core_button.submit';
+    return 'core::components.form_fields.button.submit';
   }
   
 }

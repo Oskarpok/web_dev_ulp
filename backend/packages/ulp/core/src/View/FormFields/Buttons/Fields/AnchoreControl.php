@@ -14,7 +14,7 @@ class AnchoreControl extends \Ulp\Core\View\FormFields\Buttons\BaseButtonsField 
   }
 
   protected function resolveView(): string {
-    return 'core::components.form_fields.core_button.anchore';
+    return 'core::components.form_fields.button.anchore';
   }
 
 }
