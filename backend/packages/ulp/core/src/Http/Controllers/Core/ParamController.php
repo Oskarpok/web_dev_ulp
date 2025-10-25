@@ -52,7 +52,14 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
-
+      new TextTypeController([
+        'type' => 'text',
+        'name' => 'name',
+        'label' => 'Nazwa',
+        'value' => $data?->name,
+        'required' => true,
+        'validation' => $validationRules['name'],
+      ]),
 
 
     ];

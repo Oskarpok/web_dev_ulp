@@ -8,7 +8,7 @@ class TextTypeController extends \Ulp\Core\View\FormFields\BaseControl {
 
   protected function controlMap(): array {
     return [
-      // 'text' => Fields\TextControl::class,
+      'text' => Fields\TextControl::class,
       'number' => Fields\NumberControl::class,
     ];
   }
