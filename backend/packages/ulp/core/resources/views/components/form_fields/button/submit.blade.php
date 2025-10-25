@@ -3,7 +3,7 @@
     name: {{ json_encode($name) }},
     label: {{ json_encode($label) }},
     icone: {{ json_encode($icone) }},
-    readonly: {{ $readonly ? 'true' : 'false' }},
+    readonly: {{ json_encode($readonly) }},
     style: {{ $style }},
     getButtonClass() {
       const styles = [
