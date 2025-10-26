@@ -70,19 +70,18 @@ trait DefaultController {
    * @return array List of used fields
    */
   protected function prepareFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
     return [
       'fields' => $this->getFormFields($data),
       'buttons' => [
         (function($currentRoute) {
           if ($currentRoute !== static::ROUTE_NAME . 'show') {
             return new ButtonsTypeController([
-            'type' => 'submit',
-            'label' => 'Save',
-            'icone' => 'fa-solid fa-file',
+              'type' => 'submit',
+              'label' => 'Save',
+              'icone' => 'fa-solid fa-file',
             ]);
           }
-        })($currentRoute),
+        })(\Illuminate\Support\Facades\Route::currentRouteName()),
         new ButtonsTypeController([
           'type' => 'anchore',
           'route' => route(static::ROUTE_NAME . 'index'),
