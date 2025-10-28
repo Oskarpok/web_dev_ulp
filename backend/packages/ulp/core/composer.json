@@ -18,5 +18,7 @@
       ]
     }
   },
-  "require": {}
+  "require": {
+    "proengsoft/laravel-jsvalidation": "^4.10"
+  }
 }
