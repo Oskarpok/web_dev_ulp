@@ -134,6 +134,7 @@ trait DefaultController {
       'controls' => $cont,
       'route' => route(static::ROUTE_NAME . 'store'),
       'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
+      'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
   }
 
@@ -178,6 +179,7 @@ trait DefaultController {
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'controls' => $cont,
       'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
+      'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
   }
 
