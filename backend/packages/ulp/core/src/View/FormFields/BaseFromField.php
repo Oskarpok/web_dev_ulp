@@ -18,7 +18,6 @@ abstract class BaseFromField extends BaseField {
   protected string $tooltip; // To implemnt Iplement in blade 
   protected bool $readonly;
   protected bool $required;
-  protected array $validation; // To implemnt Iplement in blade 
   protected string $wraper;
 
   public function __construct(array $data) {
@@ -28,7 +27,6 @@ abstract class BaseFromField extends BaseField {
     $this->tooltip = $data['tooltip'] ?? '';
     $this->readonly = $data['readonly'] ?? false;
     $this->required = $data['required'] ?? false;
-    $this->validation = $data['validation'] ?? []; 
     $this->wraper = $data['wraper'] ?? 'flex flex-col w-full md:w-[32%]';
   }
 
