@@ -75,14 +75,14 @@ trait DefaultController {
       'buttons' => [
         (function($currentRoute) {
           if ($currentRoute !== static::ROUTE_NAME . 'show') {
-            return new ButtonsTypeController([
+            return ButtonsTypeController::make([
               'type' => 'submit',
               'label' => 'Save',
               'icone' => 'fa-solid fa-file',
             ]);
           }
         })(\Illuminate\Support\Facades\Route::currentRouteName()),
-        new ButtonsTypeController([
+        ButtonsTypeController::make([
           'type' => 'anchore',
           'route' => route(static::ROUTE_NAME . 'index'),
           'label' => 'Return',
@@ -105,7 +105,7 @@ trait DefaultController {
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
       'buttons' => [
-        new ButtonsTypeController([
+        ButtonsTypeController::make([
           'type' => 'anchore',
           'route' => route(static::ROUTE_NAME . 'create'),
           'label' => $this->titles()['recordAddButton'] ?? 'Add',

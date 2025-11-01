@@ -45,7 +45,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
     return [
       (function($currentRoute, $id) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return new TextTypeController([
+          return TextTypeController::make([
             'type' => 'number',
             'name' => 'id',
             'label' => 'ID',
@@ -54,7 +54,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
-      new TextTypeController([
+      TextTypeController::make([
         'type' => 'text',
         'name' => 'name',
         'label' => 'Nazwa',
@@ -63,7 +63,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      new SelectTypeControl([
+      SelectTypeControl::make([
         'type' => 'select',
         'name' => 'type',
         'label' => 'Type',
@@ -75,7 +75,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
       ]),
       (function($data, $currentRoute) {
         return match ($data?->type) {
-          1 => new TextTypeController([
+          1 => TextTypeController::make([
             'type' => 'number',
             'name' => 'val_int',
             'label' => 'Value',
@@ -84,7 +84,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
             'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
               ? false : true,
           ]),
-          2 => new TextTypeController([
+          2 => TextTypeController::make([
             'type' => 'number',
             'name' => 'val_float',
             'label' => 'Value',
@@ -95,7 +95,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
             'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
               ? false : true,
           ]),
-          4 => new SelectTypeControl([
+          4 => SelectTypeControl::make([
             'type' => 'checkbox',
             'name' => 'val_bool',
             'label' => 'Value',
@@ -104,7 +104,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
             'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
               ? false : true,
           ]),
-          5 => new TextTypeController([
+          5 => TextTypeController::make([
             'type' => 'text_area',
             'name' => 'val_json',
             'label' => 'Value',
@@ -113,7 +113,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
             'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
               ? false : true,
           ]),
-          default => new TextTypeController([
+          default => TextTypeController::make([
             'type' => 'text',
             'name' => 'val_string',
             'label' => 'Value',
@@ -126,7 +126,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
       })($data, $currentRoute),
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return new DateTimeTypeControl([
+          return DateTimeTypeControl::make([
             'type' => 'date_time',
             'name' => 'created_at',
             'label' => 'Utworzony',
@@ -137,7 +137,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
       })($currentRoute, $data?->created_at),
       (function($currentRoute, $updated_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return new DateTimeTypeControl([
+          return DateTimeTypeControl::make([
             'type' => 'date_time',
             'name' => 'updated_at',
             'label' => 'Zaktualizowany',
