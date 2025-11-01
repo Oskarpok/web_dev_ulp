@@ -5,7 +5,7 @@
     value: {{ json_encode($value) }}, 
     readonly: {{ json_encode($readonly) }},
     tooltip: {{ json_encode($tooltip) }},
-    validation: {{ json_encode($validation) }},
+    validation: {{ json_encode($validationRules[$name] ?? null) }},
   }"
   class="mb-3 relative"
   :class="wraper">
