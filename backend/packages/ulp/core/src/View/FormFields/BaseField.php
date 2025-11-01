@@ -17,21 +17,20 @@ abstract class BaseField {
   protected string $type;
 
   /**
-   * @var string Path to the Blade view corresponding to this field
-   */
-  protected string $view;
-
-  /**
    * BaseField constructor
    * 
    * @param array $data Field configuration data (must include 'type')
    */
   public function __construct(array $data) {
-    // Set the field type based on input data
     $this->type = $data['type'];  
+  }
 
-    // Determine the view for the field by calling the abstract resolveView method
-    $this->view = $this->resolveView();
+  /**
+   * Getter for the field atributes
+   * @return atributes of field
+   */
+  public function __get($key) {
+    return $this->$key ?? null;
   }
 
   /**
@@ -62,14 +61,6 @@ abstract class BaseField {
    */
   public function render(): string {
     return view($this->resolveView(), $this->viewData())->render();
-  }
-
-  /**
-   * Getter for the field type
-   * @return string Field type
-   */
-  public function getType() {
-    return $this->type;
   }
 
 }
