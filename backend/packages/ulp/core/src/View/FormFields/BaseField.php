@@ -43,24 +43,13 @@ abstract class BaseField {
   abstract protected function resolveView(): string;
 
   /**
-   * Prepares the field data to pass to the view
-   * By default, it returns all object properties as an array.
-   * This method can be overridden in subclasses to add custom behavior for data.
-   * 
-   * @return array Data for the view
-   */
-  protected function viewData(): array {
-    return get_object_vars($this);
-  }
-
-  /**
    * Renders the field as HTML
    * Calls the Blade view with the field data and returns the result as a string.
    * 
    * @return string HTML of the field
    */
   public function render(): string {
-    return view($this->resolveView(), $this->viewData())->render();
+    return view($this->resolveView(), get_object_vars($this))->render();
   }
 
 }
