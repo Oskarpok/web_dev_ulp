@@ -23,7 +23,7 @@
     min: {{ json_encode($min) }},
     allowFloat: {{ json_encode($allow_float) }},
     tooltip: {{ json_encode($tooltip) }},
-    validation: {{ json_encode($validationRules[$name] ?? null) }},
+    validation: {{ json_encode($validation) }},
   }"
   class="mb-3 relative"
   :class="wraper">

@@ -7,7 +7,7 @@
     readonly: {{ json_encode($readonly) }}, 
     required: {{ json_encode($required) }},
     tooltip: {{ json_encode($tooltip) }},
-    validation: {{ json_encode($validationRules[$name] ?? null) }},
+    validation: {{ json_encode($validation) }},
   }"
   class="mb-3 relative"
   :class="wraper">
