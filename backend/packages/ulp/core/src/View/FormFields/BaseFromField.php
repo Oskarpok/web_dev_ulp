@@ -15,7 +15,7 @@ abstract class BaseFromField extends BaseField {
 
   protected string $name;
   protected string $label;
-  protected string $tooltip; // To implemnt Iplement in blade 
+  protected string $tooltip;
   protected bool $readonly;
   protected bool $required;
   protected string $wraper;

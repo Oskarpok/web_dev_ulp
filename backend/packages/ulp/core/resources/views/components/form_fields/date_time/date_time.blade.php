@@ -12,8 +12,12 @@
   class="mb-3 relative"
   :class="wraper">
   <label :for="name"  
-    class="block text-sm font-medium text-gray-400 ml-2 mb-1"
-    x-text="label">
+    class="block text-sm font-medium text-gray-400 ml-2 mb-1">
+    <span x-text="label"></span>
+    @component('core::components.form_fields.helpers.tooltip', [
+      'tooltip' => $tooltip,
+    ])
+    @endcomponent
   </label>
   <input type="datetime-local" 
     :id="name"

@@ -22,7 +22,6 @@
     max: {{ json_encode($max) }},
     min: {{ json_encode($min) }},
     allowFloat: {{ json_encode($allow_float) }},
-    tooltip: {{ json_encode($tooltip) }},
     validation: {{ json_encode($validation) }},
   }"
   class="mb-3 relative"
@@ -30,6 +29,10 @@
   <label :for="name" 
     class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
     <span x-text="label"></span>
+    @component('core::components.form_fields.helpers.tooltip', [
+      'tooltip' => $tooltip,
+    ])
+    @endcomponent
   </label>
   <div class="flex items-center border border-gray-600 rounded-xl 
     shadow-inner mt-1"

@@ -9,7 +9,6 @@
     required: {{ json_encode($required) }},
     searchable: {{ json_encode($searchable) }},
     multiple: {{ json_encode($multiple) }},
-    tooltip: {{ json_encode($tooltip) }},
     searchTerm: '',
     open: false,
     filteredOptions() {
@@ -27,6 +26,10 @@
   <label :for="name" 
     class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
     <span x-text="label"></span>
+    @component('core::components.form_fields.helpers.tooltip', [
+      'tooltip' => $tooltip,
+    ])
+    @endcomponent
   </label>
   <button type="button"
     @click="if (!readonly) { open = !open; searchTerm = '' }"
