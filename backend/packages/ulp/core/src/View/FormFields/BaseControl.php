@@ -32,12 +32,6 @@ abstract class BaseControl {
    * Each subclass must implement this method and return a mapping of field types
    * to their corresponding classes.
    * 
-   * Example:
-   * [
-   *   'test1' => test1Field::class,
-   *   'test2' => test2Field::class,
-   * ]
-   * 
    * @return array Mapping of field type => class name
    */
   abstract protected function controlMap(): array;
