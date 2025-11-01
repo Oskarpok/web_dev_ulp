@@ -13,18 +13,17 @@ namespace Ulp\Core\View\FormFields;
 abstract class BaseControl {
 
   /**
-   * @var BaseField The resolved field object
-   */
-  protected $resolved;
-
-  /**
-   * BaseControl constructor
    * 
-   * @param array $data Field configuration data (must include 'type')
-   * Resolves the actual field object using the controlMap.
    */
-  public function __construct(array $data) {
-    $this->resolved = $this->resolveField($data);
+  public static function make(array $data) {
+    $map = static::controlMap();
+    $type = $data['type'] ?? null;
+
+    if (!$type || !isset($map[$type])) {
+      throw new \InvalidArgumentException("Unknown field type: {$type}");
+    }
+
+    return new $map[$type]($data);
   }
 
   /**
@@ -34,37 +33,6 @@ abstract class BaseControl {
    * 
    * @return array Mapping of field type => class name
    */
-  abstract protected function controlMap(): array;
-
-  /**
-   * Resolves the actual field object based on type
-   * Looks up the class in the controlMap and creates a new instance of it.
-   * 
-   * @param array $data Field configuration data
-   * @return BaseField Resolved field object
-   */
-  protected function resolveField(array $data) {
-    return new ($this->controlMap()[$data['type']])($data);
-  }
-
-  /**
-   * Renders the resolved field
-   * Delegates the rendering to the resolved field object.
-   * 
-   * @return string HTML of the field
-   */
-  public function render(): string {
-    return $this->resolved->render();
-  }
-
-  /**
-   * Gets the type of the resolved field
-   * Delegates to the resolved field's getType() method.
-   * 
-   * @return string Field type
-   */
-  public function getType(): string {
-    return $this->resolved->type;
-  }
+  abstract protected static function controlMap(): array;
 
 }
