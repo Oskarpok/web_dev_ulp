@@ -6,7 +6,7 @@ namespace Ulp\Core\View\FormFields\Extra;
 
 class ExtraTypeController extends \Ulp\Core\View\FormFields\BaseControl {
 
-  protected function controlMap(): array {
+  protected static function controlMap(): array {
     return [
       'intex' => Fields\IndexControl::class,   
     ];

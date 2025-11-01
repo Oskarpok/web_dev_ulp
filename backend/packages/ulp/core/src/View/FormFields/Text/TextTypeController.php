@@ -6,7 +6,7 @@ namespace Ulp\Core\View\FormFields\Text;
 
 class TextTypeController extends \Ulp\Core\View\FormFields\BaseControl {
 
-  protected function controlMap(): array {
+  protected static function controlMap(): array {
     return [
       'text' => Fields\TextControl::class,
       'number' => Fields\NumberControl::class,

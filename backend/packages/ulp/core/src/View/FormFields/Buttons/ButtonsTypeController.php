@@ -6,7 +6,7 @@ namespace Ulp\Core\View\FormFields\Buttons;
 
 class ButtonsTypeController extends \Ulp\Core\View\FormFields\BaseControl {
 
-  protected function controlMap(): array {
+  protected static function controlMap(): array {
     return [
       'anchore' => Fields\AnchoreControl::class,
       'submit' => Fields\SubmitControl::class,
