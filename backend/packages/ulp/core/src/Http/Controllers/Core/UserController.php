@@ -7,7 +7,6 @@ namespace Ulp\Core\Http\Controllers\Core;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
-use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 #[\Ulp\Core\Attributes\Navigation(
@@ -94,11 +93,11 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
       // emial
 
-      SelectTypeControl::make([
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
         'type' => 'checkbox',
         'name' => 'is_active',
         'label' => 'Active',
-        'required' => true,
+        'required' => in_array('required', $validationRules['is_active']),
         'value' => $data?->is_active,
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
