@@ -70,7 +70,7 @@ abstract class BaseControl {
    * @return string Field type
    */
   public function getType(): string {
-    return $this->resolved->getType();
+    return $this->resolved->type;
   }
 
 }
