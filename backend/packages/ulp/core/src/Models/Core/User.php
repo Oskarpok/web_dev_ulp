@@ -26,6 +26,7 @@ class User extends \Illuminate\Foundation\Auth\User {
     'sur_name',
     'phone',
     'email',
+    'type',
   ];
 
   /**
@@ -40,7 +41,12 @@ class User extends \Illuminate\Foundation\Auth\User {
 
   public static function validationRules(): array {
     return [
-      //
+      'first_name' => ['required', 'string', 'max:255'],
+      'is_active' => ['required', 'boolean'],
+      'sur_name' => ['required', 'string', 'max:255'],
+      'phone' => ['string', 'required'],
+      'email' => ['required', 'string', 'email','max:255', 'unique:users,email'],
+      'type' => ['required', 'integer'],
     ];
   }
 

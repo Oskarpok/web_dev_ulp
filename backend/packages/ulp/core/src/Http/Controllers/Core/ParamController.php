@@ -10,6 +10,13 @@ use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Parametry',
+  group: 'Systemowe',
+  route: 'core.params.index',
+  roles: [1,2,],
+)]
+
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Param::class;

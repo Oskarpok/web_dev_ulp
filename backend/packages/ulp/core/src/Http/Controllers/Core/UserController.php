@@ -6,6 +6,16 @@ namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Ulp\Core\View\FormFields\Text\TextTypeController;
+use Ulp\Core\View\FormFields\Select\SelectTypeControl;
+use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
+
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Użytkownicy',
+  group: 'Systemowe',
+  route: 'core.users.index',
+  acces: [1,2,3,],
+)]
 
 class UserController extends \Ulp\Core\Http\Controllers\BaseController {
 
@@ -43,7 +53,78 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
     $currentRoute = Route::currentRouteName();
     $validationRules = self::MODEL_CLASS::validationRules();
     return [
+      (function($currentRoute, $id) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return TextTypeController::make([
+            'type' => 'number',
+            'name' => 'id',
+            'label' => 'ID',
+            'value' => $id,
+            'readonly' => true,
+          ]);
+        }
+      })($currentRoute, $data?->id),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'first_name',
+        'label' => 'First Name',
+        'value' => $data?->first_name,
+        'required' => in_array('required', $validationRules['first_name']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'sur_name',
+        'label' => 'Sur Name',
+        'value' => $data?->sur_name,
+        'required' => in_array('required', $validationRules['sur_name']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'phone',
+        'label' => 'Phone',
+        'value' => $data?->phone,
+        'required' => in_array('required', $validationRules['phone']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
 
+      // emial
+
+      SelectTypeControl::make([
+        'type' => 'checkbox',
+        'name' => 'is_active',
+        'label' => 'Active',
+        'required' => true,
+        'value' => $data?->is_active,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      (function($currentRoute, $created_at) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return DateTimeTypeControl::make([
+            'type' => 'date_time',
+            'name' => 'created_at',
+            'label' => 'Utworzony',
+            'readonly' => true,
+            'value' => $created_at,
+          ]);
+        }
+      })($currentRoute, $data?->created_at),
+      (function($currentRoute, $updated_at) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return DateTimeTypeControl::make([
+            'type' => 'date_time',
+            'name' => 'updated_at',
+            'label' => 'Zaktualizowany',
+            'readonly' => true,
+            'value' => $updated_at,
+          ]);
+        }
+      })($currentRoute, $data?->updated_at),
     ];
   }
 

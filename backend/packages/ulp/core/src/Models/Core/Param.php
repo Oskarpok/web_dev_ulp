@@ -6,7 +6,7 @@ namespace Ulp\Core\Models\Core;
 
 use Ulp\Core\Enums\ParamsType;
 
-class Param extends \Ulp\Core\Models\Base{
+class Param extends \Ulp\Core\Models\Base {
   
   protected $fillable = [
     'name', 'type', 'val_string', 'val_int', 'val_float', 'val_bool', 'val_json',
