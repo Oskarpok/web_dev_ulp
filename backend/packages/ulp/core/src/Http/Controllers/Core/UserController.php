@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Ulp\Core\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
+use Ulp\Core\Enums\UsersType;
 use Illuminate\Support\Facades\Route;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
+use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 #[\Ulp\Core\Attributes\Navigation(
@@ -90,15 +92,31 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-
-      // emial
-
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+      TextTypeController::make([
+        'type' => 'email',
+        'name' => 'email',
+        'label' => 'Email',
+        'value' => $data?->email,
+        'required' => in_array('required', $validationRules['email']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      SelectTypeControl::make([
         'type' => 'checkbox',
         'name' => 'is_active',
         'label' => 'Active',
         'required' => in_array('required', $validationRules['is_active']),
         'value' => $data?->is_active,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      SelectTypeControl::make([
+        'type' => 'select',
+        'name' => 'type',
+        'label' => 'Type',
+        'options' => UsersType::toArray() ?? [],
+        'required' => in_array('required', $validationRules['type']),
+        'value' => $data?->type,
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
