@@ -17,6 +17,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'type' => UsersType::Administrator->value,
       'email' => 'admin@example.com',
       'password' => 'admin!1234',
+      'is_active' => true,
     ]);
     User::create([
       'first_name' => 'owner',
@@ -25,6 +26,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'type' => UsersType::Owner->value,
       'email' => 'owner@example.com',
       'password' => 'owner!1234',
+      'is_active' => true,
     ]);
     User::create([
       'first_name' => 'manager',
@@ -33,6 +35,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'type' => UsersType::Manager->value,
       'email' => 'manager@example.com',
       'password' => 'manager!1234',
+      'is_active' => true,
     ]);
     User::create([
       'first_name' => 'cms_user',
@@ -41,6 +44,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'type' => UsersType::CmsUser->value,
       'email' => 'cmsuser@example.com',
       'password' => 'cmsuser!1234',
+      'is_active' => true,
     ]);
     User::create([
       'first_name' => 'user',
@@ -49,6 +53,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'type' => UsersType::User->value,
       'email' => 'user@example.com',
       'password' => 'user!1234',
+      'is_active' => true,
     ]);
   }
 }
