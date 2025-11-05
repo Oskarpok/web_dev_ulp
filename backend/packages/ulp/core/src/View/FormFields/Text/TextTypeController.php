@@ -11,6 +11,7 @@ class TextTypeController extends \Ulp\Core\View\FormFields\BaseControl {
       'text' => Fields\TextControl::class,
       'number' => Fields\NumberControl::class,
       'text_area' => Fields\TextAreaControl::class,
+      'email' => Fields\EmailControl::class,
     ];
   }
 
