@@ -196,8 +196,7 @@ trait DefaultController {
     if($record) {
       $validate = $request->validate(static::MODEL_CLASS::validationRules());
       $this->callHook('beforeUpdate', $record);
-      $record->update($validate);
-      $this->callHook('afterUpdate', $record);
+      $this->callHook('afterUpdate', $record->update($validate));
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordUpdateSucces'] 
         ?? 'Record has been updated');
@@ -218,8 +217,7 @@ trait DefaultController {
 
     if($record) {
       $this->callHook('beforeDestroy', $record);
-      $record->delete();
-      $this->callHook('afterDestroy', $record);
+      $this->callHook('afterDestroy', $record->delete());
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordDestroySucces'] 
         ?? 'Record has been deleted');
