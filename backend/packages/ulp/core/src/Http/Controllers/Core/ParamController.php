@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ulp\Core\Http\Controllers\Core;
 
 use Ulp\Core\Enums\ParamsType;
-use Illuminate\Support\Facades\Route;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
@@ -47,7 +46,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
   }
 
   protected function getFormFields($data = null): array {
-    $currentRoute = Route::currentRouteName();
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
     $validationRules = self::MODEL_CLASS::validationRules();
     return [
       (function($currentRoute, $id) {
