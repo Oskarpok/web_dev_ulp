@@ -12,7 +12,7 @@ class Param extends \Ulp\Core\Models\Base {
     'name', 'type', 'val_string', 'val_int', 'val_float', 'val_bool', 'val_json',
   ];
 
-  public static function validationRules(): array {
+  public static function validationRules($id = null): array {
     return [
       'name' => ['required', 'string', 'max:255'],
       'type' => ['required', 'integer'],

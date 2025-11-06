@@ -39,7 +39,7 @@ trait DefaultModel {
    *
    * @return array Validation rules as an associative array.
    */
-  abstract public static function validationRules(): array;
+  abstract public static function validationRules($id = null): array;
 
   /**
    * 

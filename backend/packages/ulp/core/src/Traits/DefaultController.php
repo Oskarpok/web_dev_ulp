@@ -194,7 +194,7 @@ trait DefaultController {
     $record = static::MODEL_CLASS::find($id);
 
     if($record) {
-      $validate = $request->validate(static::MODEL_CLASS::validationRules());
+      $validate = $request->validate(static::MODEL_CLASS::validationRules($id));
       $this->callHook('beforeUpdate', $record);
       $this->callHook('afterUpdate', $record->update($validate));
       return redirect()->route(static::ROUTE_NAME . 'index')

@@ -18,13 +18,14 @@
     <div class="relative">
       <input type="checkbox"
         :id="name"
+        x-init="value = $el.checked ? 1 : 0"
         @change="value = $event.target.checked ? 1 : 0"
         :checked="value == 1"
         :disabled="readonly"
         class="sr-only peer">
       <div class="w-11 h-6 bg-[#101828] peer-focus:outline-none 
-        rounded-full peer peer-disabled:opacity-40 peer-disabled:cursor-not-allowed 
-        transition-all duration-300">
+        rounded-full peer peer-disabled:opacity-40 
+        peer-disabled:cursor-not-allowed transition-all duration-300">
       </div>
       <div class="absolute left-0.5 top-0.5 w-5 h-5 rounded-full 
         transition-all duration-300 
