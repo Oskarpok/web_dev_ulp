@@ -18,5 +18,7 @@
       ]
     }
   },
-  "require": {}
+  "require": {
+    "livewire/livewire": "^3.6"
+  }
 }
