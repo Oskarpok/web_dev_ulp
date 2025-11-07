@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core;
 
-use Illuminate\Http\Request;
 use Ulp\Core\Enums\UsersType;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Select\SelectTypeControl;
@@ -31,7 +30,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseController {
     ];
   }
 
-  protected function indexPrepare(Request $request): array {
+  protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'first_name', 'sur_name', 'phone', 'email', 'type', 

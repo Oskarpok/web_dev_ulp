@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core;
 
-class OrderController extends \Ulp\Core\Http\Controllers\BaseController {
+class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Order::class;
-  protected const ROUTE_NAME = 'core.orders.';
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Product::class;
+  protected const ROUTE_NAME = 'core.products.';
 
   protected function titles(): array {
     return [
