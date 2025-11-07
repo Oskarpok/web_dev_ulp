@@ -20,13 +20,8 @@ class User extends \Illuminate\Foundation\Auth\User {
    *
    * @var list<string>
    */
-  protected $fillable = [
-    'first_name',
-    'is_active',
-    'sur_name',
-    'phone',
-    'email',
-    'type',
+  protected $fillable = ['first_name', 'is_active', 'sur_name', 'phone', 
+    'email', 'type',
   ];
 
   /**
@@ -34,10 +29,7 @@ class User extends \Illuminate\Foundation\Auth\User {
    *
    * @var list<string>
    */
-  protected $hidden = [
-    'password',
-    'remember_token',
-  ];
+  protected $hidden = ['password', 'remember_token',];
 
   public static function validationRules($id = null): array {
     return [
