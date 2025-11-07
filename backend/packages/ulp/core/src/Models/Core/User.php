@@ -20,8 +20,8 @@ class User extends \Illuminate\Foundation\Auth\User {
    *
    * @var list<string>
    */
-  protected $fillable = ['first_name', 'is_active', 'sur_name', 'phone', 
-    'email', 'type',
+  protected $fillable = [
+    'first_name', 'is_active', 'sur_name', 'phone', 'email', 'type',
   ];
 
   /**
