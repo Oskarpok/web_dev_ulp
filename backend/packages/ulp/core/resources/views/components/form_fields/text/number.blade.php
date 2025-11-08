@@ -15,7 +15,7 @@
     label: {{ json_encode($label) }},
     name: {{ json_encode($name) }},
     wraper: {{ json_encode($wraper) }},
-    value: {{ $value }}, 
+    value: {{ json_encode($value) }},
     step: {{ json_encode($step) }}, 
     readonly: {{ json_encode($readonly) }},
     required: {{ json_encode($required) }},
