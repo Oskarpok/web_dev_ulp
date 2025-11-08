@@ -12,7 +12,11 @@ class Product extends \Ulp\Core\Models\Base {
 
   public static function validationRules($id = null): array {
     return [
-      //
+      'name' => ['required', 'string', 'max:255'],
+      'unit_price' => ['required',],
+      'is_active' => ['required', 'boolean'],
+      'specification' => ['required',],
+      'description' => ['',],
     ];
   }
 
