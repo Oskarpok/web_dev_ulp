@@ -95,7 +95,6 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
             'name' => 'val_float',
             'label' => 'Value',
             'value' => $data?->val_float,
-            'readonly' => true,
             'allow_float' => true,
             'required' => true,
             'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
