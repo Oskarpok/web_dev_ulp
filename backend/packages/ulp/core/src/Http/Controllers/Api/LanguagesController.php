@@ -24,13 +24,14 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseController {
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id',   'created_at', 'updated_at',
-      ])->get(), 
+        'id', 'name', 'shortcut', 'is_active', 'created_at', 'updated_at',
+      ])->get()->append(['is_active_label',]), 
       'labels' => [
-        'Id',  'Created at', 'Updated at',
+        'Id', 'Name', 'Shortcut', 'Active', 'Created at', 'Updated at',
       ],
       'filterable' => [
-        'id' => true, 'created_at' => true, 'updated_at' => true,
+        'id' => true, 'name' => true, 'shortcut' => true, 'is_active' => false,
+        'created_at' => true, 'updated_at' => true,
       ],
     ];
   }
@@ -50,7 +51,33 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
- 
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'name',
+        'label' => 'Nazwa',
+        'value' => $data?->name,
+        'required' => in_array('required', $validationRules['name']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'shortcut',
+        'label' => 'Shortcut',
+        'value' => $data?->shortcut,
+        'required' => in_array('required', $validationRules['shortcut']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+        'type' => 'checkbox',
+        'name' => 'is_active',
+        'label' => 'Active',
+        'required' => true,
+        'value' => $data?->is_active,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([

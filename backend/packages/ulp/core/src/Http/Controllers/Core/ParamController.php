@@ -34,7 +34,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'type', 'value', 'created_at', 'updated_at',
-      ])->get()->append(['type_label', 'value']), 
+      ])->get()->append(['type_label', 'value']),
       'labels' => [
         'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at',
       ],
