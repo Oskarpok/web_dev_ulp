@@ -145,9 +145,9 @@ trait DefaultController {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function store(Request $request) {
-    $validate =  $request->validate(static::MODEL_CLASS::validationRules());
+    $validate =  $request->validate(static::MODEL_CLASS::validationRules());       
     $this->callHook('beforeStore', $validate);
-    $this->callHook('afterStore', static::MODEL_CLASS::create($validate));
+    $this->callHook('afterStore', $validate, static::MODEL_CLASS::create($validate));
     return redirect()->route(static::ROUTE_NAME . 'index')
       ->with('success', $this->titles()['recordCreatedSucces'] 
       ?? 'Record has been updated');
@@ -195,8 +195,9 @@ trait DefaultController {
 
     if($record) {
       $validate = $request->validate(static::MODEL_CLASS::validationRules($id));
-      $this->callHook('beforeUpdate', $record);
-      $this->callHook('afterUpdate', $record->update($validate));
+      $this->callHook('beforeUpdate', $validate, $record);
+      $record->update($validate);
+      $this->callHook('afterUpdate', $validate, $record);
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordUpdateSucces'] 
         ?? 'Record has been updated');
