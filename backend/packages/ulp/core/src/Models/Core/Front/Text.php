@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Models\Api;
+namespace Ulp\Core\Models\Core\Front;
 
 class Text extends \Ulp\Core\Models\Base {
 
@@ -11,7 +11,7 @@ class Text extends \Ulp\Core\Models\Base {
   public static function validationRules($id = null): array {
     return [
       'name' => ['required', 'string', 'max:255',
-        \Illuminate\Validation\Rule::unique('name')->ignore($id)],
+        \Illuminate\Validation\Rule::unique('texts', 'name')->ignore($id)],
       'translations.*' => ['nullable', 'string'],
     ];
   }

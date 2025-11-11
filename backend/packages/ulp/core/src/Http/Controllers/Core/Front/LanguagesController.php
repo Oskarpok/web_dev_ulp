@@ -2,44 +2,43 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Api;
+namespace Ulp\Core\Http\Controllers\Core\Front;
 
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
-class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
+class LanguagesController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Api\Text::class;
-  protected const ROUTE_NAME = 'core.texts.';
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Language::class;
+  protected const ROUTE_NAME = 'core.languages.';
 
   protected function titles(): array {
     return [
-      'index' => 'Texts Panel',
-      'create' => 'Texts Create Panel',
-      'edit' => 'Texts Edit Panel',
-      'show' => 'Texts Show Panel',
+      'index' => 'Languages Panel',
+      'create' => 'Languages Create Panel',
+      'edit' => 'Languages Edit Panel',
+      'show' => 'Languages Show Panel',
     ];
   }
 
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id', 'name', 'created_at', 'updated_at',
-      ])->get(), 
+        'id', 'name', 'shortcut', 'is_active', 'created_at', 'updated_at',
+      ])->get()->append(['is_active_label',]), 
       'labels' => [
-        'Id', 'Name', 'Created at', 'Updated at',
+        'Id', 'Name', 'Shortcut', 'Active', 'Created at', 'Updated at',
       ],
       'filterable' => [
-        'id' => true, 'name' => true, 'created_at' => true, 'updated_at' => true,
+        'id' => true, 'name' => true, 'shortcut' => true, 'is_active' => false,
+        'created_at' => true, 'updated_at' => true,
       ],
     ];
   }
 
   protected function getFormFields($data = null): array {
     $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    if($data) {
-      $data->load('languages');
-    }
+    $validationRules = self::MODEL_CLASS::validationRules();
     return [
       (function($currentRoute, $id) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
@@ -52,32 +51,33 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
-       TextTypeController::make([
+      TextTypeController::make([
         'type' => 'text',
         'name' => 'name',
         'label' => 'Nazwa',
         'value' => $data?->name,
-        'required' => true,
+        'required' => in_array('required', $validationRules['name']),
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      ...(function($data, $currentRoute) {
-        foreach (\Ulp\Core\Models\Api\Language::where('is_active', true)
-          ->pluck('name', 'id') as $langId => $name) {
-            $fields[] = TextTypeController::make([
-              'type' => 'text_area',
-              'name' => "translations[{$langId}]",
-              'label' => "Tłumaczenie {$name}",
-              'required' => true,
-              'value' => $data?->languages
-                ? $data->languages->firstWhere('id', $langId)?->pivot?->translation ?? ''
-                : '',
-              'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-                ? false : true,
-            ]);
-        }
-        return $fields;
-      })($data, $currentRoute),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'shortcut',
+        'label' => 'Shortcut',
+        'value' => $data?->shortcut,
+        'required' => in_array('required', $validationRules['shortcut']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+        'type' => 'checkbox',
+        'name' => 'is_active',
+        'label' => 'Active',
+        'required' => true,
+        'value' => $data?->is_active,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([
@@ -101,24 +101,6 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
         }
       })($currentRoute, $data?->updated_at),
     ];
-  }
-
-  protected function afterStore($validated, $record) {
-    if (!empty($validated['translations'])) {                                       
-      $record->languages()->attach(
-        collect($validated['translations'])
-          ->map(fn($t) => ['translation' => $t])->toArray()                         
-      );
-    }
-  }
-
-  protected function afterUpdate($validated, $record) {
-    if (!empty($validated['translations'])) {
-      $record->languages()->sync(
-        collect($validated['translations'])
-          ->map(fn($t) => ['translation' => $t])->toArray()
-      );
-    }
   }
   
 }
