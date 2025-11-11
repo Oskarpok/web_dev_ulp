@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Front;
+namespace Ulp\Core\Http\Controllers\Api;
 
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 class LanguagesController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Front\Language::class;
+  protected const MODEL_CLASS = \Ulp\Core\Models\Api\Language::class;
   protected const ROUTE_NAME = 'core.languages.';
 
   protected function titles(): array {

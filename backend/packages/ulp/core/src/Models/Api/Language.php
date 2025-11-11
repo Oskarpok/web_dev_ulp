@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Models\Front;
+namespace Ulp\Core\Models\Api;
 
 class Language extends \Ulp\Core\Models\Base {
 
