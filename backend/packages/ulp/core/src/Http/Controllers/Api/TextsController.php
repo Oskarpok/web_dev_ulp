@@ -52,7 +52,32 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
- 
+       TextTypeController::make([
+        'type' => 'text',
+        'name' => 'name',
+        'label' => 'Nazwa',
+        'value' => $data?->name,
+        'required' => true,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      ...(function($data, $currentRoute) {
+        foreach (\Ulp\Core\Models\Api\Language::where('is_active', true)
+          ->pluck('name', 'id') as $langId => $name) {
+            $fields[] = TextTypeController::make([
+              'type' => 'text_area',
+              'name' => "translations[{$langId}]",
+              'label' => "Tłumaczenie {$name}",
+              'required' => true,
+              'value' => $data?->languages
+                ? $data->languages->firstWhere('id', $langId)?->pivot?->translation ?? ''
+                : '',
+              'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+                ? false : true,
+            ]);
+        }
+        return $fields;
+      })($data, $currentRoute),
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([
