@@ -12,7 +12,7 @@ Route::prefix('admin')->name('core.')
 });
 
 Route::prefix('admin')->name('core.')
-  ->namespace('\Ulp\Core\Http\Controllers\Api')
+  ->namespace('\Ulp\Core\Http\Controllers\Front')
   ->group(function () {
     Route::resource('languages', 'LanguagesController');
     Route::resource('texts', 'TextsController');

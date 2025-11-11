@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Models\Api;
+namespace Ulp\Core\Models\Front;
 
 class Text extends \Ulp\Core\Models\Base {
 
