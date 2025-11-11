@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->name('core.')
   ->namespace('\Ulp\Core\Http\Controllers\Core')
   ->group(function () {
-    Route::resource('users', 'UserController');
-    Route::resource('params', 'ParamController');
-    Route::resource('orders', 'OrderController');
-    Route::resource('products', 'ProductController');
+    Route::resource('users', 'Users\UserController');
+    Route::resource('params', 'System\ParamController');
+    Route::resource('orders', 'Production\OrderController');
+    Route::resource('products', 'Production\ProductController');
 });
 
 Route::prefix('admin')->name('core.')

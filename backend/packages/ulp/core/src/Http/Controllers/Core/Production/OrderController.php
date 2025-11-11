@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Core;
+namespace Ulp\Core\Http\Controllers\Core\Production;
+
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 class OrderController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Order::class;
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Order::class;
   protected const ROUTE_NAME = 'core.orders.';
 
   protected function titles(): array {

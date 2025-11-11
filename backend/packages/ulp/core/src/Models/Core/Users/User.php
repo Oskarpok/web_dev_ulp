@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Models\Core;
+namespace Ulp\Core\Models\Core\Users;
 
 use Ulp\Core\Enums\UsersType;
 use Ulp\Core\Traits\DefaultModel;

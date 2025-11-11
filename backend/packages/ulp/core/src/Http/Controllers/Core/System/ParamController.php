@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Core;
+namespace Ulp\Core\Http\Controllers\Core\System;
 
 use Ulp\Core\Enums\ParamsType;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
@@ -18,7 +18,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Param::class;
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\System\Param::class;
   protected const ROUTE_NAME = 'core.params.';
 
   protected function titles(): array {

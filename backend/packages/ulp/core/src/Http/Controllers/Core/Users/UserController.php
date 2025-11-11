@@ -2,35 +2,48 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Http\Controllers\Core;
+namespace Ulp\Core\Http\Controllers\Core\Users;
+
+use Ulp\Core\Enums\UsersType;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
+use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
-class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Użytkownicy',
+  group: 'Systemowe',
+  route: 'core.users.index',
+  acces: [1,2,3,],
+)]
 
-  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Product::class;
-  protected const ROUTE_NAME = 'core.products.';
+class UserController extends \Ulp\Core\Http\Controllers\BaseController {
+
+  protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\User::class;
+  protected const ROUTE_NAME = 'core.users.';
 
   protected function titles(): array {
     return [
-      'index' => 'Products Panel',
-      'create' => 'Products Create Panel',
-      'edit' => 'Products Edit Panel',
-      'show' => 'Products Show Panel',
+      'index' => 'Users Panel',
+      'create' => 'Users Create Panel',
+      'edit' => 'Users Edit Panel',
+      'show' => 'Users Show Panel',
     ];
   }
 
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id', 'name', 'unit_price', 'is_active','created_at', 'updated_at',
-      ])->get()->append([]), 
+        'id', 'first_name', 'sur_name', 'phone', 'email', 'type', 
+        'is_active', 'email_verified_at', 'created_at', 'updated_at',
+      ])->get()->append(['is_active_label', 'type_label']), 
       'labels' => [
-        'Id', 'Name', 'Unit Price', 'Active', 'Created at', 'Updated at',
+        'Id', 'First name', 'Sur name', 'Phone', 'Email', 
+        'Type', 'Active', 'Verified at', 'Created at', 'Updated at',
       ],
       'filterable' => [
-        'id' => true, 'name' => true, 'unit_price' => true, 
-        'is_active' => true, 'created_at' => true, 'updated_at' => true,
+        'id' => true, 'first_name' => true, 'sur_name' => true, 
+        'phone' => true, 'email' => true, 'type' => true, 'is_active' => true,
+        'email_verified_at' => true, 'created_at' => true, 'updated_at' => true,
       ],
     ];
   }
@@ -52,25 +65,41 @@ class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
       })($currentRoute, $data?->id),
       TextTypeController::make([
         'type' => 'text',
-        'name' => 'name',
-        'label' => 'Nazwa',
-        'value' => $data?->name,
-        'required' => in_array('required', $validationRules['name']),
+        'name' => 'first_name',
+        'label' => 'First Name',
+        'value' => $data?->first_name,
+        'required' => in_array('required', $validationRules['first_name']),
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
       TextTypeController::make([
-        'type' => 'number',
-        'name' => 'unit_price',
-        'label' => 'Unit Price',
-        'value' => $data?->unit_price,
-        'readonly' => true,
-        'allow_float' => true,
-        'required' => in_array('required', $validationRules['unit_price']),
+        'type' => 'text',
+        'name' => 'sur_name',
+        'label' => 'Sur Name',
+        'value' => $data?->sur_name,
+        'required' => in_array('required', $validationRules['sur_name']),
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'phone',
+        'label' => 'Phone',
+        'value' => $data?->phone,
+        'required' => in_array('required', $validationRules['phone']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      TextTypeController::make([
+        'type' => 'email',
+        'name' => 'email',
+        'label' => 'Email',
+        'value' => $data?->email,
+        'required' => in_array('required', $validationRules['email']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      SelectTypeControl::make([
         'type' => 'checkbox',
         'name' => 'is_active',
         'label' => 'Active',
@@ -79,25 +108,16 @@ class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      TextTypeController::make([
-        'type' => 'text_area',
-        'name' => 'specification',
-        'label' => 'Specification',
-        'required' => in_array('required', $validationRules['specification']),
-        'value' => $data?->specification,
+      SelectTypeControl::make([
+        'type' => 'select',
+        'name' => 'type',
+        'label' => 'Type',
+        'options' => UsersType::toArray() ?? [],
+        'required' => in_array('required', $validationRules['type']),
+        'value' => $data?->type,
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      TextTypeController::make([
-        'type' => 'text_area',
-        'name' => 'description',
-        'label' => 'Description',
-        'required' => in_array('required', $validationRules['description']),
-        'value' => $data?->description,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      //file
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([
