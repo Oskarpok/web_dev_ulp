@@ -24,20 +24,22 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id',   'created_at', 'updated_at',
+        'id', 'name', 'created_at', 'updated_at',
       ])->get(), 
       'labels' => [
-        'Id',  'Created at', 'Updated at',
+        'Id', 'Name', 'Created at', 'Updated at',
       ],
       'filterable' => [
-        'id' => true, 'created_at' => true, 'updated_at' => true,
+        'id' => true, 'name' => true, 'created_at' => true, 'updated_at' => true,
       ],
     ];
   }
 
   protected function getFormFields($data = null): array {
     $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    $validationRules = self::MODEL_CLASS::validationRules();
+    if($data) {
+      $data->load('languages');
+    }
     return [
       (function($currentRoute, $id) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
@@ -74,6 +76,24 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
         }
       })($currentRoute, $data?->updated_at),
     ];
+  }
+
+  protected function afterStore($validated, $record) {
+    if (!empty($validated['translations'])) {                                       
+      $record->languages()->attach(
+        collect($validated['translations'])
+          ->map(fn($t) => ['translation' => $t])->toArray()                         
+      );
+    }
+  }
+
+  protected function afterUpdate($validated, $record) {
+    if (!empty($validated['translations'])) {
+      $record->languages()->sync(
+        collect($validated['translations'])
+          ->map(fn($t) => ['translation' => $t])->toArray()
+      );
+    }
   }
   
 }
