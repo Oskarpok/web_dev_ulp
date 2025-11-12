@@ -3,7 +3,7 @@
 namespace Ulp\Core\Database\Seeders;
 
 use Ulp\Core\Enums\ParamsType;
-use Ulp\Core\Models\Core\Param;
+use Ulp\Core\Models\Core\System\Param;
 
 class ParamsSeeder extends \Illuminate\Database\Seeder {
   

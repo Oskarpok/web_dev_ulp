@@ -10,7 +10,7 @@ enum UsersType: int {
   case Administrator = 1;
   case Owner = 2;
   case Manager = 3;
-  case CmsUser = 4;
+  case SystemUser = 4;
   case User = 5;
 
   public static function toArray(): array {

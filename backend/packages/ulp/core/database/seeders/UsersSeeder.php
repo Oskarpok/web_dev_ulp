@@ -3,7 +3,7 @@
 namespace Ulp\Core\Database\Seeders;
 
 use Ulp\Core\Enums\UsersType;
-use Ulp\Core\Models\Core\User;
+use Ulp\Core\Models\Core\Users\User;
 
 class UsersSeeder extends \Illuminate\Database\Seeder {
   /**
@@ -41,7 +41,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'first_name' => 'cms_user',
       'sur_name' => 'cms_user_cms_user',
       'phone' => '48567891234',
-      'type' => UsersType::CmsUser->value,
+      'type' => UsersType::SystemUser->value,
       'email' => 'cmsuser@example.com',
       'password' => 'cmsuser!1234',
       'is_active' => true,
