@@ -7,6 +7,13 @@ namespace Ulp\Core\Http\Controllers\Core\Production;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Products',
+  group: 'Production',
+  route: 'core.products.index',
+  roles: [1,2,],
+)]
+
 class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Product::class;

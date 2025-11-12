@@ -7,6 +7,13 @@ namespace Ulp\Core\Http\Controllers\Core\Production;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Orders',
+  group: 'Production',
+  route: 'core.orders.index',
+  roles: [1,2,3,4],
+)]
+
 class OrderController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Order::class;
@@ -53,9 +60,23 @@ class OrderController extends \Ulp\Core\Http\Controllers\BaseController {
           ]);
         }
       })($currentRoute, $data?->id),
-      
 
-
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'parcel_number',
+        'label' => 'Parcel Number',
+        'value' => $data?->parcel_number,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      TextTypeController::make([
+        'type' => 'text_area',
+        'name' => 'notes',
+        'label' => 'Notes',
+        'value' => $data?->notes,
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
 
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {

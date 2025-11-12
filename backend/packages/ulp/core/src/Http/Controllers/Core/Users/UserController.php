@@ -10,8 +10,8 @@ use Ulp\Core\View\FormFields\Select\SelectTypeControl;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 #[\Ulp\Core\Attributes\Navigation(
-  title: 'Użytkownicy',
-  group: 'Systemowe',
+  title: 'Users',
+  group: 'Users',
   route: 'core.users.index',
   acces: [1,2,3,],
 )]

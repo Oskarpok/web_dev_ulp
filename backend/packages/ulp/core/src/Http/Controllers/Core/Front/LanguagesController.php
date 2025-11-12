@@ -7,6 +7,13 @@ namespace Ulp\Core\Http\Controllers\Core\Front;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Languages',
+  group: 'Front',
+  route: 'core.languages.index',
+  roles: [1,2,3],
+)]
+
 class LanguagesController extends \Ulp\Core\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Language::class;
