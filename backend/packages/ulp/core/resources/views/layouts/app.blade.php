@@ -20,11 +20,11 @@
         <div class="flex flex-col items-center py-4 border-b border-gray-700">
           <div class="flex items-center justify-center text-center">
             <span class="font-semibold break-words leading-tight">
-              user first_name user sur_name
+              {{ auth()->user()->first_name }} {{ auth()->user()->sur_name }}
             </span>
           </div>
           <span class="text-sm text-gray-400">
-            usertype
+            {{ auth()->user()->type_label }}
           </span>
         </div>
 
@@ -85,7 +85,7 @@
                   Zmień dane
                 </a>
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('logout') }}">
                   @csrf
                   <button type="submit" 
                     class="w-full text-left px-4 py-2 text-sm text-white 
@@ -111,3 +111,15 @@
     </footer>
 	</body>
 </html>
+<script>
+  const userBtn = document.getElementById('userMenuButton');
+  const dropdown = document.getElementById('userDropdown');
+
+  document.addEventListener('click', function (e) {
+    if (userBtn.contains(e.target)) {
+      dropdown.classList.toggle('hidden');
+    } else if (!dropdown.contains(e.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+</script>

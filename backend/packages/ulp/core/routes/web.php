@@ -7,6 +7,8 @@ Route::middleware('guest')
   ->group(function () {
     Route::get('login', 'AuthController@showLoginForm')->name('loginForm');
     Route::post('login', 'AuthController@login')->name('login');
+    Route::post('logout', 'AuthController@logout')->name('logout');
+    Route::get('/dashboard', fn() => view('core::auth.dashboard'))->name('dashboard');
 });
 
 Route::prefix('admin')->name('core.')
