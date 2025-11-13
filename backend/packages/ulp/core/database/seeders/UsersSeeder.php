@@ -3,6 +3,7 @@
 namespace Ulp\Core\Database\Seeders;
 
 use Ulp\Core\Enums\UsersType;
+use Illuminate\Support\Facades\Hash;
 use Ulp\Core\Models\Core\Users\User;
 
 class UsersSeeder extends \Illuminate\Database\Seeder {
@@ -16,7 +17,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'phone' => '48234567891',
       'type' => UsersType::Administrator->value,
       'email' => 'admin@example.com',
-      'password' => 'admin!1234',
+      'password' => Hash::make('admin!1234'),
       'is_active' => true,
     ]);
     User::create([
@@ -25,7 +26,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'phone' => '48345678912',
       'type' => UsersType::Owner->value,
       'email' => 'owner@example.com',
-      'password' => 'owner!1234',
+      'password' => Hash::make('owner!1234'),
       'is_active' => true,
     ]);
     User::create([
@@ -34,7 +35,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'phone' => '48456789123',
       'type' => UsersType::Manager->value,
       'email' => 'manager@example.com',
-      'password' => 'manager!1234',
+      'password' => Hash::make('manager!1234'),
       'is_active' => true,
     ]);
     User::create([
@@ -43,7 +44,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'phone' => '48567891234',
       'type' => UsersType::SystemUser->value,
       'email' => 'cmsuser@example.com',
-      'password' => 'cmsuser!1234',
+      'password' => Hash::make('cmsuser!1234'),
       'is_active' => true,
     ]);
     User::create([
@@ -52,7 +53,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'phone' => '48678912345',
       'type' => UsersType::User->value,
       'email' => 'user@example.com',
-      'password' => 'user!1234',
+      'password' => Hash::make('user!1234'),
       'is_active' => true,
     ]);
   }
