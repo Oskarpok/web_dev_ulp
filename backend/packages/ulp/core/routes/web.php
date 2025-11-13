@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('guest')
+  ->namespace('Ulp\Core\Http\Controllers\Core\Users')
+  ->group(function () {
+    Route::get('login', 'AuthController@showLoginForm')->name('loginForm');
+    Route::post('login', 'AuthController@login')->name('login');
+});
+
 Route::prefix('admin')->name('core.')
   ->namespace('\Ulp\Core\Http\Controllers\Core')->group(function () {
     Route::resource('users', 'Users\UserController');
