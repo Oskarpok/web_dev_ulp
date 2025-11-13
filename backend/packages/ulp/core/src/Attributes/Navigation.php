@@ -12,7 +12,7 @@ class Navigation{
     public string $title,
     public string $group,
     public string $route,
-    public array $acces
+    public array $roles
   ) 
   {
 
