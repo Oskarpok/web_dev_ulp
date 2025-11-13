@@ -34,7 +34,7 @@ class AuthController extends \Illuminate\Routing\Controller {
           'error' => 'Zaloguj sie jak zwykly urzytkownik'
         ]);
       }
-      return redirect()->route('dashboard');
+      return view('core::auth.dashboard');
     }
     return redirect()->back()->with([
       'error' => 'Nieprawidłowe dane logowania'
@@ -54,7 +54,7 @@ class AuthController extends \Illuminate\Routing\Controller {
   * Log the user out of the application.
   */
   public function logout(Request $request): RedirectResponse {
-    Auth::guard('web')->logout();
+    Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
     return redirect('/');
