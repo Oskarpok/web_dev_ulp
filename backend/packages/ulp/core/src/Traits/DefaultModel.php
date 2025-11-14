@@ -41,9 +41,7 @@ trait DefaultModel {
    */
   abstract public static function validationRules($id = null): array;
 
-  /**
-   * 
-   */
+  // besa format date method
   protected function serializeDate(\DateTimeInterface $date){
     return $date->format('Y-m-d H:i:s');
   }
