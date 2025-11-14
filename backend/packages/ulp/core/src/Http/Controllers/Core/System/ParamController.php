@@ -16,7 +16,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   roles: [1,2,],
 )]
 
-class ParamController extends \Ulp\Core\Http\Controllers\BaseController {
+class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\System\Param::class;
   protected const ROUTE_NAME = 'core.params.';

@@ -14,7 +14,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   roles: [1,2,],
 )]
 
-class ProductController extends \Ulp\Core\Http\Controllers\BaseController {
+class ProductController extends \Ulp\Core\Http\Controllers\BaseCrudController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Product::class;
   protected const ROUTE_NAME = 'core.products.';

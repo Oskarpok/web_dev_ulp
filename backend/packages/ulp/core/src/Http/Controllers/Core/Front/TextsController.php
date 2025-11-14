@@ -14,7 +14,7 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   roles: [1,2,3],
 )]
 
-class TextsController extends \Ulp\Core\Http\Controllers\BaseController {
+class TextsController extends \Ulp\Core\Http\Controllers\BaseCrudController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Text::class;
   protected const ROUTE_NAME = 'core.texts.';
