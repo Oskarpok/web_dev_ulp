@@ -10,49 +10,41 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends \Illuminate\Routing\Controller {
 
-  /**
-   * Handle authentication of any user
-   */
+  // Handle authentication of any user base on their type
   public function login(Request $request) {
     $request->validate([
-      'login' => ['required', 'email', 'string'],
-      'password' => ['required', 'string'],
+      'login' => ['required', 'email'],
+      'password' => ['required'],
     ]);
 
     $credentials = [
-      'email' => $request->input('login'),
-      'password' => $request->input('password'),
+      'email' => $request->login,
+      'password' => $request->password,
     ];
 
-    if (Auth::guard('web')->attempt($credentials)) {
-      /** @var User $user */
-      $user = Auth::guard('web')->user();
-      // Zablokuj zwykłych użytkowników
-      if ($user->type === \Ulp\Core\Enums\UsersType::User->value) {
-        Auth::guard('web')->logout();
-        return redirect()->back()->with([
-          'error' => 'Zaloguj sie jak zwykly urzytkownik'
-        ]);
-      }
-      return view('core::auth.dashboard');
+    if (!Auth::attempt($credentials)) {
+      return back()->with([
+        'error' => 'Nieprawidłowe dane logowania'
+      ]);
     }
-    return redirect()->back()->with([
-      'error' => 'Nieprawidłowe dane logowania'
-    ]);
 
+    if (Auth::user()->type === \Ulp\Core\Enums\UsersType::User->value) {
+      Auth::logout();
+      return back()->with([
+        'error' => 'Zaloguj się jako zwykły użytkownik'
+      ]);
+    }
 
+    $request->session()->regenerate();
+    return redirect()->intended(route('core.dashboard'));
   }
 
-  /**
-   * 
-   */
+  // show login fomr for users
   public function showLoginForm() {
     return view('core::auth.login');
   }
 
-  /**
-  * Log the user out of the application.
-  */
+  // Log the user out of the application.
   public function logout(Request $request): RedirectResponse {
     Auth::logout();
     $request->session()->invalidate();

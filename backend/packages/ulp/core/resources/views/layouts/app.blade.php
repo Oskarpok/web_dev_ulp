@@ -29,11 +29,30 @@
         </div>
         
         <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-6 text-sm">
-
-            
-
-
-
+          @foreach ($HelperFrontEndBase::buildNavigation() as $group => $items)
+            <div x-data="{ open: false }" class="mb-4">
+              <button @click="open = !open" 
+                class="flex items-center justify-between mb-2 w-full text-left 
+                  text-gray-500 uppercase tracking-wide focus:outline-none">
+                {{ $group }}
+                <i class="transition-transform duration-300" 
+                  :class="open ? 'fa fa-chevron-down rotate-180' : 'fa fa-chevron-down'">
+                </i>
+              </button>
+              <ul x-show="open" x-transition class="space-y-1">
+                @foreach ($items as $item)
+                  @if (Route::has($item['route']))
+                    <li>
+                      <a href="{{ route($item['route']) }}" 
+                        class="block px-2 py-2 hover:text-green-400 rounded">
+                        {{ $item['title'] }}
+                      </a>
+                    </li>
+                  @endif
+                @endforeach
+              </ul>
+            </div>
+          @endforeach
         </nav>
       </aside>
 			<div class="flex flex-col flex-1">
@@ -82,7 +101,7 @@
                   Zmień dane
                 </a>
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('core.logout') }}">
                   @csrf
                   <button type="submit" 
                     class="w-full text-left px-4 py-2 text-sm text-white 
@@ -107,4 +126,16 @@
         </p>
     </footer>
 	</body>
-</html>
+</html> 
+<script>
+  const userBtn = document.getElementById('userMenuButton');
+  const dropdown = document.getElementById('userDropdown');
+
+  document.addEventListener('click', function (e) {
+    if (userBtn.contains(e.target)) {
+      dropdown.classList.toggle('hidden');
+    } else if (!dropdown.contains(e.target)) {
+      dropdown.classList.add('hidden');
+    }
+  });
+</script>
