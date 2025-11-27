@@ -12,6 +12,11 @@ class CoreServiceProvider extends \Ulp\Core\Providers\BaseServiceProvider {
 		parent::__construct($app, 'core');
 	}
 
+  public function register(): void {
+    parent::boot();
+    $this->mergeConfigFrom($this->packagePath . 'config/permission.php', 'permission');
+  }
+
 	public function boot(): void {
 		parent::boot();
 		View::share('HelperFrontEndBase', \Ulp\Core\Helpers\Frontend\Base::class);
