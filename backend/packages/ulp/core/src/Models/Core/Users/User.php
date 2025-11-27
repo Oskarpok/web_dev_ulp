@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Ulp\Core\Models\Core\Users;
 
 use Ulp\Core\Enums\UsersType;
-use Ulp\Core\Traits\DefaultModel;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends \Illuminate\Foundation\Auth\User {
 
   /** @use HasFactory<\Database\Factories\UserFactory> */
-  use HasFactory, Notifiable, DefaultModel;
+  use \Illuminate\Database\Eloquent\Factories\HasFactory, 
+    \Illuminate\Notifications\Notifiable, 
+    \Ulp\Core\Traits\DefaultModel;
 
   /**
    * The attributes that are mass assignable.
