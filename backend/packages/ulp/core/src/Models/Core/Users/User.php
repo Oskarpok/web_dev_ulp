@@ -30,6 +30,8 @@ class User extends \Illuminate\Foundation\Auth\User {
    */
   protected $hidden = ['password', 'remember_token',];
 
+  protected $appends = ['is_active_label', 'type_label'];
+
   public static function validationRules($id = null): array {
     return [
       'first_name' => ['required', 'string', 'max:255'],

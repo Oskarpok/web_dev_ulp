@@ -35,7 +35,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'first_name', 'sur_name', 'phone', 'email', 'type', 
         'is_active', 'email_verified_at', 'created_at', 'updated_at',
-      ])->get()->append(['is_active_label', 'type_label']), 
+      ])->get(), 
       'labels' => [
         'Id', 'First name', 'Sur name', 'Phone', 'Email', 
         'Type', 'Active', 'Verified at', 'Created at', 'Updated at',

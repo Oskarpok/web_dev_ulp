@@ -10,6 +10,8 @@ class Language extends \Ulp\Core\Models\Base {
     'name', 'shortcut', 'is_active',
   ];
 
+  protected $appends = ['is_active_label'];
+
   public static function validationRules($id = null): array {
     return [
       'name' => ['required', 'string', 'max:255'],

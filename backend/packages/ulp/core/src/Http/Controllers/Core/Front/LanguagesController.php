@@ -32,7 +32,7 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'shortcut', 'is_active', 'created_at', 'updated_at',
-      ])->get()->append(['is_active_label',]), 
+      ])->get(), 
       'labels' => [
         'Id', 'Name', 'Shortcut', 'Active', 'Created at', 'Updated at',
       ],
