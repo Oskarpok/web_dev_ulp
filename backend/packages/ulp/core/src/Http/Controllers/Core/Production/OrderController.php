@@ -11,7 +11,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Orders',
   group: 'Production',
   route: 'core.orders.index',
-  roles: [1,2,3,4],
 )]
 
 class OrderController extends \Ulp\Core\Http\Controllers\BaseCrudController {

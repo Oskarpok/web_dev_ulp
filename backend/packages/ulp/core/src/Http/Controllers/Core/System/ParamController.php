@@ -13,7 +13,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Parameters',
   group: 'Systemic',
   route: 'core.params.index',
-  roles: [1,2,],
 )]
 
 class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {

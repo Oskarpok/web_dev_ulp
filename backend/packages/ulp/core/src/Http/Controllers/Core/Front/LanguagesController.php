@@ -11,7 +11,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Languages',
   group: 'Front',
   route: 'core.languages.index',
-  roles: [1,2,3],
 )]
 
 class LanguagesController extends \Ulp\Core\Http\Controllers\BaseCrudController {

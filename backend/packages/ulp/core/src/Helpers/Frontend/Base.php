@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Helpers\Frontend;
 
-use ReflectionClass;
 use Illuminate\Support\Facades\File;
 
 class Base {
@@ -34,7 +33,7 @@ class Base {
 
         if(empty($attributes)) continue;
         $atr = $attributes[0]->newInstance();
-        if(!in_array(auth()->user()->getRawOriginal('type'), $atr->roles)) continue;
+        // if(!in_array(auth()->user()->getRawOriginal('type'), $atr->roles)) continue;
 
         $navigation[$atr->group][] = [
           'title' => $atr->title,

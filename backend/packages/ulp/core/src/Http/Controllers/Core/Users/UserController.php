@@ -13,7 +13,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Users',
   group: 'Users',
   route: 'core.users.index',
-  roles: [1,2,3,],
 )]
 
 class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {

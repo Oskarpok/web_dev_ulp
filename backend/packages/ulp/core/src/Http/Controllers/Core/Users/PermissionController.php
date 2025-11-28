@@ -11,7 +11,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Permission',
   group: 'Users',
   route: 'core.permissions.index',
-  roles: [1,2,3,],
 )]
 
 class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController {

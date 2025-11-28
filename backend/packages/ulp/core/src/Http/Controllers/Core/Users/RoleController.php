@@ -11,7 +11,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Roles',
   group: 'Users',
   route: 'core.roles.index',
-  roles: [1,2,3,],
 )]
 
 class RoleController extends \Ulp\Core\Http\Controllers\BaseCrudController {

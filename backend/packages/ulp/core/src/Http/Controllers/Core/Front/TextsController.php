@@ -11,7 +11,6 @@ use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
   title: 'Texts',
   group: 'Front',
   route: 'core.texts.index',
-  roles: [1,2,3],
 )]
 
 class TextsController extends \Ulp\Core\Http\Controllers\BaseCrudController {
