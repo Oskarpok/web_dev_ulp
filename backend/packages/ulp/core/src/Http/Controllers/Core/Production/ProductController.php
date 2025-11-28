@@ -32,7 +32,7 @@ class ProductController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'unit_price', 'is_active','created_at', 'updated_at',
-      ])->get()->append([]), 
+      ])->get(), 
       'labels' => [
         'Id', 'Name', 'Unit Price', 'Active', 'Created at', 'Updated at',
       ],
