@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Users;
 
+use Ulp\Core\View\FormFields\Text\TextTypeController;
+
+#[\Ulp\Core\Attributes\Navigation(
+  title: 'Roles',
+  group: 'Users',
+  route: 'core.roles.index',
+  roles: [1,2,3,],
+)]
+
 class RoleController extends \Ulp\Core\Http\Controllers\BaseCrudController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\Role::class;
@@ -20,14 +29,33 @@ class RoleController extends \Ulp\Core\Http\Controllers\BaseCrudController {
 
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
-      //
+      'data' => self::MODEL_CLASS::filter($request, [
+        'id', 'name', 'guard_name', 'created_at', 'updated_at',
+      ])->get(), 
+      'labels' => [
+        'Id', 'Name', 'Guard Name', 'Created At', 'Updated At',
+      ],
+      'filterable' => [
+        'id' => true, 'name'=> true, 'guard_name'=> true, 
+        'created_at'=> true, 'updated_at'=> true,
+      ],
     ];
   }
 
   protected function getFormFields($data = null): array {
     $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
     return [
-      //
+      (function($currentRoute, $id) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return TextTypeController::make([
+            'type' => 'number',
+            'name' => 'id',
+            'label' => 'ID',
+            'value' => $id,
+            'readonly' => true,
+          ]);
+        }
+      })($currentRoute, $data?->id),
     ];
   }
 

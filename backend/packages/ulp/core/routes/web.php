@@ -15,10 +15,17 @@ Route::middleware(['web', 'auth'])
   ->group(function () {
     Route::get('/dashboard', fn() => view('core::auth.dashboard'))->name('dashboard');
     Route::post('logout', 'Users\AuthController@logout')->name('logout');
+
     Route::resource('users', 'Users\UserController');
+    Route::resource('roles', 'Users\RoleController');
+    Route::resource('permissions', 'Users\PermissionController');
+
     Route::resource('params', 'System\ParamController');
+
     Route::resource('orders', 'Production\OrderController');
     Route::resource('products', 'Production\ProductController');
+
     Route::resource('languages', 'Front\LanguagesController');
     Route::resource('texts', 'Front\TextsController');
+
 });
