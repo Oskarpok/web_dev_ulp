@@ -65,12 +65,13 @@ class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      TextTypeController::make([
-        'type' => 'text',
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+        'type' => 'select',
         'name' => 'guard_name',
         'label' => 'Guard Name',
-        'value' => $data?->guard_name,
+        'options' => array_keys(config('auth.guards')) ?? [],
         'required' => true,
+        'value' => $data?->guard_name,
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
