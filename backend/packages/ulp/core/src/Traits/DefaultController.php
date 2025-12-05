@@ -92,6 +92,18 @@ trait DefaultController {
     ];
   }
 
+  // Prepare buttobs for index vievs
+  protected function prepareIndexButtons(): array {
+    return [
+      ButtonsTypeController::make([
+        'type' => 'anchore',
+        'route' => route(static::ROUTE_NAME . 'create'),
+        'label' => $this->titles()['recordAddButton'] ?? 'Add',
+        'icone' => 'fa-solid fa-plus',
+      ]),
+    ];
+  }
+
   /**
    * Prepares the data for the index view by calling the indexPrepare()
    * method with the current request, and then returns the corresponding
@@ -104,14 +116,7 @@ trait DefaultController {
     $data = $this->indexPrepare($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
-      'buttons' => [
-        ButtonsTypeController::make([
-          'type' => 'anchore',
-          'route' => route(static::ROUTE_NAME . 'create'),
-          'label' => $this->titles()['recordAddButton'] ?? 'Add',
-          'icone' => 'fa-solid fa-plus',
-        ]),
-      ],
+      'buttons' => $this->prepareIndexButtons(),
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
         'type' => 'intex',
         'labels' => $data['labels'],
