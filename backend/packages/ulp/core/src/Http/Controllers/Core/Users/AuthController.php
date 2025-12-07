@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
-class AuthController extends \Ulp\Core\Http\Controllers\BaseController {
+class AuthController extends \Illuminate\Routing\Controller{
 
   // Handle authentication of any user base on their type
   public function login(Request $request) {

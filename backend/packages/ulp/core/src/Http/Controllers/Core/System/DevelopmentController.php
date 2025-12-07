@@ -10,7 +10,7 @@ namespace Ulp\Core\Http\Controllers\Core\System;
   route: '',
 )]
 
-class DevelopmentController {
+class DevelopmentController extends \Illuminate\Routing\Controller {
 
   public static function cleanCache() {
     // to do

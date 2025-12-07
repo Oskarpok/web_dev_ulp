@@ -9,7 +9,7 @@ namespace Ulp\Core\Http\Controllers;
  * Allows child controllers to define a model class and Ulp\Core 
  * handle basic CRUD operations
  */
-abstract class BaseCrudController extends BaseController {
+abstract class BaseCrudController extends \Illuminate\Routing\Controller {
   
   use \Ulp\Core\Traits\DefaultController;
 
