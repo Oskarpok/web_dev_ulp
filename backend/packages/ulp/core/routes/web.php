@@ -21,6 +21,12 @@ Route::middleware(['web', 'auth'])
     Route::resource('permissions', 'Users\PermissionController');
 
     Route::resource('params', 'System\ParamController');
+    Route::get('showMigrations', [
+      \Ulp\Core\Http\Controllers\Core\System\MigrationController::class, 
+      'showMigrations'])->name('showMigrations');
+    Route::get('doMigrations', [
+      \Ulp\Core\Http\Controllers\Core\System\MigrationController::class, 
+      'doMigrations'])->name('doMigrations');
 
     Route::resource('orders', 'Production\OrderController');
     Route::resource('products', 'Production\ProductController');
