@@ -28,6 +28,10 @@ Route::middleware(['web', 'auth'])
       \Ulp\Core\Http\Controllers\Core\System\MigrationController::class, 
       'doMigrations'])->name('doMigrations');
 
+    Route::get('Artisan', [
+      \Ulp\Core\Http\Controllers\Core\System\DevelopmentController::class, 
+      'panel'])->name('artisan.panel');
+
     Route::resource('orders', 'Production\OrderController');
     Route::resource('products', 'Production\ProductController');
 
