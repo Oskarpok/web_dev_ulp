@@ -21,7 +21,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 
       Schema::create('resource_extensions', function (Blueprint $table) {
         $table->id();
-        $table->string('extension')->unique();
+        $table->string('name')->unique();
         $table->string('group')->nullable();
         $table->unsignedBigInteger('max_size')->nullable();
         $table->boolean('is_active')->default(true);
