@@ -14,11 +14,10 @@ class MigrationController extends \Illuminate\Routing\Controller {
 
   public function showMigrations() {
     $executed = \DB::table('migrations')->pluck('migration')->toArray();
-
     $migrations = [];
+
     foreach (config('packages.paths') as $package => $path) {
-      $files = glob($path . '/database/migrations/*.php');
-      foreach ($files as $file) {
+      foreach (glob($path . '/database/migrations/*.php') as $file) {
         $name = basename($file, '.php');
         $migrations[] = [
           'package' => $package,
