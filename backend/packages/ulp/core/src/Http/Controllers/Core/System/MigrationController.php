@@ -7,7 +7,7 @@ namespace Ulp\Core\Http\Controllers\Core\System;
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Migration',
   group: 'Systemic',
-  route: 'core.migrations',
+  route: 'core.showMigrations',
 )]
 
 class MigrationController extends \Illuminate\Routing\Controller {
