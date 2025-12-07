@@ -34,4 +34,8 @@ Route::middleware(['web', 'auth'])
     Route::resource('languages', 'Front\LanguagesController');
     Route::resource('texts', 'Front\TextsController');
 
+    Route::resource('resource_categories', 'Media\Resources\ResourceCategoriesController');
+    Route::resource('resources_extensions', 'Media\Resources\ResourceExtensionsController');
+    Route::resource('resources', 'Media\Resources\ResourcesController');
+
 });
