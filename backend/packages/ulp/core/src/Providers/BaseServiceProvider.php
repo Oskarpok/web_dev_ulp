@@ -14,16 +14,16 @@ abstract class BaseServiceProvider extends \Illuminate\Support\ServiceProvider {
   /**
    * Nazwa aliasu dla widoków
    */
-  protected string $viewsAlias = '';
+  protected string $alias = '';
 
   /**
    * 
    */
-  public function __construct($app, string $viewsAlias) {
+  public function __construct($app, string $alias) {
     parent::__construct($app);
     $this->packagePath = dirname(new \ReflectionClass(static::class)
       ->getFileName(), 3) . '/';
-    $this->viewsAlias = $viewsAlias;
+    $this->alias = $alias;
   }
 
   /**
@@ -39,7 +39,9 @@ abstract class BaseServiceProvider extends \Illuminate\Support\ServiceProvider {
   public function boot(): void {
     $this->loadRoutesFrom($this->packagePath . 'routes/web.php');
     $this->loadMigrationsFrom($this->packagePath . 'database/migrations');
-    $this->loadViewsFrom($this->packagePath . 'resources/views', $this->viewsAlias);
+    $this->loadViewsFrom($this->packagePath . 'resources/views', $this->alias);
+
+    \Livewire\Livewire::componentNamespace('', $this->alias);
   }
 
 }
