@@ -11,6 +11,11 @@ abstract class Base extends \Illuminate\Database\Eloquent\Model {
 
   use \Ulp\Core\Traits\DefaultModel;
 
+  /**
+   *   use \Ulp\Core\Traits\DefaultModel,
+   *   \Spatie\Permission\Traits\HasRoles;
+   */
+
   // public function __construct(array $attributes = []) {
   //   parent::__construct($attributes);
   //   $this->appends = [...$this->defaultAppends, ...$this->appends ?? []];
