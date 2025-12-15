@@ -32,6 +32,12 @@ Route::middleware(['web', 'auth'])
       \Ulp\Core\Http\Controllers\Core\System\DevelopmentController::class, 
       'panel'])->name('artisan.panel');
 
+
+    Route::get('Artisan/clean_cache', [
+      \Ulp\Core\Http\Controllers\Core\System\DevelopmentController::class, 
+      'cleanCache'])->name('artisan.clean_cache');
+
+
     Route::resource('orders', 'Production\OrderController');
     Route::resource('products', 'Production\ProductController');
 
