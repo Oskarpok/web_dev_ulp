@@ -40,8 +40,6 @@ abstract class BaseServiceProvider extends \Illuminate\Support\ServiceProvider {
     $this->loadRoutesFrom($this->packagePath . 'routes/web.php');
     $this->loadMigrationsFrom($this->packagePath . 'database/migrations');
     $this->loadViewsFrom($this->packagePath . 'resources/views', $this->alias);
-
-    \Livewire\Livewire::componentNamespace('', $this->alias);
   }
 
 }
