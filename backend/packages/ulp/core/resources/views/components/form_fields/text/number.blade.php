@@ -16,7 +16,6 @@
     value: {{ json_encode($value) }},
     step: {{ json_encode($step) }}, 
     readonly: {{ json_encode($readonly) }},
-    required: {{ json_encode($required) }},
     max: {{ json_encode($max) }},
     min: {{ json_encode($min) }},
     allowFloat: {{ json_encode($allow_float) }},
@@ -45,7 +44,7 @@
       :id="name"
       :name="name"
       :readonly="readonly"
-      :required="required"
+      @required($required)
       :max="max"
       :min="min"
       inputmode="decimal"

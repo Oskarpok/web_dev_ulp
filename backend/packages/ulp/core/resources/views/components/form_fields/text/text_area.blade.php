@@ -23,6 +23,7 @@
   <textarea :id="name"
     :name="name"
     :readonly="readonly"
+    @required($required)
     class="mt-1 w-full border border-gray-600 rounded-xl px-3 
       py-2 text-gray-300 shadow-inner focus:outline-none" 
     :class="readonly ? 'bg-[#1e293b] cursor-default' : '' "

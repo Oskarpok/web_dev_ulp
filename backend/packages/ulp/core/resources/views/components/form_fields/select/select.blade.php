@@ -5,7 +5,6 @@
     value: {{ json_encode($value) }},
     options: {{ json_encode($options) }},
     readonly: {{ json_encode($readonly) }},
-    required: {{ json_encode($required) }},
     searchable: {{ json_encode($searchable) }},
     multiple: {{ json_encode($multiple) }},
     searchTerm: '',
