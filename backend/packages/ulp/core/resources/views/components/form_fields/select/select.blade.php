@@ -2,7 +2,6 @@
   x-data="{ 
     label: {{ json_encode($label) }},
     name: {{ json_encode($name) }},
-    wraper: {{ json_encode($wraper) }},
     value: {{ json_encode($value) }},
     options: {{ json_encode($options) }},
     readonly: {{ json_encode($readonly) }},
@@ -21,8 +20,7 @@
       );
     }
   }" 
-  class="mb-3 relative"
-  :class="wraper">
+  class="mb-3 relative {{ $wraper }}">
   <label :for="name" 
     class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
     <span x-text="label"></span>
