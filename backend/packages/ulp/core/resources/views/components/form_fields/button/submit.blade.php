@@ -1,7 +1,6 @@
 <button 
   x-data="{
     name: {{ json_encode($name) }},
-    label: {{ json_encode($label) }},
     icone: {{ json_encode($icone) }},
     readonly: {{ json_encode($readonly) }},
     style: {{ $style }},
@@ -19,5 +18,5 @@
   type="submit"
   :class="['core-btn', readonly ? 'core-btn-readonly' : getButtonClass()]">
   <i :class="icone"></i>
-  <span x-text="label"></span>
+  <span>{{ $label }}</span>
 </button>

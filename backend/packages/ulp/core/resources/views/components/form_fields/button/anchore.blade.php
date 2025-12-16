@@ -1,7 +1,6 @@
 <a 
   x-data="{
     name: {{ json_encode($name) }},
-    label: {{ json_encode($label) }},
     icone: {{ json_encode($icone) }},
     readonly: {{ json_encode($readonly) }},
     style: {{ $style }},
@@ -19,5 +18,5 @@
   :class="['core-btn', readonly ? 'core-btn-readonly' : getButtonClass()]"
   href="{{ $route }}">
   <i :class="icone"></i>
-  <span x-text="label"></span>
+  <span>{{ $label }}</span>
 </a>
