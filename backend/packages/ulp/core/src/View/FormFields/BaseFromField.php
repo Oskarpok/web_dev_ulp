@@ -18,6 +18,7 @@ abstract class BaseFromField extends BaseField {
   protected string $tooltip;
   protected bool $readonly;
   protected bool $required;
+  protected bool $disabled;
   protected string $wraper;
 
   public function __construct(array $data) {
@@ -25,9 +26,41 @@ abstract class BaseFromField extends BaseField {
     $this->name = $data['name'] ?? '';
     $this->label = $data['label'] ?? '';
     $this->tooltip = $data['tooltip'] ?? '';
-    $this->readonly = $data['readonly'] ?? false;
-    $this->required = $data['required'] ?? false;
+    $this->fieldAttributes(
+      $data['readonly'] ?? false,
+      $data['required'] ?? false,
+      $data['disabled'] ?? false,
+    );
     $this->wraper = $data['wraper'] ?? 'flex flex-col w-full md:w-[32%]';
+  }
+
+  protected function fieldAttributes(bool $readonly, bool $required, bool $disabled) {
+    $type = $this->type;
+    $map = [
+      'readonly' => [
+        'text', 'email', 'number', 'password', 'url', 'search', 
+        'tel', 'date', 'datetime-local', 'time', 'textarea'
+      ],
+      'disabled' => [
+        'text', 'email', 'number', 'password', 'url', 'search', 'tel', 'date', 
+        'datetime-local', 'time', 'textarea', 'select', 'checkbox', 
+        'radio', 'file', 'button', 'submit', 'reset'
+      ],
+      'required' => [
+        'text', 'email', 'number', 'password', 'url', 'search', 'tel', 
+        'date', 'datetime-local', 'time', 'textarea', 'select',' 
+        checkbox', 'radio', 'file'
+      ],
+    ];
+
+    $readonly && in_array($type, $map['readonly']) ? 
+      $this->readonly = true : $this->readonly = false;
+
+    $required && in_array($type, $map['required']) ? 
+      $this->required = true : $this->required = false;
+      
+    $disabled && in_array($type, $map['disabled']) ? 
+      $this->disabled = true : $this->disabled = false;
   }
 
 }
