@@ -18,6 +18,7 @@ abstract class BaseButtonsField extends \Ulp\Core\View\FormFields\BaseField {
     $this->name = $data['name'] ?? '';
     $this->label = $data['label'] ?? '';
     $this->icone = $data['icone'] ?? '';
+    $this->disabled = $data['disabled'] ?? false;
   }
 
   public function resolveStyle(int $style) {

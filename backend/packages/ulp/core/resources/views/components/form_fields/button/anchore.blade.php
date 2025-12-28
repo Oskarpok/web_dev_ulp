@@ -1,7 +1,7 @@
 <a id ="{{ $name }}"
-  class="core-btn {{ $readonly ? 'core-btn-readonly' : $style }}"
-  href="{{ $readonly ? '#' : $route }}"
-  @if($readonly) aria-disabled="true" @endif>
+  class="core-btn {{ $disabled ? 'core-btn-readonly' : $style }}"
+  href="{{ $disabled ? '#' : $route }}"
+  @if($disabled) aria-disabled="true" @endif>
   <i class="{{ $icone }}"></i>
   <span>{{ $label }}</span>
 </a>
