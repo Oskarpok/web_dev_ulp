@@ -20,9 +20,9 @@
     }
   }" 
   class="mb-3 relative {{ $wraper }}">
-  <label :for="name" 
+  <label for="{{ $name }}"
     class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
-    <span x-text="label"></span>
+    <span>{{ $label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
       'tooltip' => $tooltip,
     ])
