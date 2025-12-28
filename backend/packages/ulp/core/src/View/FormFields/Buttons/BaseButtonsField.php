@@ -10,7 +10,7 @@ abstract class BaseButtonsField extends \Ulp\Core\View\FormFields\BaseField {
   protected string $name;
   protected string $label;
   protected string $icone;
-  protected bool $readonly;
+  protected bool $disabled;
 
   public function __construct(array $data) {
     parent::__construct($data);
@@ -18,7 +18,7 @@ abstract class BaseButtonsField extends \Ulp\Core\View\FormFields\BaseField {
     $this->name = $data['name'] ?? '';
     $this->label = $data['label'] ?? '';
     $this->icone = $data['icone'] ?? '';
-    $this->readonly = $data['readonly'] ?? false;
+    $this->disabled = $data['disabled'] ?? false;
   }
 
   public function resolveStyle(int $style) {

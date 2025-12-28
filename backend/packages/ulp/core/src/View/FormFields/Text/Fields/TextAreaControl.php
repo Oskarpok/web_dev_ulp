@@ -16,4 +16,5 @@ class TextAreaControl extends \Ulp\Core\View\FormFields\Text\BaseTextField {
   protected function resolveView(): string {
     return 'core::components.form_fields.text.text_area';
   }
+  
 }

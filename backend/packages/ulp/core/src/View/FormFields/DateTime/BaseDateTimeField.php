@@ -6,6 +6,9 @@ namespace Ulp\Core\View\FormFields\DateTime;
 
 abstract class BaseDateTimeField extends \Ulp\Core\View\FormFields\BaseFromField {
 
+  protected bool $readonly;
+  protected bool $required;
+  protected bool $disabled;
   protected string $format;
 
   public function __construct(array $data) {
