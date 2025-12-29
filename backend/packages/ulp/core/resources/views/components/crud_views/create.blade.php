@@ -19,9 +19,7 @@
       border border-gray-600 flex flex-wrap gap-5 place-items-center">
       @foreach ($controls['fields'] as $field)
         @continue(is_null($field))
-        {!! $field->render([
-          'validation' => $validationRules[$field->name] ?? []
-        ]) !!}
+        {!! $field->render() !!}
       @endforeach
     </div>
   </form>

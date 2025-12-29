@@ -17,9 +17,7 @@
     shadow rounded-2xl space-y-6 flex flex-wrap gap-5 place-items-center">
     @foreach ($controls['fields'] as $field)
       @continue(is_null($field))
-      {!! $field->render([
-        'validation' => []
-      ]) !!}
+      {!! $field->render() !!}
     @endforeach
   </div>
 </div>
