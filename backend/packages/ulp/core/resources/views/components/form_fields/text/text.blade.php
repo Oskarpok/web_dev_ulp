@@ -7,9 +7,6 @@
     ])
     @endcomponent
   </label>
-
-  <livewire:form-fields.validation />
-
   <input type="text" 
     value="{{ $value }}"
     name="{{ $name }}"
