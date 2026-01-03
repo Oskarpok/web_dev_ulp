@@ -13,16 +13,11 @@
       @endforeach
     </div>
   </div>
-  <form id="form" method="POST" action="{{ $route }}">
-    @csrf
-    @method('PUT')
-    <div class="w-full mx-auto p-6 shadow rounded-2xl space-y-6 text-gray-200 
-      border border-gray-600 flex flex-wrap gap-5 place-items-center">
-      @foreach ($controls['fields'] as $field)
-        @continue(is_null($field))
-        {!! $field->render() !!}
-      @endforeach
-    </div>
-  </form>
+  <livewire:form-fields.form-component
+    :fields="$controls['fields']"
+    :validationRules="$validationRules"
+    :action="$route"
+    httpMethod="PATCH"
+  />
 </div>
 @endsection

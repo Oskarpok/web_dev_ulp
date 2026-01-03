@@ -63,4 +63,11 @@ abstract class BaseFromField extends BaseField {
       $this->disabled = true : $this->disabled = false;
   }
 
+  public function toLivewire(): array{
+    return [
+      ...get_object_vars($this),
+      'view' => $this->resolveView(),
+    ];
+  }
+
 }
