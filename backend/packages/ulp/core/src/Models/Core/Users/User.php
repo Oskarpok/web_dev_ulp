@@ -34,14 +34,12 @@ class User extends \Illuminate\Foundation\Auth\User {
 
   public static function validationRules($id = null): array {
     return [
-      'first_name' => ['required', 'string', 'max:255'],
-      'is_active' => ['required', 'boolean'],
-      'sur_name' => ['required', 'string', 'max:255'],
-      'phone' => ['string', 'required'],
-      'email' => ['required', 'string', 'email', 'max:255',
-        \Illuminate\Validation\Rule::unique('users', 'email')->ignore($id),
-      ],
-      'type' => ['required', 'integer'],
+      'first_name' => ['required', 'string', 'max:255',],
+      'is_active' => ['required', 'boolean',],
+      'sur_name' => ['required', 'string', 'max:255',],
+      'phone' => ['string', 'required', 'min:9',],
+      'email' => ['required', 'string', 'email', 'max:255',],
+      'type' => ['required', 'integer',],
     ];
   }
 
