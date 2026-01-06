@@ -53,6 +53,7 @@ class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController
             'label' => 'ID',
             'value' => $id,
             'readonly' => true,
+            'disabled' => true,
           ]);
         }
       })($currentRoute, $data?->id),
