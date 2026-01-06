@@ -72,7 +72,7 @@ class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController
         'options' => array_keys(config('auth.guards')) ?? [],
         'required' => true,
         'value' => $data?->guard_name,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
       (function($currentRoute, $created_at) {

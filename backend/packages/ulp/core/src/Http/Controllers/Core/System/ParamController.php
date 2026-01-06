@@ -75,7 +75,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {
         'options' => ParamsType::toArray() ?? [],
         'required' => in_array('required', $validationRules['type']),
         'value' => $data?->type,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
       (function($data, $currentRoute) {
