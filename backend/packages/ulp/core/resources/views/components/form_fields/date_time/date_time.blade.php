@@ -1,5 +1,6 @@
 <div class="mb-3 relative {{ $wraper }}">
-  <label class="block text-sm font-medium text-gray-400 mb-1">
+  <label for="{{ $name }}"
+    class="block text-sm font-medium text-gray-400 mb-1">
     <span>{{ $label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
       'tooltip' => $tooltip,
@@ -11,9 +12,10 @@
   @enderror
   <input type="datetime-local" 
     name="{{ $name }}"
+    value="{{ $value }}"
     @readonly($readonly)
     @required($required)
-    value="{{ $value }}"
+    @disabled($disabled)
     wire:model.blur="state.{{ $name }}"
     @class([
       'mt-1 w-full border rounded-xl px-3 py-2 text-gray-300 shadow-inner focus:outline-none',
