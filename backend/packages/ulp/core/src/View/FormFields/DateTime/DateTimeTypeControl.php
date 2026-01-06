@@ -8,7 +8,7 @@ class DateTimeTypeControl extends \Ulp\Core\View\FormFields\BaseControl {
 
   protected static function controlMap(): array {
     return [
-      'date_time' => Fields\DateTimeControl::class,
+      'datetime-local' => Fields\DateTimeControl::class,
     ];
   }
 

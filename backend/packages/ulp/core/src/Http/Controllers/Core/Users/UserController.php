@@ -120,7 +120,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
       (function($currentRoute, $created_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([
-            'type' => 'date_time',
+            'type' => 'datetime-local',
             'name' => 'created_at',
             'label' => 'Utworzony',
             'readonly' => true,
@@ -131,7 +131,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
       (function($currentRoute, $updated_at) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return DateTimeTypeControl::make([
-            'type' => 'date_time',
+            'type' => 'datetime-local',
             'name' => 'updated_at',
             'label' => 'Zaktualizowany',
             'readonly' => true,
