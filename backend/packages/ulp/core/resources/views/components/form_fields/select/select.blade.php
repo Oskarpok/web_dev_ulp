@@ -1,12 +1,10 @@
 <div 
   x-data="{ 
     label: {{ json_encode($label) }},
-    name: {{ json_encode($name) }},
     value: {{ json_encode($value) }},
     options: {{ json_encode($options) }},
     readonly: {{ json_encode($readonly) }},
     searchable: {{ json_encode($searchable) }},
-    multiple: {{ json_encode($multiple) }},
     searchTerm: '',
     open: false,
     filteredOptions() {
@@ -63,8 +61,7 @@
     </ul>
   </div>
   <input type="hidden" 
-    :id="name"
-    :name="name"
+    name="{{ $name }}"
     :value="value" 
     x-ref="hidden">
 </div>
