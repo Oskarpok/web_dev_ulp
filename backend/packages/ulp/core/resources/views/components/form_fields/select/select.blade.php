@@ -1,9 +1,8 @@
 <div 
   x-data="{ 
-    label: {{ json_encode($label) }},
     value: {{ json_encode($value) }},
     options: {{ json_encode($options) }},
-    readonly: {{ json_encode($readonly) }},
+    disabled: {{ json_encode($disabled) }},
     searchable: {{ json_encode($searchable) }},
     searchTerm: '',
     open: false,
@@ -27,10 +26,10 @@
     @endcomponent
   </label>
   <button type="button"
-    @click="if (!readonly) { open = !open; searchTerm = '' }"
+    @click="if (!disabled) { open = !open; searchTerm = '' }"
     class="mt-1 w-full border border-gray-600 rounded-xl px-3 py-2 
     text-gray-300 shadow-inner text-left"
-    :class="readonly ? 'bg-[#1e293b] cursor-default' : '' ">
+    :class="disabled ? 'bg-[#1e293b] cursor-default' : '' ">
     <span x-text="options[value] ?? 'Wybierz opcję'"></span>
   </button>
   <div x-show="open"
@@ -49,7 +48,7 @@
           <button type="button"
             @disabled($disabled)
             class="w-full text-left px-3 py-2 hover:bg-gray-600 rounded"
-            @click="if (!readonly) 
+            @click="if (!disabled) 
               { value = key; open = false; $refs.hidden.value = key }"
             x-text="label">
           </button>
