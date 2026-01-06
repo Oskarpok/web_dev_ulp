@@ -105,7 +105,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
         'label' => 'Active',
         'required' => in_array('required', $validationRules['is_active']),
         'value' => $data?->is_active,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
       SelectTypeControl::make([

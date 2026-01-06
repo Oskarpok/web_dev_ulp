@@ -106,7 +106,7 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {
             'label' => 'Value',
             'required' => true,
             'value' => $data?->val_bool,
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+            'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
               ? false : true,
           ]),
           5 => TextTypeController::make([
