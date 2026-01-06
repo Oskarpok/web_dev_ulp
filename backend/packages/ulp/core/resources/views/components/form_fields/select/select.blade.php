@@ -47,7 +47,7 @@
       <template x-for="(label, key) in filteredOptions()" :key="key">
         <li>
           <button type="button"
-            :disabled="readonly"
+            @disabled($disabled)
             class="w-full text-left px-3 py-2 hover:bg-gray-600 rounded"
             @click="if (!readonly) 
               { value = key; open = false; $refs.hidden.value = key }"
