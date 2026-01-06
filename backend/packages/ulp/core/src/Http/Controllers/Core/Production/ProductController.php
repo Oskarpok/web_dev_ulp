@@ -72,7 +72,6 @@ class ProductController extends \Ulp\Core\Http\Controllers\BaseCrudController {
         'name' => 'unit_price',
         'label' => 'Unit Price',
         'value' => $data?->unit_price,
-        'readonly' => true,
         'allow_float' => true,
         'required' => in_array('required', $validationRules['unit_price']),
         'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
