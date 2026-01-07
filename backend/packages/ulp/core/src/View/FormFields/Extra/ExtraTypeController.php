@@ -8,7 +8,8 @@ class ExtraTypeController extends \Ulp\Core\View\FormFields\BaseControl {
 
   protected static function controlMap(): array {
     return [
-      'intex' => Fields\IndexControl::class,   
+      'file' => Fields\FileControl::class,
+      'intex' => Fields\IndexControl::class,
     ];
   }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ulp\Core\View\FormFields\Extra\Fields;
 
-class IndexControl extends \Ulp\Core\View\FormFields\Extra\BaseExtraField {  
+class IndexControl extends \Ulp\Core\View\FormFields\BaseField {  
 
   protected array $labels;
   protected array $data;
@@ -25,4 +25,5 @@ class IndexControl extends \Ulp\Core\View\FormFields\Extra\BaseExtraField {
   protected function resolveView(): string {
     return 'core::components.form_fields.extra.intex';
   }
+  
 }
