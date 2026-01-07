@@ -16,7 +16,7 @@
       );
     }
   }" 
-  class="mb-3 {{ $wraper }}">
+  class="{{ $wraper }}">
   <label for="{{ $name }}"
     class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
     <span>{{ $label }}</span>

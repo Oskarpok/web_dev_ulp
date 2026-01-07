@@ -31,7 +31,7 @@ abstract class BaseFromField extends BaseField {
       $data['required'] ?? false,
       $data['disabled'] ?? false,
     );
-    $this->wraper = $data['wraper'] ?? 'flex flex-col w-full md:w-[32%]';
+    $this->wraper = $data['wraper'] ?? 'mb-3 flex flex-col w-full md:w-[32%]';
   }
 
   protected function fieldAttributes(bool $readonly, bool $required, bool $disabled) {

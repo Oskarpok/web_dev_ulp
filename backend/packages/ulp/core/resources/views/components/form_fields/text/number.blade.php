@@ -16,7 +16,7 @@
     step: {{ json_encode($step) }}, 
     allowFloat: {{ json_encode($allow_float) }},
   }"
-  class="mb-3 {{ $wraper }}">
+  class="{{ $wraper }}">
   <label class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
     <span>{{ $label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
