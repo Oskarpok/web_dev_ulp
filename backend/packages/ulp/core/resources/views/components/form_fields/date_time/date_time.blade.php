@@ -1,4 +1,4 @@
-<div class="mb-3 relative {{ $wraper }}">
+<div class="mb-3 {{ $wraper }}">
   <label for="{{ $name }}"
     class="block text-sm font-medium text-gray-400 mb-1">
     <span>{{ $label }}</span>

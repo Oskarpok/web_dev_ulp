@@ -1,4 +1,4 @@
-<div class="mb-3 relative {{ $wraper }}">
+<div class="mb-3 {{ $wraper }}">
   <label class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
     <span>{{ $label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
