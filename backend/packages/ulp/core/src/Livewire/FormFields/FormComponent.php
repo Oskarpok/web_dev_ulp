@@ -20,6 +20,7 @@ class FormComponent extends \Livewire\Component {
   public string $action;
   public string $httpMethod;
   public string $formId = 'form';
+  public bool $enctype = false;
 
   /**
    * Component initialization with converting field objects into Livewire 
@@ -34,8 +35,11 @@ class FormComponent extends \Livewire\Component {
     $this->formId = $formId ?? $this->formId;
     $this->validationRules = $validationRules;
 
-    foreach ($this->fields as $field) {
+    foreach($this->fields as $field) {
       $this->state[$field['name']] = $field['value'] ?? null;
+      if ($field['type'] === 'file') {
+        $this->enctype = true;
+      }
     }
   }
 
@@ -79,6 +83,8 @@ class FormComponent extends \Livewire\Component {
       'action' => $this->action,
       'httpMethod' => $this->httpMethod,
       'fields' => $this->fields,
+      'enctype' => $this->enctype,
+      'spm' => $this->spoofedMethod(),
     ]);
   }
 
