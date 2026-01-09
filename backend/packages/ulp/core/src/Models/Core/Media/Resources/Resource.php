@@ -12,7 +12,10 @@ class Resource extends \Ulp\Core\Models\Base {
 
   public static function validationRules($id = null): array {
     return [
-      //
+      'name' => ['required', 'string', 'max:255',],
+      'alt' => ['required', 'string', 'max:255',],
+      'category_id' => ['required',],
+      'is_active' => ['required', 'boolean'],
     ];
   }
 
