@@ -6,7 +6,7 @@
     ])
     @endcomponent
   </label>
-  <div class="inline-flex items-center py-2.5">
+  <div class="inline-flex items-center py-2.5 my-px">
     <label class="relative {{ $disabled ? 'cursor-default' : 'cursor-pointer' }}">
       <input type="hidden" name="{{ $name }}" value="0">
       <input type="checkbox"
