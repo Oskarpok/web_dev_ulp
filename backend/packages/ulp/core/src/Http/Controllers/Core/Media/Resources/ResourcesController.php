@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
+use Ulp\Core\View\FormFields\Text\TextTypeController;
+use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 #[\Ulp\Core\Attributes\Navigation(
@@ -41,13 +43,6 @@ class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function getFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    return [
-
-    ];
-  }
-
   protected function prepareIndexButtons(): array {
     return [
       ButtonsTypeController::make([
@@ -63,6 +58,91 @@ class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
         'icone' => 'fa-solid fa-folder',
       ]),
       ...parent::prepareIndexButtons(),
+    ];
+  }
+
+  protected function getFormFields($data = null): array {
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+    $validationRules = self::MODEL_CLASS::validationRules();
+    return [
+      (function($currentRoute, $id) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return TextTypeController::make([
+            'type' => 'number',
+            'name' => 'id',
+            'label' => 'ID',
+            'value' => $id,
+            'readonly' => true,
+            'disabled' => true,
+          ]);
+        }
+      })($currentRoute, $data?->id),
+      (function($currentRoute, $name, $validationRule) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return TextTypeController::make([
+            'type' => 'text',
+            'name' => 'name',
+            'label' => 'Name',
+            'value' => $name,
+            'required' => in_array('required', $validationRule),
+            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+              ? false : true,
+          ]);
+        }
+      })($currentRoute, $data?->name, $validationRules['name']),
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'alt',
+        'label' => 'Aternative',
+        'value' => $data?->alt,
+        'required' => in_array('required', $validationRules['alt']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+
+
+      \Ulp\Core\View\FormFields\Extra\ExtraTypeController::make([
+        'type' => 'file',
+        'name' => 'file',
+        'label' => 'File',
+        'required' => true,
+        'tooltip' => '',
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+
+
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+        'type' => 'checkbox',
+        'name' => 'is_active',
+        'label' => 'Active',
+        'required' => in_array('required', $validationRules['is_active']),
+        'value' => $data?->is_active,
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      (function($currentRoute, $created_at) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return DateTimeTypeControl::make([
+            'type' => 'datetime-local',
+            'name' => 'created_at',
+            'label' => 'Utworzony',
+            'readonly' => true,
+            'value' => $created_at,
+          ]);
+        }
+      })($currentRoute, $data?->created_at),
+      (function($currentRoute, $updated_at) {
+        if($currentRoute !== self::ROUTE_NAME . 'create') {
+          return DateTimeTypeControl::make([
+            'type' => 'datetime-local',
+            'name' => 'updated_at',
+            'label' => 'Zaktualizowany',
+            'readonly' => true,
+            'value' => $updated_at,
+          ]);
+        }
+      })($currentRoute, $data?->updated_at),
     ];
   }
 
