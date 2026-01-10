@@ -138,7 +138,6 @@ trait DefaultController {
       'title' => $this->titles()['create'] ?? '',
       'controls' => $cont,
       'route' => route(static::ROUTE_NAME . 'store'),
-      'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
   }
@@ -183,7 +182,6 @@ trait DefaultController {
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'controls' => $cont,
-      'hasFile' => FieldUtils::hasType($cont['fields'], 'file'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
   }
