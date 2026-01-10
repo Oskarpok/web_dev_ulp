@@ -2,7 +2,6 @@
  
 namespace Ulp\Core\Livewire\FormFields;
  
-
 /**
  * Universal Livewire form component
  *
@@ -13,6 +12,8 @@ namespace Ulp\Core\Livewire\FormFields;
  */
 class FormComponent extends \Livewire\Component {
   
+  use \Livewire\WithFileUploads;
+
   public array $fields;
   public array $validationRules;
   public array $state = [];
