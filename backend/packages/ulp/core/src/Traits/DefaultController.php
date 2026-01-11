@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ulp\Core\Traits;
 
 use Illuminate\Http\Request;
-use Ulp\Core\View\FormFields\Helpers\FieldUtils;
+use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 trait DefaultController {
@@ -38,7 +38,8 @@ trait DefaultController {
    *
    * @return array List of fields elements for the given controller.
    */
-  abstract protected function getFormFields(): array;
+  abstract protected function getFormFields($data, 
+    $currentRoute, $validationRules): array;
 
   /**
    * Return an array of vie index requaier data.
@@ -70,26 +71,73 @@ trait DefaultController {
    * @return array List of used fields
    */
   protected function prepareFormFields($data = null): array {
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
     return [
-      'fields' => $this->getFormFields($data),
+      'fields' => $this->formFields($data, $currentRoute),
       'buttons' => [
-        (function($currentRoute) {
-          if ($currentRoute !== static::ROUTE_NAME . 'show') {
-            return ButtonsTypeController::make([
-              'type' => 'submit',
-              'label' => 'Save',
-              'icone' => 'fa-solid fa-file',
-            ]);
-          }
-        })(\Illuminate\Support\Facades\Route::currentRouteName()),
+        ...$this->formFieldsButtons($currentRoute),
         ButtonsTypeController::make([
           'type' => 'anchore',
           'route' => route(static::ROUTE_NAME . 'index'),
           'label' => 'Return',
           'icone' => 'fa-solid fa-arrow-left',
         ]),
-      ]
+      ],
     ];
+  }
+
+  // Preper submit button for crud operations
+  protected function formFieldsButtons($currentRoute) {
+    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
+      ButtonsTypeController::make([
+        'type' => 'submit',
+        'label' => 'Save',
+        'icone' => 'fa-solid fa-file',
+      ])
+    ] : [];
+  }
+
+  // Preper form fields for crude operations
+  protected function formFields($data = null, $currentRoute) {
+    return [
+      ...$this->getIdField($data?->id, $currentRoute),
+      ...$this->getFormFields($data, $currentRoute, static::MODEL_CLASS::validationRules()),
+      ...$this->getTimestampFields($data?->created_at, $data?->updated_at, $currentRoute),
+    ];
+  }
+
+  // Preper id field for crude operations
+  protected function getIdField($id, $currentRoute) {
+    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
+      \Ulp\Core\View\FormFields\Text\TextTypeController::make([
+        'type' => 'number',
+        'name' => 'id',
+        'label' => 'ID',
+        'value' => $id,
+        'readonly' => true,
+        'disabled' => true,
+      ])
+    ] : [];
+  }
+
+  // Preper time stamps fields for crude operations
+  protected function getTimestampFields($created_at, $updated_at, $currentRoute): array {
+    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
+      DateTimeTypeControl::make([
+        'type' => 'datetime-local',
+        'name' => 'created_at',
+        'label' => 'Utworzony',
+        'readonly' => true,
+        'value' => $created_at,
+      ]),
+      DateTimeTypeControl::make([
+        'type' => 'datetime-local',
+        'name' => 'updated_at',
+        'label' => 'Zaktualizowany',
+        'readonly' => true,
+        'value' => $updated_at,
+      ])
+    ] : [];
   }
 
   // Prepare buttobs for index vievs

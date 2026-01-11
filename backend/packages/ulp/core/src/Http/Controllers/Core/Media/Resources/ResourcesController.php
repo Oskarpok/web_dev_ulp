@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
 use Ulp\Core\View\FormFields\Text\TextTypeController;
-use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 #[\Ulp\Core\Attributes\Navigation(
@@ -61,22 +60,8 @@ class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function getFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    $validationRules = self::MODEL_CLASS::validationRules();
+  protected function getFormFields($data, $currentRoute, $validationRules): array {
     return [
-      (function($currentRoute, $id) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return TextTypeController::make([
-            'type' => 'number',
-            'name' => 'id',
-            'label' => 'ID',
-            'value' => $id,
-            'readonly' => true,
-            'disabled' => true,
-          ]);
-        }
-      })($currentRoute, $data?->id),
       (function($currentRoute, $name, $validationRule) {
         if($currentRoute !== self::ROUTE_NAME . 'create') {
           return TextTypeController::make([
@@ -121,28 +106,6 @@ class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
         'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      (function($currentRoute, $created_at) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return DateTimeTypeControl::make([
-            'type' => 'datetime-local',
-            'name' => 'created_at',
-            'label' => 'Utworzony',
-            'readonly' => true,
-            'value' => $created_at,
-          ]);
-        }
-      })($currentRoute, $data?->created_at),
-      (function($currentRoute, $updated_at) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return DateTimeTypeControl::make([
-            'type' => 'datetime-local',
-            'name' => 'updated_at',
-            'label' => 'Zaktualizowany',
-            'readonly' => true,
-            'value' => $updated_at,
-          ]);
-        }
-      })($currentRoute, $data?->updated_at),
     ];
   }
 

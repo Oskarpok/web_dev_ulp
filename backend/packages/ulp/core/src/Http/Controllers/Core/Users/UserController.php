@@ -7,7 +7,6 @@ namespace Ulp\Core\Http\Controllers\Core\Users;
 use Ulp\Core\Enums\UsersType;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Select\SelectTypeControl;
-use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Users',
@@ -47,22 +46,8 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    $validationRules = self::MODEL_CLASS::validationRules();
+  protected function getFormFields($data, $currentRoute, $validationRules): array {
     return [
-      (function($currentRoute, $id) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return TextTypeController::make([
-            'type' => 'number',
-            'name' => 'id',
-            'label' => 'ID',
-            'value' => $id,
-            'readonly' => true,
-            'disabled' => true,
-          ]);
-        }
-      })($currentRoute, $data?->id),
       TextTypeController::make([
         'type' => 'text',
         'name' => 'first_name',
@@ -118,28 +103,6 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
         'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
           ? false : true,
       ]),
-      (function($currentRoute, $created_at) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return DateTimeTypeControl::make([
-            'type' => 'datetime-local',
-            'name' => 'created_at',
-            'label' => 'Utworzony',
-            'readonly' => true,
-            'value' => $created_at,
-          ]);
-        }
-      })($currentRoute, $data?->created_at),
-      (function($currentRoute, $updated_at) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return DateTimeTypeControl::make([
-            'type' => 'datetime-local',
-            'name' => 'updated_at',
-            'label' => 'Zaktualizowany',
-            'readonly' => true,
-            'value' => $updated_at,
-          ]);
-        }
-      })($currentRoute, $data?->updated_at),
     ];
   }
 

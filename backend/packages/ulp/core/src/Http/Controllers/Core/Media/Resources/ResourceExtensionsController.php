@@ -35,8 +35,7 @@ class ResourceExtensionsController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function getFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+  protected function getFormFields($data, $currentRoute, $validationRules): array {
     return [
 
     ];

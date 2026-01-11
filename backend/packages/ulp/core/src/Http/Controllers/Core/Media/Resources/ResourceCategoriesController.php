@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
+use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudController {
@@ -35,13 +36,6 @@ class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function getFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
-    return [
-
-    ];
-  }
-
   protected function prepareIndexButtons(): array {
     return [
       ButtonsTypeController::make([
@@ -57,6 +51,29 @@ class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudCo
         'icone' => 'fa-solid fa-file-signature',
       ]),
       ...parent::prepareIndexButtons(),
+    ];
+  }
+
+  protected function getFormFields($data, $currentRoute, $validationRules): array {    
+    return [
+      TextTypeController::make([
+        'type' => 'text',
+        'name' => 'name',
+        'label' => 'Name',
+        'value' => $data?->name,
+        // 'required' => in_array('required', $validationRules['name']),
+        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
+      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
+        'type' => 'checkbox',
+        'name' => 'is_active',
+        'label' => 'Active',
+        // 'required' => in_array('required', $validationRules['is_active']),
+        'value' => $data?->is_active,
+        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
+          ? false : true,
+      ]),
     ];
   }
 
