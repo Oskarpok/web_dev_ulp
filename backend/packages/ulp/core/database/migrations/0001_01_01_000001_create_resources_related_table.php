@@ -31,6 +31,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       Schema::create('resources', function (Blueprint $table) {
         $table->id();
         $table->string('name');
+        $table->string('path');
         $table->string('alt')->nullable();
         $table->unsignedBigInteger('category_id');
         $table->foreign('category_id')->references('id')
