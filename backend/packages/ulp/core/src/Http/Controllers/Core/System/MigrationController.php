@@ -27,6 +27,7 @@ class MigrationController extends \Illuminate\Routing\Controller {
       }
     }
 
+    usort($migrations, fn ($a, $b) => strcmp($b['name'], $a['name']));
     return view('core::templates.development.migrations', [
       'migrations' => $migrations,
       'button' => \Ulp\Core\View\FormFields\Buttons\ButtonsTypeController::make([
