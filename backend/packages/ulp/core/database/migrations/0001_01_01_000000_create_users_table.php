@@ -9,7 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 	 * Run the migrations.
 	 */
 	public function up(): void {
-			Schema::create('users', function (Blueprint $table) {
+		Schema::create('users', function (Blueprint $table) {
 			$table->id();
 			$table->string('first_name');
 			$table->string('sur_name');
@@ -37,6 +37,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 			$table->longText('payload');
 			$table->integer('last_activity')->index();
 		});
+
 	}
 
 	/**
