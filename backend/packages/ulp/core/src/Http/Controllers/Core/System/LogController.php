@@ -25,15 +25,13 @@ class LogController extends \Ulp\Core\Http\Controllers\BaseCrudController {
   protected function indexPrepare(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id', 'action', 'module_name', 'table_name', 
-        'record_id', 'route', 'created_at',
+        'action', 'module_name', 'table_name', 'record_id', 'route', 'created_at',
       ])->get(),
       'labels' => [
-        'Id', 'Action', 'Module name', 'Table Name', 
-        'Record Id', 'Route', 'Created At',
+        'Action', 'Module name', 'Table Name', 'Record Id', 'Route', 'Created At',
       ],
       'filterable' => [
-        'id' => false, 'action' => true, 'module_name' => true, 'route' => true,
+        'action' => true, 'module_name' => true, 'route' => true,
         'table_name' => true, 'record_id' => true,  'created_at' => true,
       ],
     ];
