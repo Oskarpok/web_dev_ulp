@@ -21,6 +21,8 @@ Route::middleware(['web', 'auth'])
     Route::resource('permissions', 'Users\PermissionController');
 
     Route::resource('params', 'System\ParamController');
+    Route::resource('logs', 'System\LogController')->only(['index', 'show']);
+
     Route::get('showMigrations', [
       \Ulp\Core\Http\Controllers\Core\System\MigrationController::class, 
       'showMigrations'])->name('showMigrations');
@@ -32,11 +34,9 @@ Route::middleware(['web', 'auth'])
       \Ulp\Core\Http\Controllers\Core\System\DevelopmentController::class, 
       'panel'])->name('artisan.panel');
 
-
     Route::get('Artisan/clean_cache', [
       \Ulp\Core\Http\Controllers\Core\System\DevelopmentController::class, 
       'cleanCache'])->name('artisan.clean_cache');
-
 
     Route::resource('orders', 'Production\OrderController');
     Route::resource('products', 'Production\ProductController');
