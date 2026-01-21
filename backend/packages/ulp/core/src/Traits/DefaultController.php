@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ulp\Core\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
@@ -71,7 +72,7 @@ trait DefaultController {
    * @return array List of used fields
    */
   protected function prepareFormFields($data = null): array {
-    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+    $currentRoute = Route::currentRouteName();
     return [
       'fields' => $this->formFields($data, $currentRoute),
       'buttons' => [
@@ -142,14 +143,14 @@ trait DefaultController {
 
   // Prepare buttobs for index vievs
   protected function prepareIndexButtons(): array {
-    return [
+    return Route::has(static::ROUTE_NAME . 'create') ? [
       ButtonsTypeController::make([
         'type' => 'anchore',
         'route' => route(static::ROUTE_NAME . 'create'),
         'label' => $this->titles()['recordAddButton'] ?? 'Add',
         'icone' => 'fa-solid fa-plus',
       ]),
-    ];
+    ] : [];
   }
 
   /**
