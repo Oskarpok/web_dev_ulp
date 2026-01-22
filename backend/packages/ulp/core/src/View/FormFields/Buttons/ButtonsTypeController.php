@@ -10,6 +10,7 @@ class ButtonsTypeController extends \Ulp\Core\View\FormFields\BaseControl {
     return [
       'anchore' => Fields\AnchoreControl::class,
       'submit' => Fields\SubmitControl::class,
+      'form' => Fields\FormControl::class,
     ];
   }
 

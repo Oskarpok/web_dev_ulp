@@ -53,6 +53,16 @@ class IndexControl extends \Ulp\Core\View\FormFields\BaseField {
       ]);
     }
 
+    if ($access['destroy']) {
+      $buttons[] = ButtonsTypeController::make([
+        'type' => 'form',
+        'routeName' => $destinations . 'destroy',
+        'routeParams' => [$id],
+        'style' => 4,
+        'icone' => 'fas fa-trash-alt',
+      ]);
+    }
+
     return $buttons;
   }
 

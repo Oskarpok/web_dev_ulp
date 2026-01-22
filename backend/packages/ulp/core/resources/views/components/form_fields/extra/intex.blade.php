@@ -41,24 +41,9 @@
           </td>
         @endforeach
         <td class="w-27 px-4 py-2 border border-gray-700 text-center space-x-2">
-          <a href="{{ route($destinations . 'show', $row['id']) }}" title="Zobacz">
-            <i class="fa-solid fa-eye text-sky-400 hover:text-sky-300"></i>
-          </a>
-          <a href="{{ route($destinations . 'edit', $row['id']) }}" title="Edytuj">
-            <i class="fas fa-edit text-yellow-400 hover:text-yellow-300"></i>
-          </a> 
-          <form action="{{ route($destinations . 'destroy', $row['id']) }}" 
-            method="POST" 
-            onsubmit="return confirm('Na pewno chcesz usunąć?')" 
-            class="inline">
-            @csrf
-            @method('DELETE')
-            <button class="text-rose-500 hover:text-rose-400"
-              type="submit" 
-              title="Usuń">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-          </form>
+          @foreach($row['buttons'] as $button)
+            {!! $button->render() !!}
+          @endforeach
         </td>
       </tr>
     @endforeach
