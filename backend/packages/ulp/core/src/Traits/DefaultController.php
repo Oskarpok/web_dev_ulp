@@ -153,6 +153,14 @@ trait DefaultController {
     ] : [];
   }
 
+  public function heckRowButtonsAcces($destination): array {
+    return [
+      'show' => Route::has($destination . 'show'),
+      'edit' => Route::has($destination . 'edit'),
+      'destroy' => Route::has($destination . 'destroy'),
+    ];
+  }
+
   /**
    * Prepares the data for the index view by calling the indexPrepare()
    * method with the current request, and then returns the corresponding
@@ -172,6 +180,7 @@ trait DefaultController {
         'filterable' => $data['filterable'],
         'data' => $data['data'],
         'destinations' => static::ROUTE_NAME,
+        'resolveButtons' => $this->heckRowButtonsAcces(static::ROUTE_NAME),
       ]),
     ]);
   }
