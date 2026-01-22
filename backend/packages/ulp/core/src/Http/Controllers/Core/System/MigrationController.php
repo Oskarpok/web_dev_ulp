@@ -32,7 +32,7 @@ class MigrationController extends \Illuminate\Routing\Controller {
       'migrations' => $migrations,
       'button' => \Ulp\Core\View\FormFields\Buttons\ButtonsTypeController::make([
         'type'  => 'anchore',
-        'route' => route('core.doMigrations'),
+        'routeName' => 'core.doMigrations',
         'label' => 'Migrate',
         'icone' => 'fa-solid fa-rotate',
       ]),

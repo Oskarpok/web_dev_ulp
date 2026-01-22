@@ -19,7 +19,7 @@ class DevelopmentController extends \Illuminate\Routing\Controller {
       'buttons' => [
         ButtonsTypeController::make([
           'type' => 'anchore',
-          'route' => route('core.artisan.clean_cache'),
+          'routeName' => 'core.artisan.clean_cache',
           'label' => 'Clean Cache',
           'icone' => 'fa-solid fa-trash',
           'style' => 1,

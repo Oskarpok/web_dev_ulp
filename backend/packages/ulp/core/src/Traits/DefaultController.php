@@ -79,7 +79,7 @@ trait DefaultController {
         ...$this->formFieldsButtons($currentRoute),
         ButtonsTypeController::make([
           'type' => 'anchore',
-          'route' => route(static::ROUTE_NAME . 'index'),
+          'routeName' => static::ROUTE_NAME . 'index',
           'label' => 'Return',
           'icone' => 'fa-solid fa-arrow-left',
         ]),
@@ -146,7 +146,7 @@ trait DefaultController {
     return Route::has(static::ROUTE_NAME . 'create') ? [
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'route' => route(static::ROUTE_NAME . 'create'),
+        'routeName' => static::ROUTE_NAME . 'create',
         'label' => $this->titles()['recordAddButton'] ?? 'Add',
         'icone' => 'fa-solid fa-plus',
       ]),

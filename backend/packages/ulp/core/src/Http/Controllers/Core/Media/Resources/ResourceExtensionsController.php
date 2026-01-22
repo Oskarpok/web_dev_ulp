@@ -45,13 +45,13 @@ class ResourceExtensionsController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     return [
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'route' => route('core.resources.index'),
+        'routeName' => 'core.resources.index',
         'label' => 'Resources',
         'icone' => 'fa-solid fa-file',
       ]),
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'route' => route('core.resource_categories.index'),
+        'routeName' => 'core.resource_categories.index',
         'label' => 'Resource Categories',
         'icone' => 'fa-solid fa-folder',
       ]),
