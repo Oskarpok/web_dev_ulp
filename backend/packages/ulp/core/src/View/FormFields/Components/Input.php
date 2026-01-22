@@ -5,38 +5,60 @@ declare(strict_types=1);
 namespace Ulp\Core\View\FormFields\Components;
 
 /**
- * Abstract class BaseField
- * Represents a basic form field.
- * Each field has a type, a view (Blade template), and data for rendering.
+ * Abstract class Input represents a basic form field.
+ * Each field has field data for rendering and view (Blade template for render).
  */
 abstract class Input {
 
   /**
-   * @var string Field type (e.g., 'text', 'checkbox', 'select', 'anchore', etc.)
+   * Base atributes of all form fields class
    */
   protected string $name;
   protected string $label;
   protected string $tooltip = '';
   protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
+  /**
+   * Init form fields object and set its name
+   */
   public function __construct(string $name) {
     $this->name = $name;
   }
 
+  /**
+   * Method to create intance of form field
+   * 
+   * @return object of new form field
+   */
   public static function make(string $name): static {
     return new static($name);
   }
 
+  /**
+   * Method to set label for field object
+   * 
+   * @return object of form field
+   */
   public function label(string $label): static {
     $this->label = $label;
     return $this;
   }
 
+  /**
+   * Method to set tooltip for field
+   * 
+   * @return object of form field
+   */
   public function tooltip(string $tooltip): static {
     $this->tooltip = $tooltip;
     return $this;
   }
 
+  /**
+   * Method to set wraper for field
+   * 
+   * @return object of form field
+   */
   public function wraper(string $wraper): static {
     $this->wraper = $wraper;
     return $this;
@@ -44,6 +66,7 @@ abstract class Input {
 
   /**
    * Getter for the field atributes
+   * 
    * @return atributes of field
    */
   public function __get($key) {
@@ -69,6 +92,11 @@ abstract class Input {
     return view($this->resolveView(), $this->dataMerge($viewData))->render();
   }
 
+  /**
+   * Return data for Livewire to render field
+   * 
+   * @return array of fields
+   */
   public function toLivewire(array $viewData = []): array{
     return [
       ...$this->dataMerge($viewData),
@@ -76,6 +104,11 @@ abstract class Input {
     ];
   }
 
+  /**
+   * Get merge data from class and viev if data is given om viev
+   * 
+   * @return array of merge properties
+   */
   protected function dataMerge($viewData) {
     $classData = get_object_vars($this);
 
