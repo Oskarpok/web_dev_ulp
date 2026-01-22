@@ -11,7 +11,7 @@
     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
   @enderror
   <input type="text" 
-    value="{{ $value }}"
+    value=""
     name="{{ $name }}"
     @readonly($readonly)
     @required($required)
