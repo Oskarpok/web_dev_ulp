@@ -1,7 +1,7 @@
-<a id ="{{ $name }}"
-  class="core-btn {{ $disabled ? 'core-btn-readonly' : $style }}"
-  href="{{ $disabled ? '#' : $route }}"
-  @if($disabled) aria-disabled="true" @endif>
+<a id="{{ $name }}"
+  class="{{ ($disabled || empty($routeName)) ? 'core-btn-readonly' : $style }}"
+  href="{{ ($disabled || empty($routeName)) ? '#' : route($routeName, $routeParams) }}"
+  @if($disabled || empty($routeName)) aria-disabled="true" @endif>
   <i class="{{ $icone }}"></i>
   <span>{{ $label }}</span>
 </a>

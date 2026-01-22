@@ -23,11 +23,11 @@ abstract class BaseButtonsField extends \Ulp\Core\View\FormFields\BaseField {
 
   public function resolveStyle(int $style) {
     return match ($style) {
-      0 => 'core-btn-primary',
-      1 => 'core-btn-secondary',
-      2 => 'core-btn-background',
-      3 => 'core-btn-outline',
-      default => 'core-btn-primary',
+      0 => 'core-btn core-btn-primary',
+      1 => 'core-btn core-btn-secondary',
+      2 => 'core-btn core-btn-background',
+      3 => 'core-btn core-btn-outline',
+      4 => '',
     };
   }
 
