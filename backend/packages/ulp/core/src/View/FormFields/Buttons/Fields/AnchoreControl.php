@@ -6,11 +6,13 @@ namespace Ulp\Core\View\FormFields\Buttons\Fields;
 
 class AnchoreControl extends \Ulp\Core\View\FormFields\Buttons\BaseButtonsField {
 
-  protected string $route;
+  protected string $routeName;
+  public array $routeParams;
 
   public function __construct(array $data) {
     parent::__construct($data);
-    $this->route = $data['route'];
+    $this->routeName = $data['routeName'] ?? '';
+    $this->routeParams = $data['routeParams'] ?? [];
   }
 
   protected function resolveView(): string {
