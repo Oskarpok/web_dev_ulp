@@ -48,8 +48,8 @@ abstract class BaseField {
    * 
    * @return string HTML of the field
    */
-  public function render(array $Data = []): string {
-    return view($this->resolveView(), get_object_vars($this) + $Data)->render();
+  public function render(array $data = []): string {
+    return view($this->resolveView(), get_object_vars($this) + $data)->render();
   }
 
 }
