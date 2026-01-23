@@ -21,7 +21,7 @@ class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'parent_id', 'is_active', 'created_at', 'updated_at',
@@ -54,7 +54,7 @@ class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function getFormFields(): array {    
+  protected function formFields(): array {    
     return [
 
     ];

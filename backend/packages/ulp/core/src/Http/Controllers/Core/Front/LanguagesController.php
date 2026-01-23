@@ -26,7 +26,7 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'shortcut', 'is_active', 'created_at', 'updated_at',
@@ -41,7 +41,7 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function getFormFields(): array {
+  protected function formFields(): array {
     return [
 
     ];

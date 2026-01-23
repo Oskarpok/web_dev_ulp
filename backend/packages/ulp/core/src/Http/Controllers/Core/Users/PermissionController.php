@@ -26,7 +26,7 @@ class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'guard_name', 'created_at', 'updated_at',
@@ -41,7 +41,7 @@ class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController
     ];
   }
 
-  protected function getFormFields(): array {
+  protected function formFields(): array {
     return [
 
     ];

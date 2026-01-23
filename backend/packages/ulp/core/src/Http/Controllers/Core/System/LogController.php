@@ -22,7 +22,7 @@ class LogController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'action', 'module_name', 'table_name', 'record_id', 'route', 'created_at',
@@ -37,7 +37,7 @@ class LogController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields(): array {
+  protected function formFields(): array {
     return [
       //
     ];

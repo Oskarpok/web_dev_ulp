@@ -26,7 +26,7 @@ class OrderController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'user_id', 'price', 'status', 'parcel_number',  
@@ -43,7 +43,7 @@ class OrderController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields(): array {
+  protected function formFields(): array {
     return [
 
     ];
