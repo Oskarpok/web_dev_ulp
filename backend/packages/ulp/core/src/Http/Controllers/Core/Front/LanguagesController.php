@@ -41,35 +41,9 @@ class LanguagesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Nazwa',
-        'value' => $data?->name,
-        'required' => in_array('required', $validationRules['name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'shortcut',
-        'label' => 'Shortcut',
-        'value' => $data?->shortcut,
-        'required' => in_array('required', $validationRules['shortcut']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
-        'type' => 'checkbox',
-        'name' => 'is_active',
-        'label' => 'Active',
-        'required' => true,
-        'value' => $data?->is_active,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+
     ];
   }
   

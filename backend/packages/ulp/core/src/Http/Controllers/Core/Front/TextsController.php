@@ -40,43 +40,9 @@ class TextsController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
-    if($data) {
-      $data->load('languages');
-    }
+  protected function getFormFields(): array {
+   
     return [
-       TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Nazwa',
-        'value' => $data?->name,
-        'required' => true,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      ...(function($data, $currentRoute) {
-        $langs =  \Ulp\Core\Models\Core\Front\Language::where('is_active', true)
-          ->pluck('name', 'id');
-
-        if ($langs->isEmpty()) {
-          return [];
-        }
-
-        foreach ($langs as $langId => $name) {
-          $fields[] = TextTypeController::make([
-            'type' => 'text_area',
-            'name' => "translations[{$langId}]",
-            'label' => "Tłumaczenie {$name}",
-            'required' => true,
-            'value' => $data?->languages
-              ? $data->languages->firstWhere('id', $langId)?->pivot?->translation ?? ''
-              : '',
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]);
-        }
-        return $fields;
-      })($data, $currentRoute),
     ];
   }
 
