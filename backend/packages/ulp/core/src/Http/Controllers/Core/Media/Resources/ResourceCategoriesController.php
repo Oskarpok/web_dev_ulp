@@ -54,26 +54,9 @@ class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {    
+  protected function getFormFields(): array {    
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Name',
-        'value' => $data?->name,
-        // 'required' => in_array('required', $validationRules['name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
-        'type' => 'checkbox',
-        'name' => 'is_active',
-        'label' => 'Active',
-        // 'required' => in_array('required', $validationRules['is_active']),
-        'value' => $data?->is_active,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+
     ];
   }
 

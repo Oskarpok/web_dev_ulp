@@ -39,8 +39,7 @@ trait DefaultController {
    *
    * @return array List of fields elements for the given controller.
    */
-  abstract protected function getFormFields($data, 
-    $currentRoute, $validationRules): array;
+  abstract protected function getFormFields(): array;
 
   /**
    * Return an array of vie index requaier data.
@@ -102,7 +101,7 @@ trait DefaultController {
   protected function formFields($data = null, $currentRoute) {
     return [
       ...$this->getIdField($data?->id, $currentRoute),
-      ...$this->getFormFields($data, $currentRoute, static::MODEL_CLASS::validationRules()),
+      ...$this->getFormFields(),
       ...$this->getTimestampFields($data?->created_at, $data?->updated_at, $currentRoute),
     ];
   }

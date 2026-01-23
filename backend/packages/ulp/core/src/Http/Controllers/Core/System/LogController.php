@@ -37,7 +37,7 @@ class LogController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
       //
     ];

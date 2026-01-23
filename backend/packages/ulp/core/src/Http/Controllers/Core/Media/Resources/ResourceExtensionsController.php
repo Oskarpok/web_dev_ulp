@@ -35,7 +35,7 @@ class ResourceExtensionsController extends \Ulp\Core\Http\Controllers\BaseCrudCo
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
 
     ];

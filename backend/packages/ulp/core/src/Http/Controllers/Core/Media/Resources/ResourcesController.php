@@ -60,52 +60,9 @@ class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController 
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      (function($currentRoute, $name, $validationRule) {
-        if($currentRoute !== self::ROUTE_NAME . 'create') {
-          return TextTypeController::make([
-            'type' => 'text',
-            'name' => 'name',
-            'label' => 'Name',
-            'value' => $name,
-            'required' => in_array('required', $validationRule),
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]);
-        }
-      })($currentRoute, $data?->name, $validationRules['name']),
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'alt',
-        'label' => 'Aternative',
-        'value' => $data?->alt,
-        'required' => in_array('required', $validationRules['alt']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-
-
-      \Ulp\Core\View\FormFields\Extra\ExtraTypeController::make([
-        'type' => 'file',
-        'name' => 'file',
-        'label' => 'File',
-        'required' => true,
-        'tooltip' => '',
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-
-
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
-        'type' => 'checkbox',
-        'name' => 'is_active',
-        'label' => 'Active',
-        'required' => in_array('required', $validationRules['is_active']),
-        'value' => $data?->is_active,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+      
     ];
   }
 

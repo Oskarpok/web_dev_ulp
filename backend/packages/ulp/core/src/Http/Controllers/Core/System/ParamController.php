@@ -43,77 +43,9 @@ class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Nazwa',
-        'value' => $data?->name,
-        'required' => in_array('required', $validationRules['name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      SelectTypeControl::make([
-        'type' => 'select',
-        'name' => 'type',
-        'label' => 'Type',
-        'options' => ParamsType::toArray() ?? [],
-        'required' => in_array('required', $validationRules['type']),
-        'value' => $data?->type,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      (function($data, $currentRoute) {
-        return match ($data?->type) {
-          1 => TextTypeController::make([
-            'type' => 'number',
-            'name' => 'val_int',
-            'label' => 'Value',
-            'value' => $data?->val_int,
-            'required' => true,
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]),
-          2 => TextTypeController::make([
-            'type' => 'number',
-            'name' => 'val_float',
-            'label' => 'Value',
-            'value' => $data?->val_float,
-            'allow_float' => true,
-            'required' => true,
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]),
-          4 => SelectTypeControl::make([
-            'type' => 'checkbox',
-            'name' => 'val_bool',
-            'label' => 'Value',
-            'required' => true,
-            'value' => $data?->val_bool,
-            'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]),
-          5 => TextTypeController::make([
-            'type' => 'text_area',
-            'name' => 'val_json',
-            'label' => 'Value',
-            'required' => true,
-            'value' => $data?->val_json,
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]),
-          default => TextTypeController::make([
-            'type' => 'text',
-            'name' => 'val_string',
-            'label' => 'Value',
-            'value' => $data?->val_string,
-            'required' => true,
-            'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-              ? false : true,
-          ]),
-        };
-      })($data, $currentRoute),
+      
     ];
   }
   

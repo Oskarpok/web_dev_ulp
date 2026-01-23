@@ -41,55 +41,9 @@ class ProductController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Nazwa',
-        'value' => $data?->name,
-        'required' => in_array('required', $validationRules['name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'number',
-        'name' => 'unit_price',
-        'label' => 'Unit Price',
-        'value' => $data?->unit_price,
-        'allow_float' => true,
-        'required' => in_array('required', $validationRules['unit_price']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
-        'type' => 'checkbox',
-        'name' => 'is_active',
-        'label' => 'Active',
-        'required' => in_array('required', $validationRules['is_active']),
-        'value' => $data?->is_active,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text_area',
-        'name' => 'specification',
-        'label' => 'Specification',
-        'required' => in_array('required', $validationRules['specification']),
-        'value' => $data?->specification,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text_area',
-        'name' => 'description',
-        'label' => 'Description',
-        'required' => in_array('required', $validationRules['description']),
-        'value' => $data?->description,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      //file
+
     ];
   }
 

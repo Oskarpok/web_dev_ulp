@@ -41,27 +41,9 @@ class RoleController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'name',
-        'label' => 'Name',
-        'value' => $data?->name,
-        'required' => true,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      \Ulp\Core\View\FormFields\Select\SelectTypeControl::make([
-        'type' => 'select',
-        'name' => 'guard_name',
-        'label' => 'Guard Name',
-        'options' => array_keys(config('auth.guards')) ?? [],
-        'required' => true,
-        'value' => $data?->guard_name,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+
     ];
   }
 

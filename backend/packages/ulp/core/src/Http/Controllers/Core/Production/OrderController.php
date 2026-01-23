@@ -43,24 +43,9 @@ class OrderController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function getFormFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'parcel_number',
-        'label' => 'Parcel Number',
-        'value' => $data?->parcel_number,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text_area',
-        'name' => 'notes',
-        'label' => 'Notes',
-        'value' => $data?->notes,
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+
     ];
   }
 
