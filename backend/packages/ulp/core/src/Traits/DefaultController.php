@@ -184,10 +184,9 @@ trait DefaultController {
    * @return \Illuminate\Http\Response
    */
   public function create(): \Illuminate\View\View {
-    $cont = $this->prepareFormFields();
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'controls' => $cont,
+      'controls' => $this->prepareFormFields(),
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
@@ -228,11 +227,10 @@ trait DefaultController {
    * @return \Illuminate\Http\Response
    */
   public function edit(int $id): \Illuminate\View\View {
-    $cont = $this->prepareFormFields(static::MODEL_CLASS::find($id));
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
-      'controls' => $cont,
+      'controls' => $this->prepareFormFields(static::MODEL_CLASS::find($id)),
       'validationRules' => static::MODEL_CLASS::validationRules(),
     ]);
   }
