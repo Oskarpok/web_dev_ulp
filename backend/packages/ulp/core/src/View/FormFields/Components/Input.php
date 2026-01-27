@@ -37,6 +37,16 @@ abstract class Input {
   }
 
   /**
+   * Method to set type for field object
+   * 
+   * @return object of form field
+   */
+  public function type(string $type): static {
+    $this->type = $type;
+    return $this;
+  }
+
+  /**
    * Method to set label for field object
    * 
    * @return object of form field

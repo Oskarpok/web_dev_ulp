@@ -10,7 +10,7 @@
   @error('state.' . $name)
     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
   @enderror
-  <input type="text" 
+  <input type="{{ $type }}"" 
     value=""
     name="{{ $name }}"
     @readonly($readonly)
