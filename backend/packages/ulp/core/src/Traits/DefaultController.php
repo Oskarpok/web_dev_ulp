@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Traits;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Ulp\Core\View\FormFields\Components\TextInput;
+
 
 trait DefaultController {
 
@@ -39,14 +43,14 @@ trait DefaultController {
    *
    * @return array List of fields elements for the given controller.
    */
-  abstract protected function getFormFields(): array;
+  abstract protected function formFields(): array;
 
   /**
    * Return an array of vie index requaier data.
    *
    * @return array List of fields elements for the given controller.
    */
-  abstract protected function indexPrepare(Request $request): array;
+  abstract protected function indexTable(Request $request): array;
 
   /**
    * Return an array of title for views elements etc in controler.
@@ -64,6 +68,14 @@ trait DefaultController {
     return app(static::MODEL_CLASS);
   }
 
+  protected function resolveFormContext() {
+    return match (Route::currentRouteName()) {
+      static::ROUTE_NAME.'create' => 'create',
+      static::ROUTE_NAME.'edit'   => 'edit',
+      static::ROUTE_NAME.'show'   => 'show',
+    };
+  }
+
   /**
    * Prepares widowed crud form elements based on their specific fields, 
    * depending on the controller used.
@@ -73,7 +85,7 @@ trait DefaultController {
   protected function prepareFormFields($data = null): array {
     $currentRoute = Route::currentRouteName();
     return [
-      'fields' => $this->formFields($data, $currentRoute),
+      'fields' => $this->formFields(),
       'buttons' => [
         ...$this->formFieldsButtons($currentRoute),
         ButtonsTypeController::make([
@@ -97,27 +109,9 @@ trait DefaultController {
     ] : [];
   }
 
-  // Preper form fields for crude operations
-  protected function formFields($data = null, $currentRoute) {
-    return [
-      ...$this->getIdField($data?->id, $currentRoute),
-      ...$this->getFormFields(),
-      ...$this->getTimestampFields($data?->created_at, $data?->updated_at, $currentRoute),
-    ];
-  }
-
   // Preper id field for crude operations
-  protected function getIdField($id, $currentRoute) {
-    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
-      \Ulp\Core\View\FormFields\Text\TextTypeController::make([
-        'type' => 'number',
-        'name' => 'id',
-        'label' => 'ID',
-        'value' => $id,
-        'readonly' => true,
-        'disabled' => true,
-      ])
-    ] : [];
+  protected function getIdField() {
+    return TextInput::make('id')->label('Id')->numeric();
   }
 
   // Preper time stamps fields for crude operations
@@ -161,7 +155,7 @@ trait DefaultController {
   }
 
   /**
-   * Prepares the data for the index view by calling the indexPrepare()
+   * Prepares the data for the index view by calling the indexTable()
    * method with the current request, and then returns the corresponding
    * Blade view with the prepared data.
    *
@@ -169,7 +163,7 @@ trait DefaultController {
    * @return \Illuminate\View\View  The rendered index view.
    */
   public function index(Request $request): \Illuminate\View\View {
-    $data = $this->indexPrepare($request);
+    $data = $this->indexTable($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
       'buttons' => $this->prepareIndexButtons(),
