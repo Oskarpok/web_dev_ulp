@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Ulp\Core\Http\Controllers\Core\Users;
 
 use Ulp\Core\Enums\UsersType;
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-use Ulp\Core\View\FormFields\Select\SelectTypeControl;
+use Ulp\Core\View\FormFields\Components\TextInput;
 
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Users',
@@ -28,7 +27,7 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function indexPrepare(\Illuminate\Http\Request $request): array {
+  protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'first_name', 'sur_name', 'phone', 'email', 'type', 
@@ -46,63 +45,11 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     ];
   }
 
-  protected function getFormFields($data, $currentRoute, $validationRules): array {
+  protected function formFields(): array {
     return [
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'first_name',
-        'label' => 'First Name',
-        'value' => $data?->first_name,
-        'required' => in_array('required', $validationRules['first_name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'sur_name',
-        'label' => 'Sur Name',
-        'value' => $data?->sur_name,
-        'required' => in_array('required', $validationRules['sur_name']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'text',
-        'name' => 'phone',
-        'label' => 'Phone',
-        'value' => $data?->phone,
-        'required' => in_array('required', $validationRules['phone']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      TextTypeController::make([
-        'type' => 'email',
-        'name' => 'email',
-        'label' => 'Email',
-        'value' => $data?->email,
-        'required' => in_array('required', $validationRules['email']),
-        'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      SelectTypeControl::make([
-        'type' => 'checkbox',
-        'name' => 'is_active',
-        'label' => 'Active',
-        'required' => in_array('required', $validationRules['is_active']),
-        'value' => $data?->is_active,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
-      SelectTypeControl::make([
-        'type' => 'select',
-        'name' => 'type',
-        'label' => 'Type',
-        'options' => UsersType::toArray() ?? [],
-        'required' => in_array('required', $validationRules['type']),
-        'value' => $data?->type,
-        'disabled' => $currentRoute !== self::ROUTE_NAME . 'show' 
-          ? false : true,
-      ]),
+      $this->getIdField(),
+      TextInput::make('first_name')->label('First Name')->required(),
+      TextInput::make('sur_name')->label('Sur Name')->required(),
     ];
   }
 
