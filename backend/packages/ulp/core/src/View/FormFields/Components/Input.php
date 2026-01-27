@@ -13,8 +13,10 @@ abstract class Input {
   /**
    * Base atributes of all form fields class
    */
+  protected string $type;
   protected string $name;
   protected string $label;
+  protected mixed $value = null;
   protected string $tooltip = '';
   protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
