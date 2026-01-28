@@ -9,8 +9,8 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ulp\Core\View\FormFields\Components\DateTime;
 use Ulp\Core\View\FormFields\Components\TextInput;
+use Ulp\Core\View\FormFields\Components\DateTimePicker;
 
 trait DefaultController {
 
@@ -116,8 +116,8 @@ trait DefaultController {
   // Preper time stamps fields for crude operations
   protected function getTimestampFields(): array {
     return [
-      DateTime::make('created_at')->label('Created At')->readonly(),
-      DateTime::make('updated_at')->label('Updated At')->readonly(),
+      DateTimePicker::make('created_at')->label('Created At')->readonly(),
+      DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
     ];
   }
 
