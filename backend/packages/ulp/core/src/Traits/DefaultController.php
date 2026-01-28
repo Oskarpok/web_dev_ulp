@@ -77,7 +77,7 @@ trait DefaultController {
   protected function prepareFormFields($data = null): array {
     $isNotCreate = (request()->route()->getActionMethod() === 'create' ? false : true);
     return [
-      'fields' => array_merge($isNotCreate ? [$this->getIdField()] : [],
+      'fields' => array_merge($isNotCreate ? $this->getIdField() : [],
         $this->formFields(),
         $isNotCreate ? $this->getTimestampFields() : [],
       ),
@@ -105,8 +105,8 @@ trait DefaultController {
   }
 
   // Preper id field for crude operations
-  protected function getIdField() {
-    return TextInput::make('id')->label('Id')->numeric()->readonly();
+  protected function getIdField(): array {
+    return [TextInput::make('id')->label('Id')->numeric()->readonly()];
   }
 
   // Preper time stamps fields for crude operations
