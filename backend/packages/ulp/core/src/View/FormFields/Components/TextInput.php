@@ -15,6 +15,11 @@ class TextInput extends Input {
 
   protected string $type = 'text';
 
+  public function value($value){
+    $this->value = (string) $value;  
+    return $this;
+  }
+
   protected function resolveView(): string {
     return 'core::components.form_fields.text.text';
   }
