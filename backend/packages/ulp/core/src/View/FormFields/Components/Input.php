@@ -95,6 +95,11 @@ abstract class Input {
   abstract protected function resolveView(): string;
 
   /**
+   * 
+   */
+  abstract public function value($value);
+
+  /**
    * Renders the field as HTML
    * Calls the Blade view with the field data and returns the result as a string.
    * 
