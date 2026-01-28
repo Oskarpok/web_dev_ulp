@@ -83,25 +83,30 @@ trait DefaultController {
       ),
       'buttons' => [
         ...$this->formFieldsButtons(Route::currentRouteName()),
-        ButtonsTypeController::make([
-          'type' => 'anchore',
-          'routeName' => static::ROUTE_NAME . 'index',
-          'label' => 'Return',
-          'icone' => 'fa-solid fa-arrow-left',
-        ]),
       ],
     ];
   }
 
   // Preper submit button for crud operations
   protected function formFieldsButtons($currentRoute) {
-    return $currentRoute !== static::ROUTE_NAME . 'show' ? [
-      ButtonsTypeController::make([
+    $buttons = [];
+
+    if ($currentRoute !== static::ROUTE_NAME . 'show') {
+      $buttons[] = ButtonsTypeController::make([
         'type' => 'submit',
         'label' => 'Save',
         'icone' => 'fa-solid fa-file',
-      ])
-    ] : [];
+      ]);
+    }
+
+    $buttons[] = ButtonsTypeController::make([
+      'type' => 'anchore',
+      'routeName' => static::ROUTE_NAME . 'index',
+      'label' => 'Return',
+      'icone' => 'fa-solid fa-arrow-left',
+    ]);
+
+    return $buttons;
   }
 
   // Preper id field for crude operations
