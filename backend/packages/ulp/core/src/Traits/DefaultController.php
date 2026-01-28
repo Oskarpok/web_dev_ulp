@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Traits;
 
-use Ulp\Core\View\FormFields\DateTime\DateTimeTypeControl;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Ulp\Core\View\FormFields\Components\DateTime;
 use Ulp\Core\View\FormFields\Components\TextInput;
-
 
 trait DefaultController {
 
@@ -117,20 +116,8 @@ trait DefaultController {
   // Preper time stamps fields for crude operations
   protected function getTimestampFields(): array {
     return [
-      DateTimeTypeControl::make([
-        'type' => 'datetime-local',
-        'name' => 'created_at',
-        'label' => 'Utworzony',
-        'readonly' => true,
-        'value' => '',
-      ]),
-      DateTimeTypeControl::make([
-        'type' => 'datetime-local',
-        'name' => 'updated_at',
-        'label' => 'Zaktualizowany',
-        'readonly' => true,
-        'value' => '',
-      ])
+      DateTime::make('created_at')->label('Created At')->readonly(),
+      DateTime::make('updated_at')->label('Updated At')->readonly(),
     ];
   }
 
