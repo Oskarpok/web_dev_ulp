@@ -9,15 +9,27 @@ use Ulp\Core\View\FormFields\Components\Traits\BeReadonly;
 use Ulp\Core\View\FormFields\Components\Traits\BeRequired;
 use Ulp\Core\View\FormFields\Components\Traits\DataFormat;
 
-class DateTime extends Input {
+class DateTimePicker extends Input {
 
   use BeDisabled, BeReadonly, BeRequired, DataFormat;
+
+  protected string $type = 'date_time';
+  protected bool $hasDate = true;
+  protected bool $hasTime = true;
 
   public function value($value){
     $this->value = is_object($value) 
       ? $value->format($this->format ?? $this->format)
       : $value;  
     return $this;
+  }
+
+  public function hasDate(): bool {
+    return (bool) $this->hasDate;
+  }
+
+  public function hasTime(): bool {
+    return (bool) $this->hasTime;
   }
 
   protected function resolveView(): string {
