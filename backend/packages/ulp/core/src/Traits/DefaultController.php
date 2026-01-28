@@ -68,14 +68,6 @@ trait DefaultController {
     return app(static::MODEL_CLASS);
   }
 
-  protected function resolveFormContext() {
-    return match (Route::currentRouteName()) {
-      static::ROUTE_NAME.'create' => 'create',
-      static::ROUTE_NAME.'edit'   => 'edit',
-      static::ROUTE_NAME.'show'   => 'show',
-    };
-  }
-
   /**
    * Prepares widowed crud form elements based on their specific fields, 
    * depending on the controller used.
@@ -83,11 +75,14 @@ trait DefaultController {
    * @return array List of used fields
    */
   protected function prepareFormFields($data = null): array {
-    $currentRoute = Route::currentRouteName();
+    $isNotCreate = (request()->route()->getActionMethod() === 'create' ? false : true);
     return [
-      'fields' => $this->formFields(),
+      'fields' => array_merge($isNotCreate ? [$this->getIdField()] : [],
+        $this->formFields(),
+        $isNotCreate ? $this->getTimestampFields() : [],
+      ),
       'buttons' => [
-        ...$this->formFieldsButtons($currentRoute),
+        ...$this->formFieldsButtons(Route::currentRouteName()),
         ButtonsTypeController::make([
           'type' => 'anchore',
           'routeName' => static::ROUTE_NAME . 'index',
@@ -100,7 +95,7 @@ trait DefaultController {
 
   // Preper submit button for crud operations
   protected function formFieldsButtons($currentRoute) {
-    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
+    return $currentRoute !== static::ROUTE_NAME . 'show' ? [
       ButtonsTypeController::make([
         'type' => 'submit',
         'label' => 'Save',
@@ -111,27 +106,27 @@ trait DefaultController {
 
   // Preper id field for crude operations
   protected function getIdField() {
-    return TextInput::make('id')->label('Id')->numeric();
+    return TextInput::make('id')->label('Id')->numeric()->readonly();
   }
 
   // Preper time stamps fields for crude operations
-  protected function getTimestampFields($created_at, $updated_at, $currentRoute): array {
-    return $currentRoute !== static::ROUTE_NAME . 'create' ? [
+  protected function getTimestampFields(): array {
+    return [
       DateTimeTypeControl::make([
         'type' => 'datetime-local',
         'name' => 'created_at',
         'label' => 'Utworzony',
         'readonly' => true,
-        'value' => $created_at,
+        'value' => '',
       ]),
       DateTimeTypeControl::make([
         'type' => 'datetime-local',
         'name' => 'updated_at',
         'label' => 'Zaktualizowany',
         'readonly' => true,
-        'value' => $updated_at,
+        'value' => '',
       ])
-    ] : [];
+    ];
   }
 
   // Prepare buttobs for index vievs

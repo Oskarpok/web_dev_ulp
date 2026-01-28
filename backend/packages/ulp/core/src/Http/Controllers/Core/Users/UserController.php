@@ -46,10 +46,10 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
   }
 
   protected function formFields(): array {
+    $readonly = (request()->route()->getActionMethod() === 'show' ? true : false);
     return [
-      $this->getIdField(),
-      TextInput::make('first_name')->label('First Name')->required(),
-      TextInput::make('sur_name')->label('Sur Name')->required(),
+      TextInput::make('first_name')->label('First Name')->required()->readonly($readonly),
+      TextInput::make('sur_name')->label('Sur Name')->required()->readonly($readonly),
     ];
   }
 
