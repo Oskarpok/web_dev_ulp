@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Ulp\Core\View\FormFields\Components;
 
-class Checkbox extends TextInput {
+use Ulp\Core\View\FormFields\Components\Traits\BeDisabled;
+use Ulp\Core\View\FormFields\Components\Traits\BeRequired;
+
+class Checkbox extends Input {
+
+  use BeDisabled, BeRequired;
 
   protected string $type = 'checkbox';
 
