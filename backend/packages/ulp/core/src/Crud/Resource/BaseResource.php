@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Crud\Resource;
 
-use Ulp\Core\Crud\Concerns\Model;
-use Ulp\Core\Crud\Concerns\CrudViews;
+use Ulp\Core\Crud\Concerns\CrudeMethods;
+use Ulp\Core\Crud\Concerns\BaseCrudeFields;
 
 abstract class BaseResource extends \Livewire\Component {
 
-  use Model, CrudViews;
+  use CrudeMethods, BaseCrudeFields;
 
 }
