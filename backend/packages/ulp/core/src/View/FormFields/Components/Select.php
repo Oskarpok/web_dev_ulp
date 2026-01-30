@@ -11,6 +11,7 @@ class Select extends Input {
 
   use BeDisabled, BeRequired;
 
+  protected string $type = 'select';
   protected array $options = [];
   protected bool $searchable = false;
   protected bool $multiple = false;
