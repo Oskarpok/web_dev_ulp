@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Ulp\Core\Http\Controllers\Core\Users;
 
 use Ulp\Core\Enums\UsersType;
+use Ulp\Core\View\FormFields\Components\Select;
+use Ulp\Core\View\FormFields\Components\Checkbox;
 use Ulp\Core\View\FormFields\Components\TextInput;
+use Ulp\Core\View\FormFields\Components\DateTimePicker;
 
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Users',
@@ -50,6 +53,12 @@ class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
     return [
       TextInput::make('first_name')->label('First Name')->required()->readonly($readonly),
       TextInput::make('sur_name')->label('Sur Name')->required()->readonly($readonly),
+      TextInput::make('phone')->tel()->label('Phone')->required()->readonly($readonly),
+      TextInput::make('email')->email()->label('Email')->required()->readonly($readonly),
+      TextInput::make('password')->password()->label('Password')->required()->readonly($readonly),
+      Checkbox::make('is_active ')->label('Is Active')->disabled($readonly),
+      Select::make('type ')->label('Type')->disabled($readonly)->options(UsersType::toArray()),
+      DateTimePicker::make('email_verified_at ')->label('Email Verified At')->readonly(),
     ];
   }
 
