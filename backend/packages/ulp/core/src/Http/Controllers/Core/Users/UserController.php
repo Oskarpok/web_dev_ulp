@@ -16,7 +16,7 @@ use Ulp\Core\View\FormFields\Components\DateTimePicker;
   route: 'core.users.index',
 )]
 
-class UserController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class UserController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\User::class;
   protected const ROUTE_NAME = 'core.users.';
