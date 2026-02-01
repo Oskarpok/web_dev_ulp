@@ -11,4 +11,10 @@ abstract class BaseResource extends \Livewire\Component {
 
   use CrudeMethods, BaseCrudeFields;
 
+  //
+  abstract protected function table(): array;
+
+  //
+  abstract public static function pages(): array;
+
 }
