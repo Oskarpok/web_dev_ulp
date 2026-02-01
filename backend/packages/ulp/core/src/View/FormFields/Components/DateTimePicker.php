@@ -13,7 +13,7 @@ class DateTimePicker extends Input {
 
   use BeDisabled, BeReadonly, BeRequired, DataFormat;
 
-  protected string $type = 'date_time';
+  protected string $type = 'date-time';
   protected bool $hasDate = true;
   protected bool $hasTime = true;
 
