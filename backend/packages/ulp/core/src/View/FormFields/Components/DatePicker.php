@@ -10,7 +10,7 @@ class TimePicker extends DateTimePicker {
   protected bool $hasDate = true;
   protected bool $hasTime = false;
 
-  public function hasDate(): bool {
+  public function hasTime(): bool {
     return false;
   }
 
