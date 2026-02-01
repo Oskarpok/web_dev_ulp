@@ -25,7 +25,7 @@ trait BaseCrudeFields {
   /**
    * Return an array of form fields used in the create show edit views.
    *
-   * @return array List of fields elements for the given controller.
+   * @return array List of fields for database record.
    */
   abstract protected function formFields(): array;
 
