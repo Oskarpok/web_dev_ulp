@@ -32,6 +32,13 @@ trait CrudeMethods {
   protected const ROUTE_NAME = null;
 
   /**
+   * Return an array of title for views elements etc in controler.
+   * 
+   * @return array List of titles
+   */
+  abstract protected function titles(): array;
+
+  /**
    * Returns an instance of the model defined in the child controller.
    *
    * @return \Illuminate\Database\Eloquent\Model
