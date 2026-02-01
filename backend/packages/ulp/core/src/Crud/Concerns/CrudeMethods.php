@@ -61,7 +61,9 @@ trait CrudeMethods {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function store(Request $request) {
-    $validate =  $request->validate(static::MODEL_CLASS::validationRules());       
+    $this->callHook('beforeValidation', $request);
+    $validate =  $request->validate(static::MODEL_CLASS::validationRules());   
+    $this->callHook('afterValidation', $request);
     $this->callHook('beforeStore', $validate);
     $this->callHook('afterStore', $validate, static::MODEL_CLASS::create($validate));
     return redirect()->route(static::ROUTE_NAME . 'index')
@@ -108,7 +110,9 @@ trait CrudeMethods {
     $record = static::MODEL_CLASS::find($id);
 
     if($record) {
+      $this->callHook('beforeValidation', $request);
       $validate = $request->validate(static::MODEL_CLASS::validationRules($id));
+      $this->callHook('afterValidation', $request);
       $this->callHook('beforeUpdate', $validate, $record);
       $record->update($validate);
       $this->callHook('afterUpdate', $validate, $record);
