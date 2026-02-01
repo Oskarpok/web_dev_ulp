@@ -31,7 +31,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     ];
   }
 
-    // Prepare buttobs for index vievs
+  // Prepare buttobs for index vievs
   protected function prepareIndexButtons(): array {
     return Route::has(static::ROUTE_NAME . 'create') ? [
       ButtonsTypeController::make([
