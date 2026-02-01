@@ -14,7 +14,7 @@ use Ulp\Core\View\FormFields\Select\SelectTypeControl;
   route: 'core.params.index',
 )]
 
-class ParamController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class ParamController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\System\Param::class;
   protected const ROUTE_NAME = 'core.params.';

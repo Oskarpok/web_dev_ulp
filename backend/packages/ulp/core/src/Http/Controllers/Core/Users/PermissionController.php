@@ -12,7 +12,7 @@ use Ulp\Core\View\FormFields\Text\TextTypeController;
   route: 'core.permissions.index',
 )]
 
-class PermissionController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class PermissionController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\Permission::class;
   protected const ROUTE_NAME = 'core.permissions.';

@@ -12,7 +12,7 @@ use Ulp\Core\View\FormFields\Text\TextTypeController;
   route: 'core.products.index',
 )]
 
-class ProductController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class ProductController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Product::class;
   protected const ROUTE_NAME = 'core.products.';

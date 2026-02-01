@@ -7,7 +7,7 @@ namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
-class ResourceCategoriesController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class ResourceCategoriesController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\ResourceCategory::class;
   protected const ROUTE_NAME = 'core.resource_categories.';

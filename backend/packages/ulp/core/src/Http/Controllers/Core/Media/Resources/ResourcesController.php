@@ -13,7 +13,7 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
   route: 'core.resources.index',
 )]
 
-class ResourcesController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class ResourcesController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\Resource::class;
   protected const ROUTE_NAME = 'core.resources.';

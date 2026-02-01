@@ -12,7 +12,7 @@ use Ulp\Core\View\FormFields\Text\TextTypeController;
   route: 'core.roles.index',
 )]
 
-class RoleController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class RoleController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\Role::class;
   protected const ROUTE_NAME = 'core.roles.';

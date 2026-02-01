@@ -6,7 +6,7 @@ namespace Ulp\Core\Models\Core\Front;
 
 class Text extends \Ulp\Core\Models\Base {
 
-  protected $fillable = ['name',];
+  protected $fillable = ['name'];
 
   public static function validationRules($id = null): array {
     return [

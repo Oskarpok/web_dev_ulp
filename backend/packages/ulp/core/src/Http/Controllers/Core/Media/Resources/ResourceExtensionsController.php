@@ -6,7 +6,7 @@ namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
-class ResourceExtensionsController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class ResourceExtensionsController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\ResourceExtension::class;
   protected const ROUTE_NAME = 'core.resources_extensions.';

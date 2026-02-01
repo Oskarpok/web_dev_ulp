@@ -12,7 +12,7 @@ use Ulp\Core\View\FormFields\Text\TextTypeController;
   route: 'core.texts.index',
 )]
 
-class TextsController extends \Ulp\Core\Http\Controllers\BaseCrudController {
+class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Text::class;
   protected const ROUTE_NAME = 'core.texts.';
