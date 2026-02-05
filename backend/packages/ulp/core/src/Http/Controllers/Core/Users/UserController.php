@@ -50,7 +50,7 @@ class UserController extends \Ulp\Core\Crud\Controller\BaseController {
 
   protected function formFields(): array {
     $readonly = (request()->route()->getActionMethod() === 'show' ? true : false);
-    return [
+    $fields = [
       TextInput::make('first_name')->label('First Name')->required()->readonly($readonly),
       TextInput::make('sur_name')->label('Sur Name')->required()->readonly($readonly),
       TextInput::make('phone')->tel()->label('Phone')->required()->readonly($readonly),
@@ -58,8 +58,13 @@ class UserController extends \Ulp\Core\Crud\Controller\BaseController {
       TextInput::make('password')->password()->label('Password')->required()->readonly($readonly),
       Checkbox::make('is_active ')->label('Is Active')->disabled($readonly),
       Select::make('type ')->label('Type')->disabled($readonly)->options(UsersType::toArray()),
-      DateTimePicker::make('email_verified_at ')->label('Email Verified At')->readonly(),
     ];
+
+    if(request()->route()->getActionMethod() === 'create' ? false : true) {
+      $fields[] =  DateTimePicker::make('email_verified_at ')->label('Email Verified At')->readonly();
+    }
+
+    return $fields;
   }
 
 }
