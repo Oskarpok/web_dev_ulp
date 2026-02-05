@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('logs', function (Blueprint $table) {
       $table->id();
       $table->foreignId('user_id')->nullable()->index();
@@ -22,6 +23,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->json('after')->nullable();
       $table->timestamp('created_at')->useCurrent();
     });
+    
   }
 
   /**

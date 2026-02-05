@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('resource_categories', function (Blueprint $table) {
       $table->id();
       $table->string('name');
@@ -41,6 +42,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->timestamps();
       $table->unique(['name', 'category_id']);
     });
+    
   }
 
   /**

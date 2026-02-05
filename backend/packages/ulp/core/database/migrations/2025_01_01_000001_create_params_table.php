@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('params', function (Blueprint $table) {
       $table->id();
       $table->string('name')->unique();
@@ -20,6 +21,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->json('val_json')->nullable();
       $table->timestamps();
     });
+    
   }
 
   /**

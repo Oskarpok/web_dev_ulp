@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('cache', function (Blueprint $table) {
       $table->string('key')->primary();
       $table->mediumText('value');
@@ -20,6 +21,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->string('owner');
       $table->integer('expiration');
     });
+    
   }
 
   /**

@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
       $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
@@ -39,6 +40,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->unique(['order_id', 'product_id']);
       $table->index(['order_id', 'product_id']);
     });
+    
   }
 
   /**

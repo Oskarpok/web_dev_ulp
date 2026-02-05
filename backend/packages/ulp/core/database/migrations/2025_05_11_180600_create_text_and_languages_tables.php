@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     Schema::create('texts', function (Blueprint $table) {
       $table->id();
       $table->string('name')->unique();
@@ -31,6 +32,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
       $table->timestamps();
       $table->unique(['text_id', 'language_id']);
     });
+    
   }
 
   /**

@@ -9,6 +9,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
    * Run the migrations.
    */
   public function up(): void {
+
     $teams = config('permission.teams');
     $tableNames = config('permission.table_names');
     $columnNames = config('permission.column_names');
@@ -121,6 +122,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
     app('cache')
       ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
       ->forget(config('permission.cache.key'));
+      
   }
 
   /**
