@@ -17,6 +17,7 @@
     :fields="$controls['fields']"
     :validationRules="$validationRules"
     :action="$route"
+    :data="$data"
     httpMethod="POST"
   />
 </div>
