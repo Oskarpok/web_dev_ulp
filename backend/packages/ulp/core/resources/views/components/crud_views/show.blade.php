@@ -13,12 +13,12 @@
       @endforeach
     </div>
   </div>
-  <div class="w-full mx-auto text-gray-200 border border-gray-600 p-6 
-    shadow rounded-2xl space-y-6 flex flex-wrap gap-5 place-items-center">
-    @foreach ($controls['fields'] as $field)
-      @continue(is_null($field))
-      {!! $field->render() !!}
-    @endforeach
-  </div>
+  <livewire:form-fields.form-component
+    :fields="$controls['fields']"
+    :validationRules="$validationRules"
+    :action="$route"
+    :data="$data"
+    httpMethod=""
+  />
 </div>
 @endsection 
