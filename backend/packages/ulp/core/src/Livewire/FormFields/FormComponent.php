@@ -27,7 +27,7 @@ class FormComponent extends \Livewire\Component {
    * Component initialization with converting field objects into Livewire 
    * friendly arrays and initialize form state with default field values
   */ 
-  public function mount(array $fields, array $validationRules, string $action, string $httpMethod, ?string $formId = null) {
+  public function mount(array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
     $this->fields = collect($fields)->filter()
       ->map(fn ($field) => $field->toLivewire())
       ->values()->toArray();
@@ -37,11 +37,13 @@ class FormComponent extends \Livewire\Component {
     $this->validationRules = $validationRules;
 
     foreach($this->fields as $field) {
-      $this->state[$field['name']] = $field['value'] ?? null;
+      $this->state[$field['name']] = data_get($data, $field['name']) ?? null;
+
       if ($field['type'] === 'file') {
         $this->enctype = true;
       }
     }
+
   }
 
   // Build Livewire validation rules
