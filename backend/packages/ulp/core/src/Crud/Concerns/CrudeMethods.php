@@ -58,6 +58,7 @@ trait CrudeMethods {
       'controls' => $this->prepareFormFields(),
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
+      'data' => [],
     ]);
   }
 
@@ -87,7 +88,10 @@ trait CrudeMethods {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'controls' => $this->prepareFormFields(static::MODEL_CLASS::find($id)),
+      'controls' => $this->prepareFormFields(),
+      'route' => '#',
+      'validationRules' => [],
+      'data' => static::MODEL_CLASS::find($id),
     ]);
   }
 
@@ -101,8 +105,9 @@ trait CrudeMethods {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
-      'controls' => $this->prepareFormFields(static::MODEL_CLASS::find($id)),
+      'controls' => $this->prepareFormFields(),
       'validationRules' => static::MODEL_CLASS::validationRules(),
+      'data' => static::MODEL_CLASS::find($id),
     ]);
   }
 
