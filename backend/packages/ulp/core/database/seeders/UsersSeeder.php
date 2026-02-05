@@ -21,33 +21,6 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'is_active' => true,
     ]);
     User::create([
-      'first_name' => 'owner',
-      'sur_name' => 'owner_owner',
-      'phone' => '48345678912',
-      'type' => UsersType::Owner->value,
-      'email' => 'owner@example.com',
-      'password' => Hash::make('owner!1234'),
-      'is_active' => true,
-    ]);
-    User::create([
-      'first_name' => 'manager',
-      'sur_name' => 'manager_manager',
-      'phone' => '48456789123',
-      'type' => UsersType::Manager->value,
-      'email' => 'manager@example.com',
-      'password' => Hash::make('manager!1234'),
-      'is_active' => true,
-    ]);
-    User::create([
-      'first_name' => 'cms_user',
-      'sur_name' => 'cms_user_cms_user',
-      'phone' => '48567891234',
-      'type' => UsersType::SystemUser->value,
-      'email' => 'cmsuser@example.com',
-      'password' => Hash::make('cmsuser!1234'),
-      'is_active' => true,
-    ]);
-    User::create([
       'first_name' => 'user',
       'sur_name' => 'user_user',
       'phone' => '48678912345',
