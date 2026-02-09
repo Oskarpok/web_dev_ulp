@@ -26,29 +26,50 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 			$table->foreignId('user_type_id')->constrained('user_types');
 			$table->boolean('is_active')->default(false);
 			$table->timestamp('email_verified_at')->nullable();
-			$table->string('street')->nullable();
-			$table->string('city')->nullable();
-			$table->string('postcode', 6)->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 		});
 
-		Schema::create('person_details', function (Blueprint $table) {
+		Schema::create('user_details', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id')->constrained()->onDelete('cascade');
+			$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+			$table->string('first_name');
+			$table->string('sur_name');
+			$table->string('pesel', 11)->nullable()->unique();
+			$table->string('street')->nullable();
+			$table->string('city')->nullable();
+			$table->string('postcode', 6)->nullable();
+			$table->timestamps();
+		});
+
+		Schema::create('company_details', function (Blueprint $table) {
+			$table->id();
+			$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+			$table->string('company_name');
+			$table->string('street')->nullable();
+			$table->string('city')->nullable();
+			$table->string('postcode', 6)->nullable();
+			$table->string('nip', 10)->nullable()->unique();
+			$table->string('regon', 14)->nullable();
+			$table->string('krs', 10)->nullable();
+			$table->timestamps();
+		});
+
+		Schema::create('system_user_details', function (Blueprint $table) {
+			$table->id();
+			$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 			$table->string('first_name');
 			$table->string('sur_name');
 			$table->string('pesel', 11)->nullable()->unique();
 			$table->timestamps();
 		});
 
-		Schema::create('company_details', function (Blueprint $table) {
+		Schema::create('user_params', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id')->constrained()->onDelete('cascade');
-			$table->string('company_name');
-			$table->string('nip', 10)->nullable()->unique();
-			$table->string('regon', 14)->nullable();
-			$table->string('krs', 10)->nullable();
+			$table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+			$table->string('name');
+			$table->text('value');
+			$table->string('type');
 			$table->timestamps();
 		});
 
