@@ -9,21 +9,12 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 	 * Run the migrations.
 	 */
 	public function up(): void {
-		
-		Schema::create('user_types', function (Blueprint $table) {
-			$table->id();
-			$table->string('name')->unique();
-			$table->string('role_name');
-			$table->string('details_table')->nullable();
-			$table->timestamps();
-		});
 
 		Schema::create('users', function (Blueprint $table) {
 			$table->id();
 			$table->string('phone')->unique();
 			$table->string('email')->unique();
 			$table->string('password');
-			$table->foreignId('user_type_id')->constrained('user_types');
 			$table->boolean('is_active')->default(false);
 			$table->timestamp('email_verified_at')->nullable();
 			$table->rememberToken();
