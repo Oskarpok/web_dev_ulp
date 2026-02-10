@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Models\Core\Users;
 
-use Ulp\Core\Enums\UsersType;
 use Ulp\Core\Traits\DefaultModel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -20,32 +19,26 @@ class User extends \Illuminate\Foundation\Auth\User {
    *
    * @var list<string>
    */
-  protected $fillable = [
-    'first_name', 'is_active', 'sur_name', 'phone', 'email', 'type',
-  ];
+  protected $fillable = ['is_active', 'phone', 'email', ];
 
   /**
    * The attributes that should be hidden for serialization.
    *
    * @var list<string>
    */
-  protected $hidden = ['password', 'remember_token',];
+  protected $hidden = ['password', 'remember_token', ];
 
-  protected $appends = ['is_active_label', 'type_label'];
+  protected $appends = ['is_active_label',];
 
   public static function validationRules($id = null): array {
     return [
-      'first_name' => ['required', 'string', 'max:255',],
-      'is_active' => ['required', 'boolean',],
-      'sur_name' => ['required', 'string', 'max:255',],
-      'phone' => ['string', 'required', 'min:9',],
-      'email' => ['required', 'string', 'email', 'max:255',],
-      'type' => ['required', 'integer',],
+      'first_name' => ['required', 'string', 'max:255', ],
+      'is_active' => ['required', 'boolean', ],
+      'sur_name' => ['required', 'string', 'max:255', ],
+      'phone' => ['string', 'required', 'min:9', ],
+      'email' => ['required', 'string', 'email', 'max:255', ],
+      'type' => ['required', 'integer', ],
     ];
-  }
-
-  public function getTypeLabelAttribute(): string {
-    return UsersType::tryFrom($this->type)?->name ?? UsersType::Undefined->name;
   }
 
   public function getIsActiveLabelAttribute(): string {
