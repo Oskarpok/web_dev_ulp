@@ -71,6 +71,8 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 			$table->text('value');
 			$table->string('type');
 			$table->timestamps();
+			$table->index(['user_id', 'name']);
+			$table->unique(['user_id', 'name']);
 		});
 
 		Schema::create('password_reset_tokens', function (Blueprint $table) {
