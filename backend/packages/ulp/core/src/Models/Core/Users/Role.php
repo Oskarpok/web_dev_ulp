@@ -13,9 +13,7 @@ class Role extends \Spatie\Permission\Models\Role {
    *
    * @var list<string>
    */
-  protected $fillable = [
-    'name', 'guard_name', 'created_at', 'updated_at',
-  ];
+  protected $fillable = ['name', 'guard_name', 'details_table', ];
 
   public static function validationRules($id = null): array {
     return [

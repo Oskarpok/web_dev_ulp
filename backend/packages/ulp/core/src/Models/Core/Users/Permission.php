@@ -13,9 +13,7 @@ class Permission extends \Spatie\Permission\Models\Permission {
    *
    * @var list<string>
    */
-  protected $fillable = [
-    'name', 'guard_name', 'created_at', 'updated_at', 	
-  ];
+  protected $fillable = ['name', 'guard_name', 'created_at', 'updated_at', ];
 
   public static function validationRules($id = null): array {
     return [
