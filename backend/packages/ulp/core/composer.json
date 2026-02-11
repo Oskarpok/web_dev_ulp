@@ -19,7 +19,6 @@
     }
   },
   "require": {
-    "livewire/livewire": "^3.7",
-    "spatie/laravel-permission": "^7.0"
+    "livewire/livewire": "^3.7"
   }
 }

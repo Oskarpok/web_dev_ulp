@@ -7,11 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
 {
     public static $files = array (
-        '606a39d89246991a373564698c2d8383' => __DIR__ . '/..' . '/symfony/polyfill-php85/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '606a39d89246991a373564698c2d8383' => __DIR__ . '/..' . '/symfony/polyfill-php85/bootstrap.php',
         '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
-        '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
         '23f09fe3194f8c2f70923f90d6702129' => __DIR__ . '/..' . '/illuminate/collections/functions.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         '2203a247e6fda86070a5e4e07aed533a' => __DIR__ . '/..' . '/symfony/clock/Resources/now.php',
@@ -21,19 +21,15 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '06a34129a50df3d9257ee706cf3c875b' => __DIR__ . '/..' . '/illuminate/filesystem/functions.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'ef65a1626449d89d0811cf9befce46f0' => __DIR__ . '/..' . '/illuminate/events/functions.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
-        '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
-        '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -45,10 +41,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         array (
             'Ulp\\Core\\Database\\Seeders\\' => 26,
             'Ulp\\Core\\' => 9,
-        ),
-        'T' =>
-        array (
-            'Termwind\\' => 9,
         ),
         'S' =>
         array (
@@ -68,7 +60,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Routing\\' => 26,
-            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
@@ -77,13 +68,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
-            'Spatie\\Permission\\' => 18,
-            'Spatie\\LaravelPackageTools\\' => 27,
-        ),
-        'R' =>
-        array (
-            'Ramsey\\Uuid\\' => 12,
-            'Ramsey\\Collection\\' => 18,
         ),
         'P' =>
         array (
@@ -104,23 +88,17 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         ),
         'I' =>
         array (
-            'Illuminate\\View\\' => 16,
             'Illuminate\\Validation\\' => 22,
             'Illuminate\\Translation\\' => 23,
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Session\\' => 19,
             'Illuminate\\Routing\\' => 19,
-            'Illuminate\\Queue\\' => 17,
             'Illuminate\\Pipeline\\' => 20,
             'Illuminate\\Http\\' => 16,
             'Illuminate\\Filesystem\\' => 22,
-            'Illuminate\\Events\\' => 18,
             'Illuminate\\Database\\' => 20,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
-            'Illuminate\\Console\\' => 19,
-            'Illuminate\\Bus\\' => 15,
-            'Illuminate\\Auth\\' => 16,
         ),
         'G' =>
         array (
@@ -165,10 +143,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         'Ulp\\Core\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-        'Termwind\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/nunomaduro/termwind/src',
         ),
         'Symfony\\Polyfill\\Php85\\' =>
         array (
@@ -234,10 +208,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         array (
             0 => __DIR__ . '/..' . '/symfony/routing',
         ),
-        'Symfony\\Component\\Process\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
         'Symfony\\Component\\Mime\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
@@ -269,22 +239,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         'Symfony\\Component\\Clock\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
-        ),
-        'Spatie\\Permission\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
-        ),
-        'Spatie\\LaravelPackageTools\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
-        ),
-        'Ramsey\\Uuid\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/ramsey/uuid/src',
-        ),
-        'Ramsey\\Collection\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/ramsey/collection/src',
         ),
         'Psr\\SimpleCache\\' =>
         array (
@@ -331,10 +285,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         array (
             0 => __DIR__ . '/..' . '/laravel/prompts/src',
         ),
-        'Illuminate\\View\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/view',
-        ),
         'Illuminate\\Validation\\' =>
         array (
             0 => __DIR__ . '/..' . '/illuminate/validation',
@@ -358,10 +308,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         array (
             0 => __DIR__ . '/..' . '/illuminate/routing',
         ),
-        'Illuminate\\Queue\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/queue',
-        ),
         'Illuminate\\Pipeline\\' =>
         array (
             0 => __DIR__ . '/..' . '/illuminate/pipeline',
@@ -374,10 +320,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         array (
             0 => __DIR__ . '/..' . '/illuminate/filesystem',
         ),
-        'Illuminate\\Events\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/events',
-        ),
         'Illuminate\\Database\\' =>
         array (
             0 => __DIR__ . '/..' . '/illuminate/database',
@@ -389,18 +331,6 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         'Illuminate\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
-        ),
-        'Illuminate\\Console\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/console',
-        ),
-        'Illuminate\\Bus\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/bus',
-        ),
-        'Illuminate\\Auth\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/auth',
         ),
         'GuzzleHttp\\UriTemplate\\' =>
         array (
