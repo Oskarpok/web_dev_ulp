@@ -4,7 +4,7 @@ namespace Ulp\Core\Database\Seeders;
 
 use Ulp\Core\Models\Core\Users\Role;
 
-class UsersSeeder extends \Illuminate\Database\Seeder {
+class RolesSeeder extends \Illuminate\Database\Seeder {
 
   public function run(): void {
     Role::create([
