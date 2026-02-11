@@ -78,6 +78,7 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
             'Spatie\\Permission\\' => 18,
+            'Spatie\\LaravelPackageTools\\' => 27,
         ),
         'R' =>
         array (
@@ -272,6 +273,10 @@ class ComposerStaticInit981908fdb4180982b0762b05ec32b0c7
         'Spatie\\Permission\\' =>
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
+        ),
+        'Spatie\\LaravelPackageTools\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
         ),
         'Ramsey\\Uuid\\' =>
         array (
