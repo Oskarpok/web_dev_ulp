@@ -4,7 +4,7 @@ namespace Ulp\Core\Database\Seeders;
 
 use Illuminate\Support\Facades\Hash;
 use Ulp\Core\Models\Core\Users\User;
-use Spatie\Permission\Models\Role;
+use Ulp\Core\Models\Core\Users\Role;
 
 class UsersSeeder extends \Illuminate\Database\Seeder {
 
