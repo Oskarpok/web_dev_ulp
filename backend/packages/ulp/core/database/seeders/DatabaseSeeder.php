@@ -7,7 +7,6 @@ class DatabaseSeeder extends \Illuminate\Database\Seeder {
   public function run(): void {
     $this->call([
       UsersSeeder::class,
-      RolesSeeder::class,
       ParamsSeeder::class,
     ]);
   }

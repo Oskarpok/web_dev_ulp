@@ -2,14 +2,15 @@
 
 namespace Ulp\Core\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory {
+class UserFactory extends \Illuminate\Database\Eloquent\Factories\Factory {
+
+  protected $model = \Ulp\Core\Models\Core\Users\User::class;
+
   /**
    * The current password being used by the factory.
    */
@@ -22,11 +23,12 @@ class UserFactory extends Factory {
    */
   public function definition(): array {
     return [
-      'name' => fake()->name(),
-      'email' => fake()->unique()->safeEmail(),
-      'email_verified_at' => now(),
+      'phone' => $this->faker->unique()->numerify('#########'),
+      'email' => $this->faker->unique()->safeEmail(),
       'password' => static::$password ??= Hash::make('password'),
-      'remember_token' => Str::random(10),
+      'is_active' => true,
+      'email_verified_at' => now(),
+      'remember_token' => \Illuminate\Support\Str::random(10),
     ];
   }
 
@@ -38,4 +40,5 @@ class UserFactory extends Factory {
       'email_verified_at' => null,
     ]);
   }
+
 }
