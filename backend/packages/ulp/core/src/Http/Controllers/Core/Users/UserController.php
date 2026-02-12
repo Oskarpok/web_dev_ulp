@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Users;
 
-use Ulp\Core\View\FormFields\Components\Checkbox;
-use Ulp\Core\View\FormFields\Components\TextInput;
-use Ulp\Core\View\FormFields\Components\DateTimePicker;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Users',
   group: 'Users',
@@ -49,20 +45,23 @@ class UserController extends \Ulp\Core\Crud\Controller\BaseController {
     ];
   }
 
-  protected function formFields(): array {
-    $readonly = (request()->route()->getActionMethod() === 'show' ? true : false);
-    $fields = [
-      TextInput::make('phone')->tel()->label('Phone')->required()->readonly($readonly),
-      TextInput::make('email')->email()->label('Email')->required()->readonly($readonly),
-      TextInput::make('password')->password()->label('Password')->required()->readonly($readonly),
-      Checkbox::make('is_active ')->label('Is Active')->disabled($readonly),
-    ];
+  // use Ulp\Core\View\FormFields\Components\Checkbox;
+  // use Ulp\Core\View\FormFields\Components\TextInput;
+  // use Ulp\Core\View\FormFields\Components\DateTimePicker;
+  // protected function formFields(): array {
+  //   $readonly = (request()->route()->getActionMethod() === 'show' ? true : false);
+  //   $fields = [
+  //     TextInput::make('phone')->tel()->label('Phone')->required()->readonly($readonly),
+  //     TextInput::make('email')->email()->label('Email')->required()->readonly($readonly),
+  //     TextInput::make('password')->password()->label('Password')->required()->readonly($readonly),
+  //     Checkbox::make('is_active ')->label('Is Active')->disabled($readonly),
+  //   ];
 
-    if(request()->route()->getActionMethod() === 'create' ? false : true) {
-      $fields[] =  DateTimePicker::make('email_verified_at ')->label('Email Verified At')->readonly();
-    }
+  //   if(request()->route()->getActionMethod() === 'create' ? false : true) {
+  //     $fields[] =  DateTimePicker::make('email_verified_at ')->label('Email Verified At')->readonly();
+  //   }
 
-    return $fields;
-  }
+  //   return $fields;
+  // }
 
 }
