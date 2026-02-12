@@ -29,11 +29,19 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
       'details_table' => 'system_user_details'
     ]);
 
-    User::create([
+    $admin = User::create([
       'phone' => '48234567891',
       'email' => 'admin@example.com',
       'password' => Hash::make('admin!123'),
       'is_active' => true,
+    ]);
+
+    $admin->assignRole($systemRole);
+    \Ulp\Core\Models\Core\Users\SystemUserDetail::create([
+      'user_id' => $admin->id,
+      'first_name' => 'Główny',
+      'sur_name' => 'Admin',
+      'pesel' => '00000000000'
     ]);
 
     /*
@@ -41,7 +49,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
     | 20 ordinary users
     |--------------------------------------------------------------------------
     */
-    User::factory(20)->create()->each(function ($user) use ($userRole) {
+    User::factory(1000)->create()->each(function ($user) use ($userRole) {
       $user->assignRole($userRole);
 
       \Ulp\Core\Models\Core\Users\UserDetail::create([
@@ -60,7 +68,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
     | 10 biznes
     |--------------------------------------------------------------------------
     */
-    User::factory(10)->create()->each(function ($user) use ($companyRole) {
+    User::factory(100)->create()->each(function ($user) use ($companyRole) {
       $user->assignRole($companyRole);
 
       \Ulp\Core\Models\Core\Users\CompanyDetail::create([
@@ -80,7 +88,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
     | 5  system users
     |--------------------------------------------------------------------------
     */
-    User::factory(5)->create()->each(function ($user) use ($systemRole) {
+    User::factory(9)->create()->each(function ($user) use ($systemRole) {
       $user->assignRole($systemRole);
 
       \Ulp\Core\Models\Core\Users\SystemUserDetail::create([
