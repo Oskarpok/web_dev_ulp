@@ -6,10 +6,7 @@ namespace Ulp\Core\Crud\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ulp\Core\View\FormFields\Components\TextInput;
-use Ulp\Core\View\FormFields\Components\DateTimePicker;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
-
 
 abstract class BaseController extends \Illuminate\Routing\Controller {
 
@@ -51,13 +48,6 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   abstract protected function indexTable(Request $request): array;
 
   /**
-   * Return an array of form fields used in the create show edit views.
-   *
-   * @return array List of fields for database record.
-   */
-  abstract protected function formFields(): array;
-
-  /**
    * Return an array of title for views elements etc in controler.
    * 
    * @return array List of titles
@@ -65,13 +55,16 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   abstract protected function titles(): array;
 
   /**
-   * Returns an instance of the model defined in the child controller.
-   *
-   * @return \Illuminate\Database\Eloquent\Model
+   * Punkty wejścia (Hooks) - puste metody, które dzieci mogą nadpisać.
    */
-  protected function getModelInstance(): \Illuminate\Database\Eloquent\Model {
-    return app(static::MODEL_CLASS);
-  }
+  protected function beforeValidation(object &$data): void {}
+  protected function afterValidation(object &$data): void {}
+  protected function beforeStore(array &$data): void {}
+  protected function afterStore(object $record): void {}
+  protected function beforeUpdate(array $validate, object $record): void {}
+  protected function afterUpdate(object $record): void {}
+  protected function beforeDestroy(object $record): void {}
+  protected function afterDestroy(object $record): void {}
 
   //
   public function heckRowButtonsAcces($destination): array {
@@ -92,60 +85,6 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
         'icone' => 'fa-solid fa-plus',
       ]),
     ] : [];
-  }
-
-  // Preper id field for crude operations
-  protected function getIdField(): array {
-    return [TextInput::make('id')->label('Id')->numeric()->readonly()];
-  }
-
-  // Preper time stamps fields for crude operations
-  protected function getTimestampFields(): array {
-    return [
-      DateTimePicker::make('created_at')->label('Created At')->readonly(),
-      DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
-    ];
-  }
-
-  /**
-   * Prepares widowed crud form elements based on their specific fields, 
-   * depending on the controller used.
-   * 
-   * @return array List of used fields
-   */
-  protected function prepareFormFields(): array {
-    $isNotCreate = (request()->route()->getActionMethod() === 'create' ? false : true);
-    return [
-      'fields' => array_merge($isNotCreate ? $this->getIdField() : [],
-        $this->formFields(),
-        $isNotCreate ? $this->getTimestampFields() : [],
-      ),
-      'buttons' => [
-        ...$this->formFieldsButtons(Route::currentRouteName()),
-      ],
-    ];
-  }
-
-  // Preper submit button for crud operations
-  protected function formFieldsButtons($currentRoute) {
-    $buttons = [];
-
-    if ($currentRoute !== static::ROUTE_NAME . 'show') {
-      $buttons[] = ButtonsTypeController::make([
-        'type' => 'submit',
-        'label' => 'Save',
-        'icone' => 'fa-solid fa-file',
-      ]);
-    }
-
-    $buttons[] = ButtonsTypeController::make([
-      'type' => 'anchore',
-      'routeName' => static::ROUTE_NAME . 'index',
-      'label' => 'Return',
-      'icone' => 'fa-solid fa-arrow-left',
-    ]);
-
-    return $buttons;
   }
 
   /**
@@ -180,7 +119,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function create(): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'controls' => $this->prepareFormFields(),
+      'controls' => [],
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => [],
@@ -194,11 +133,11 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function store(Request $request) {
-    $this->callHook('beforeValidation', $request);
+    $this->beforeValidation($request);
     $validate =  $request->validate(static::MODEL_CLASS::validationRules());   
-    $this->callHook('afterValidation', $request);
-    $this->callHook('beforeStore', $validate);
-    $this->callHook('afterStore', $validate, static::MODEL_CLASS::create($validate));
+    $this->afterValidation($request);
+    $this->beforeStore($validate);
+    $this->afterStore(static::MODEL_CLASS::create($validate));
     return redirect()->route(static::ROUTE_NAME . 'index')
       ->with('success', $this->titles()['recordCreatedSucces'] 
       ?? 'Record has been updated');
@@ -213,7 +152,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'controls' => $this->prepareFormFields(),
+      'controls' => [],
       'route' => '#',
       'validationRules' => [],
       'data' => static::MODEL_CLASS::find($id),
@@ -230,7 +169,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
-      'controls' => $this->prepareFormFields(),
+      'controls' => [],
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => static::MODEL_CLASS::find($id),
     ]);
@@ -247,12 +186,12 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     $record = static::MODEL_CLASS::find($id);
 
     if($record) {
-      $this->callHook('beforeValidation', $request);
+      $this->beforeValidation($request);
       $validate = $request->validate(static::MODEL_CLASS::validationRules($id));
-      $this->callHook('afterValidation', $request);
-      $this->callHook('beforeUpdate', $validate, $record);
+      $this->afterValidation($request);
+      $this->beforeUpdate($validate, $record);
       $record->update($validate);
-      $this->callHook('afterUpdate', $validate, $record);
+      $this->afterUpdate($record);
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordUpdateSucces'] 
         ?? 'Record has been updated');
@@ -272,8 +211,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     $record = static::MODEL_CLASS::find($id);
 
     if($record) {
-      $this->callHook('beforeDestroy', $record);
-      $this->callHook('afterDestroy', $record->delete());
+      $this->beforeDestroy($record);
+      $this->afterDestroy($record->delete());
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordDestroySucces'] 
         ?? 'Record has been deleted');
@@ -281,20 +220,6 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
 
     return redirect()->route(static::ROUTE_NAME . 'index')
       ->with('error', $this->titles()['recordNotFound'] ?? 'Record not found');
-  }
-
-  /**
-   * This method checks whether a method with the given hook name exists in the 
-   * current class. If it does, it will be executed with the provided parameters.
-   *
-   * @param string $hook   The name of the hook/method to call.
-   * @param mixed  ...$params  Optional parameters to pass to the hook method.
-   * @return void
-   */
-  protected function callHook(string $hook, ...$params): void {
-    if (method_exists($this, $hook)) {
-      $this->$hook(...$params);
-    }
   }
 
 }
