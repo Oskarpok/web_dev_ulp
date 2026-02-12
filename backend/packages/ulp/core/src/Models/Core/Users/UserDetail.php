@@ -12,7 +12,7 @@ class UserDetail extends \Ulp\Core\Models\Base {
    * @var list<string>
    */
   protected $fillable = [
-    'first_name', 'sur_name', 'pesel', 'street', 'city', 'postcode', 
+    'user_id', 'first_name', 'sur_name', 'pesel', 'street', 'city', 'postcode', 
   ];
 
   public static function validationRules($id = null): array {

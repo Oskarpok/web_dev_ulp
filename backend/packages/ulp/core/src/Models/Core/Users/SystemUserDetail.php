@@ -11,7 +11,7 @@ class SystemUserDetail extends \Ulp\Core\Models\Base {
    *
    * @var list<string>
    */
-  protected $fillable = ['first_name', 'sur_name', 'pesel', ];
+  protected $fillable = ['user_id', 'first_name', 'sur_name', 'pesel', ];
 
   public static function validationRules($id = null): array {
     return [

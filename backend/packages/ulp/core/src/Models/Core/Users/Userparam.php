@@ -11,7 +11,7 @@ class Userparam extends \Ulp\Core\Models\Base {
    *
    * @var list<string>
    */
-  protected $fillable = ['value', 'type', ];
+  protected $fillable = ['user_id', 'value', 'type', ];
 
   public static function validationRules($id = null): array {
     return [

@@ -12,7 +12,7 @@ class CompanyDetail extends \Ulp\Core\Models\Base {
    * @var list<string>
    */
   protected $fillable = [
-    'company_name', 'street', 'city', 'postcode', 'nip', 'regon', 'krs',
+    'user_id', 'company_name', 'street', 'city', 'postcode', 'nip', 'regon', 'krs',
   ];
 
   public static function validationRules($id = null): array {
