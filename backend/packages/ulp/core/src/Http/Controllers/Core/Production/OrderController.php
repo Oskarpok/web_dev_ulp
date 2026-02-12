@@ -31,7 +31,7 @@ class OrderController extends \Ulp\Core\Crud\Controller\BaseController {
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'user_id', 'price', 'status', 'parcel_number',  
         'created_at', 'updated_at',
-      ])->get(), 
+      ])->paginate(30), 
       'labels' => [
         'Id', 'user_id', 'price', 'status', 'parcel_number', 
         'Created at', 'Updated at',

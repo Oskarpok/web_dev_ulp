@@ -26,7 +26,7 @@ class LogController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'action', 'module_name', 'table_name', 'record_id', 'route', 'created_at',
-      ])->get(),
+      ])->paginate(30),
       'labels' => [
         'Action', 'Module name', 'Table Name', 'Record Id', 'Route', 'Created At',
       ],

@@ -24,7 +24,7 @@ class ResourceExtensionsController extends \Ulp\Core\Crud\Controller\BaseControl
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'group', 'max_size', 'is_active', 'created_at', 'updated_at',
-      ])->get(),
+      ])->paginate(30),
       'labels' => [
         'Id', 'Name', 'Group', 'Max Size', 'Active', 'Created at', 'Updated at',
       ],

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Users;
 
-use Ulp\Core\Enums\UsersType;
-use Ulp\Core\View\FormFields\Components\Select;
 use Ulp\Core\View\FormFields\Components\Checkbox;
 use Ulp\Core\View\FormFields\Components\TextInput;
 use Ulp\Core\View\FormFields\Components\DateTimePicker;
@@ -35,7 +33,7 @@ class UserController extends \Ulp\Core\Crud\Controller\BaseController {
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'phone', 'email', 'is_active', 
         'email_verified_at', 'created_at', 'updated_at',
-      ])->get(), 
+      ])->paginate(30), 
       'labels' => [
         'Id', 'Phone', 'Email', 'Active', 
         'Verified at', 'Created at', 'Updated at',

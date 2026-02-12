@@ -31,7 +31,7 @@ class ResourcesController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'alt', 'category_id', 'is_active', 'created_at', 'updated_at',
-      ])->get(),
+      ])->paginate(30),
       'labels' => [
         'Id', 'Name', 'Alt', 'Category', 'Active', 'Created at', 'Updated at',
       ],

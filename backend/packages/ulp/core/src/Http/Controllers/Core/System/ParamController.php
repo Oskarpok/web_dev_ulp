@@ -32,7 +32,7 @@ class ParamController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'type', 'value', 'created_at', 'updated_at',
-      ])->get(),
+      ])->paginate(30),
       'labels' => [
         'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at',
       ],

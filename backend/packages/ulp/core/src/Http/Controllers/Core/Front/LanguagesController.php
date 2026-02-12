@@ -30,7 +30,7 @@ class LanguagesController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'shortcut', 'is_active', 'created_at', 'updated_at',
-      ])->get(), 
+      ])->paginate(30), 
       'labels' => [
         'Id', 'Name', 'Shortcut', 'Active', 'Created at', 'Updated at',
       ],

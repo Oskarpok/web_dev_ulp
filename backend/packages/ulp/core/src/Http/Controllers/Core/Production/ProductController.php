@@ -30,7 +30,7 @@ class ProductController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'unit_price', 'is_active','created_at', 'updated_at',
-      ])->get(), 
+      ])->paginate(30), 
       'labels' => [
         'Id', 'Name', 'Unit Price', 'Active', 'Created at', 'Updated at',
       ],

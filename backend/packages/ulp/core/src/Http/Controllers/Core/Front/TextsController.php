@@ -30,7 +30,7 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
         'id', 'name', 'created_at', 'updated_at',
-      ])->get(), 
+      ])->paginate(30), 
       'labels' => [
         'Id', 'Name', 'Created at', 'Updated at',
       ],
