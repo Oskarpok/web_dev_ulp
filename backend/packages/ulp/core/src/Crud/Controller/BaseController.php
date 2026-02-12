@@ -37,6 +37,13 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   protected const ROUTE_NAME = null;
 
   /**
+   * Route name for operations must be overridden in child controllers.
+   * 
+   * @var string
+   */
+  protected const LIVEWIER_CLASS = null;
+
+  /**
    * Return an array of vie index requaier data.
    *
    * @return array List of fields elements for the given controller.
