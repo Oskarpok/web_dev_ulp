@@ -20,11 +20,12 @@
         <div class="flex flex-col items-center py-4 border-b border-gray-700">
           <div class="flex items-center justify-center text-center">
             <span class="font-semibold break-words leading-tight">
-              {{ auth()->user()->first_name }} {{ auth()->user()->sur_name }}
+              {{ auth()->user()->systemUserDetails->first_name }} 
+              {{ auth()->user()->systemUserDetails->sur_name }}
             </span>
           </div>
           <span class="text-sm text-gray-400">
-             {{ auth()->user()->type_label }}
+            role
           </span>
         </div>
         
