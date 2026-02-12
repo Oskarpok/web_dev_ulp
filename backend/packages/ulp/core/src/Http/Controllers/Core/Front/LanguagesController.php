@@ -38,11 +38,5 @@ class LanguagesController extends \Ulp\Core\Crud\Controller\BaseController {
       ],
     ];
   }
-
-  protected function formFields(): array {
-    return [
-
-    ];
-  }
   
 }

@@ -119,7 +119,10 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function create(): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'controls' => [],
+      'controls' => [
+        'buttons' => [],
+        'fields' => [],
+      ],
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => [],
@@ -152,7 +155,10 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'controls' => [],
+      'controls' => [
+        'buttons' => [],
+        'fields' => [],
+      ],
       'route' => '#',
       'validationRules' => [],
       'data' => static::MODEL_CLASS::find($id),
@@ -169,7 +175,10 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'route' => route(static::ROUTE_NAME . 'update', $id),
-      'controls' => [],
+      'controls' => [ 
+        'buttons' => [],
+        'fields' => [],
+      ],
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => static::MODEL_CLASS::find($id),
     ]);

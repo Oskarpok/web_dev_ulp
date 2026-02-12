@@ -34,13 +34,7 @@ class ResourceExtensionsController extends \Ulp\Core\Crud\Controller\BaseControl
       ],
     ];
   }
-
-  protected function formFields(): array {
-    return [
-
-    ];
-  }
-
+  
   protected function prepareIndexButtons(): array {
     return [
       ButtonsTypeController::make([

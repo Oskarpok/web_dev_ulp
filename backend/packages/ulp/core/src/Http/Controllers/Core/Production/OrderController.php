@@ -41,10 +41,4 @@ class OrderController extends \Ulp\Core\Crud\Controller\BaseController {
     ];
   }
 
-  protected function formFields(): array {
-    return [
-
-    ];
-  }
-
 }

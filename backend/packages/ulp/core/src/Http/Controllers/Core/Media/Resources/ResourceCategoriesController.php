@@ -53,10 +53,4 @@ class ResourceCategoriesController extends \Ulp\Core\Crud\Controller\BaseControl
     ];
   }
 
-  protected function formFields(): array {    
-    return [
-
-    ];
-  }
-
 }

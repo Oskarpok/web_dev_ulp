@@ -38,12 +38,6 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
     ];
   }
 
-  protected function formFields(): array {
-    return [
-      //
-    ];
-  }
-
   protected function afterStore($record):void {
     if (!empty($record['translations'])) {                                       
       $record->languages()->attach(
