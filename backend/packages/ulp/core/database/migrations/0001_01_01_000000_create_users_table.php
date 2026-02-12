@@ -29,7 +29,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 			$table->string('pesel', 11)->nullable()->unique();
 			$table->string('street')->nullable();
 			$table->string('city')->nullable();
-			$table->string('postcode', 6)->nullable();
+			$table->string('postcode', 16)->nullable();
 			$table->timestamps();
 		});
 
@@ -39,7 +39,7 @@ return new class extends \Illuminate\Database\Migrations\Migration {
 			$table->string('company_name');
 			$table->string('street')->nullable();
 			$table->string('city')->nullable();
-			$table->string('postcode', 6)->nullable();
+			$table->string('postcode', 16)->nullable();
 			$table->string('nip', 10)->nullable()->unique();
 			$table->string('regon', 14)->nullable();
 			$table->string('krs', 10)->nullable();

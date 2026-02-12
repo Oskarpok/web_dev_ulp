@@ -51,7 +51,7 @@ class UsersSeeder extends \Illuminate\Database\Seeder {
         'pesel' => fake()->unique()->numerify('###########'),
         'street' => fake()->streetAddress(),
         'city' => fake()->city(),
-        'postcode' => fake()->postcode(),
+        'postcode' => fake()->numerify('##-###'),
       ]);
     });
 
