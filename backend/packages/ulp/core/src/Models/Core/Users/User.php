@@ -55,17 +55,17 @@ class User extends \Illuminate\Foundation\Auth\User {
 
   // 1. Relacja do zwykłych detali (Osoba)
   public function userDetails(): HasOne {
-    return $this->hasOne(UserDetail::class, 'user_id');
+    return $this->hasOne(UserDetail::class, 'user_id')->withDefault();
   }
 
   // 2. Relacja do firmy
   public function companyDetails(): HasOne {
-    return $this->hasOne(CompanyDetail::class, 'user_id');
+    return $this->hasOne(CompanyDetail::class, 'user_id')->withDefault();
   }
 
   // 3. Relacja do pracownika systemu
   public function systemUserDetails(): HasOne {
-    return $this->hasOne(SystemUserDetail::class, 'user_id');
+    return $this->hasOne(SystemUserDetail::class, 'user_id')->withDefault();
   }
 
   // 4. Relacja do parametrów (Wiele parametrów dla jednego użytkownika)
@@ -90,6 +90,18 @@ class User extends \Illuminate\Foundation\Auth\User {
       'system_user_details' => $this->systemUserDetails,
       default               => null,
     };
+  }
+
+  public function getSurNameAttribute() {
+    return $this->sur_name ?? $this->profile->sur_name ?? '';
+  }
+
+  public function getFirstNameAttribute() {
+    return $this->first_name ?? $this->profile->first_name ?? '';
+  }
+
+  public function getCompanyNameAttribute() {
+    return $this->company_name ?? $this->profile->company_name ?? '';
   }
 
 }
