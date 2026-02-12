@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Front;
 
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Texts',
   group: 'Front',
@@ -41,24 +39,24 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
   }
 
   protected function formFields(): array {
-   
     return [
+      //
     ];
   }
 
-  protected function afterStore($validated, $record) {
-    if (!empty($validated['translations'])) {                                       
+  protected function afterStore($record) {
+    if (!empty($record['translations'])) {                                       
       $record->languages()->attach(
-        collect($validated['translations'])
+        collect($record['translations'])
           ->map(fn($t) => ['translation' => $t])->toArray()                         
       );
     }
   }
 
-  protected function afterUpdate($validated, $record) {
-    if (!empty($validated['translations'])) {
+  protected function afterUpdate($record) {
+    if (!empty($record['translations'])) {
       $record->languages()->sync(
-        collect($validated['translations'])
+        collect($record['translations'])
           ->map(fn($t) => ['translation' => $t])->toArray()
       );
     }

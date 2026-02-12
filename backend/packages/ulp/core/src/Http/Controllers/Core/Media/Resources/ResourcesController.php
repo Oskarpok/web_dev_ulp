@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
-use Ulp\Core\View\FormFields\Text\TextTypeController;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 #[\Ulp\Core\Attributes\Navigation(

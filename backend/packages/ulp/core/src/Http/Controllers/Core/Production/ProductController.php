@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Production;
 
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Products',
   group: 'Production',

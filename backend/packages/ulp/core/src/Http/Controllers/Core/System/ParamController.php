@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\System;
 
-use Ulp\Core\Enums\ParamsType;
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-use Ulp\Core\View\FormFields\Select\SelectTypeControl;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Parameters',
   group: 'Systemic',

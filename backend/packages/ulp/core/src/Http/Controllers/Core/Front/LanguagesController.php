@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Front;
 
-use Ulp\Core\View\FormFields\Text\TextTypeController;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Languages',
   group: 'Front',
