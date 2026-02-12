@@ -44,7 +44,7 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
     ];
   }
 
-  protected function afterStore($record) {
+  protected function afterStore($record):void {
     if (!empty($record['translations'])) {                                       
       $record->languages()->attach(
         collect($record['translations'])
@@ -53,7 +53,7 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
     }
   }
 
-  protected function afterUpdate($record) {
+  protected function afterUpdate($record):void {
     if (!empty($record['translations'])) {
       $record->languages()->sync(
         collect($record['translations'])
