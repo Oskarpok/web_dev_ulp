@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Ulp\Core\View\FormFields\Extra\Fields;
 
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
+use Illuminate\Database\Eloquent\Collection;
 
 class IndexControl extends \Ulp\Core\View\FormFields\BaseField {  
 
   protected array $labels;
-  protected array $data;
+  protected array|object $data;
   protected array $filterable;
   protected string $destinations;
   protected array $resolveButtons;
@@ -19,9 +20,9 @@ class IndexControl extends \Ulp\Core\View\FormFields\BaseField {
     $this->resolveButtons = $data['resolveButtons'];
     $this->destinations = $data['destinations'];  
     $this->labels = $data['labels'];
-    $this->data = $data['data'] 
-      instanceof \Illuminate\Database\Eloquent\Collection 
-      ? $data['data']->toArray() : $data['data'];
+    $this->data = $data['data'] instanceof Collection 
+      ? $data['data']->toArray() 
+      : $data['data'];
     foreach ($this->data as &$row) {
       $row['buttons'] = $this->resolveRowButtons($row['id']);
     }
