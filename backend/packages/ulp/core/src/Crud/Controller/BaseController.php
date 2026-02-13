@@ -179,6 +179,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
         'buttons' => [],
         'fields' => [],
       ],
+      'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => static::MODEL_CLASS::find($id),
     ]);
