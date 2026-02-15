@@ -86,7 +86,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     $data = $this->indexTable($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::prepareIndexButtons(),
+      'buttons' => static::LIVEWIER_CLASS::prepareIndexButtons(static::ROUTE_NAME),
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
         'type' => 'intex',
         'labels' => $data['labels'],
@@ -106,7 +106,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function create(): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::createButtons(),
+      'buttons' => static::LIVEWIER_CLASS::createButtons(static::ROUTE_NAME),
       'fields' => static::LIVEWIER_CLASS::createFields(),
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
@@ -140,7 +140,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::showButtons(),
+      'buttons' => static::LIVEWIER_CLASS::showButtons(static::ROUTE_NAME),
       'fields' => static::LIVEWIER_CLASS::showFields(),
       'route' => '#',
       'validationRules' => [],
@@ -157,7 +157,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function edit(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::editButtons(),
+      'buttons' => static::LIVEWIER_CLASS::editButtons(static::ROUTE_NAME),
       'fields' => static::LIVEWIER_CLASS::editFields(),
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),

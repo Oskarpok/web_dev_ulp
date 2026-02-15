@@ -11,20 +11,18 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
 
-  protected const ROUTE_NAME = 'core.users.';
-
-  public static function prepareIndexButtons(): array {
+  public static function prepareIndexButtons($routeName): array {
     return [
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'routeName' => static::ROUTE_NAME . 'create',
+        'routeName' => $routeName . 'create',
         'label' => 'Add',
         'icone' => 'fa-solid fa-plus',
       ]),
     ];
   }
 
-  public static function createButtons(): array {
+  public static function createButtons($routeName): array {
     return [
       ButtonsTypeController::make([
         'type' => 'submit',
@@ -33,7 +31,7 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
       ]),
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'routeName' => static::ROUTE_NAME . 'index',
+        'routeName' => $routeName . 'index',
         'label' => 'Return',
         'icone' => 'fa-solid fa-arrow-left',
       ]),
@@ -49,11 +47,11 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
     ];
   }
 
-  public static function showButtons(): array {
+  public static function showButtons($routeName): array {
     return [
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'routeName' => static::ROUTE_NAME . 'index',
+        'routeName' => $routeName . 'index',
         'label' => 'Return',
         'icone' => 'fa-solid fa-arrow-left',
       ]),
@@ -72,7 +70,7 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
     ];
   }
 
-  public static function editButtons(): array {
+  public static function editButtons($routeName): array {
     return [
       ButtonsTypeController::make([
         'type' => 'submit',
@@ -81,7 +79,7 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
       ]),
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'routeName' => static::ROUTE_NAME . 'index',
+        'routeName' => $routeName. 'index',
         'label' => 'Return',
         'icone' => 'fa-solid fa-arrow-left',
       ]),
