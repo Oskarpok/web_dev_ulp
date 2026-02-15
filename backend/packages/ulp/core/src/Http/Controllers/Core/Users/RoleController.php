@@ -12,6 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Users;
 
 class RoleController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Users\RoleResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\Role::class;
   protected const ROUTE_NAME = 'core.roles.';
 

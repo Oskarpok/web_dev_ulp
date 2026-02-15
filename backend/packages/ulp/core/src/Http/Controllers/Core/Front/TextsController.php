@@ -12,6 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Front;
 
 class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Front\TextsResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Text::class;
   protected const ROUTE_NAME = 'core.texts.';
 

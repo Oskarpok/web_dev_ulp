@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
-
 class ResourceExtensionsController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Media\Resources\ResourceExtensionsResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\ResourceExtension::class;
   protected const ROUTE_NAME = 'core.resources_extensions.';
 
@@ -32,24 +31,6 @@ class ResourceExtensionsController extends \Ulp\Core\Crud\Controller\BaseControl
         'id' => true, 'name' => true, 'group' => true, 'max_size' => false, 
         'is_active' => false, 'created_at' => true, 'updated_at' => true,
       ],
-    ];
-  }
-  
-  protected function prepareIndexButtons(): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => 'core.resources.index',
-        'label' => 'Resources',
-        'icone' => 'fa-solid fa-file',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => 'core.resource_categories.index',
-        'label' => 'Resource Categories',
-        'icone' => 'fa-solid fa-folder',
-      ]),
-      ...parent::prepareIndexButtons(),
     ];
   }
 

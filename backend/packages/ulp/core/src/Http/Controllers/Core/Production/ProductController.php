@@ -12,6 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Production;
 
 class ProductController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Production\ProductResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Production\Product::class;
   protected const ROUTE_NAME = 'core.products.';
 

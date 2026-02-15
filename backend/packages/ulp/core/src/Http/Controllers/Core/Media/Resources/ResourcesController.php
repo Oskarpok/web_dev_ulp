@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
-
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Resources',
   group: 'Media',
@@ -14,6 +12,7 @@ use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class ResourcesController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Media\Resources\ResourcesResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\Resource::class;
   protected const ROUTE_NAME = 'core.resources.';
 
@@ -38,24 +37,6 @@ class ResourcesController extends \Ulp\Core\Crud\Controller\BaseController {
         'id' => true, 'name' => true, 'alt' => false, 'category_id' => false,
         'is_active' => false, 'created_at' => true, 'updated_at' => true,
       ],
-    ];
-  }
-
-  protected function prepareIndexButtons(): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => 'core.resources_extensions.index',
-        'label' => 'Resources Extensions',
-        'icone' => 'fa-solid fa-file-signature',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => 'core.resource_categories.index',
-        'label' => 'Resource Categories',
-        'icone' => 'fa-solid fa-folder',
-      ]),
-      ...parent::prepareIndexButtons(),
     ];
   }
 

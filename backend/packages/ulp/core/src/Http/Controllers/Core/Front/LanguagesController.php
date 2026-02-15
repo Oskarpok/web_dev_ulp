@@ -12,6 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Front;
 
 class LanguagesController extends \Ulp\Core\Crud\Controller\BaseController {
 
+  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Front\LanguagesResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Front\Language::class;
   protected const ROUTE_NAME = 'core.languages.';
 
