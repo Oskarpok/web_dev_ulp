@@ -1,9 +1,9 @@
 <div 
   x-data="{ 
-    value: {{ json_encode($value) }},
-    options: {{ json_encode($options) }},
-    disabled: {{ json_encode($disabled) }},
-    searchable: {{ json_encode($searchable) }},
+    value: {{ json_encode($field->value) }},
+    options: {{ json_encode($field->options) }},
+    disabled: {{ json_encode($field->disabled) }},
+    searchable: {{ json_encode($field->searchable) }},
     searchTerm: '',
     open: false,
     filteredOptions() {
@@ -16,12 +16,12 @@
       );
     }
   }" 
-  class="{{ $wraper }}">
-  <label for="{{ $name }}"
+  class="{{ $field->wraper }}">
+  <label for="{{ $field->name }}"
     class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
-    <span>{{ $label }}</span>
+    <span>{{ $field->label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
-      'tooltip' => $tooltip,
+      'tooltip' => $field->tooltip,
     ])
     @endcomponent
   </label>
@@ -46,7 +46,7 @@
       <template x-for="(label, key) in filteredOptions()" :key="key">
         <li>
           <button type="button"
-            @disabled($disabled)
+            @disabled($field->disabled)
             class="w-full text-left px-3 py-2 hover:bg-gray-600 rounded"
             @click="if (!disabled) 
               { value = key; open = false; $refs.hidden.value = key }"
@@ -60,7 +60,7 @@
     </ul>
   </div>
   <input type="hidden" 
-    name="{{ $name }}"
+    name="{{ $field->name }}"
     :value="value" 
     x-ref="hidden">
 </div>
