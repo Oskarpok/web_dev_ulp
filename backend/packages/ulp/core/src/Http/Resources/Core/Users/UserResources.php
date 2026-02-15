@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Livewire\Resources\Core\Users;
+namespace Ulp\Core\Http\Resources\Core\Users;
 
 use Ulp\Core\View\FormFields\Components\Checkbox;
 use Ulp\Core\View\FormFields\Components\TextInput;
 use Ulp\Core\View\FormFields\Components\DateTimePicker;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
-class UserResources extends \Ulp\Core\Crud\Livewire\BaseLivewire {
+class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
 
   protected const ROUTE_NAME = 'core.users.';
 
