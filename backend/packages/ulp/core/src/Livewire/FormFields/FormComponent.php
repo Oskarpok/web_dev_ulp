@@ -14,7 +14,7 @@ class FormComponent extends \Livewire\Component {
   
   use \Livewire\WithFileUploads;
 
-  public array $fields;
+  protected array $fields;
   public array $validationRules;
   public array $state = [];
 
@@ -28,22 +28,19 @@ class FormComponent extends \Livewire\Component {
    * friendly arrays and initialize form state with default field values
   */ 
   public function mount(array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
-    $this->fields = collect($fields)->filter()
-      ->map(fn ($field) => $field->toLivewire())
-      ->values()->toArray();
+    $this->fields = $fields;
     $this->action = $action;
     $this->httpMethod = $httpMethod;
     $this->formId = $formId ?? $this->formId;
     $this->validationRules = $validationRules;
 
     foreach($this->fields as $field) {
-      $this->state[$field['name']] = data_get($data, $field['name']) ?? null;
+      $this->state[$field->name] = data_get($data, $field->name) ?? null;
 
-      if ($field['type'] === 'file') {
+      if ($field->type === 'file') {
         $this->enctype = true;
       }
     }
-
   }
 
   // Build Livewire validation rules
