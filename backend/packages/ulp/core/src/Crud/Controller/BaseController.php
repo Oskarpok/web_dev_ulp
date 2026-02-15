@@ -31,14 +31,14 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * 
    * @var string
    */
-  protected const ROUTE_NAME = null;
+  protected const LIVEWIER_CLASS = null;
 
   /**
    * Route name for operations must be overridden in child controllers.
    * 
    * @var string
    */
-  protected const LIVEWIER_CLASS = null;
+  protected const ROUTE_NAME = null;
 
   /**
    * Return an array of vie index requaier data.
@@ -119,10 +119,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function create(): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'controls' => [
-        'buttons' => [],
-        'fields' => [],
-      ],
+      'buttons' => static::LIVEWIER_CLASS::createButtons(),
+      'fields' => static::LIVEWIER_CLASS::createFields(),
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => [],
@@ -155,10 +153,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'controls' => [
-        'buttons' => [],
-        'fields' => [],
-      ],
+      'buttons' => static::LIVEWIER_CLASS::showButtons(),
+      'fields' => static::LIVEWIER_CLASS::showFields(),
       'route' => '#',
       'validationRules' => [],
       'data' => static::MODEL_CLASS::find($id),
@@ -174,11 +170,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function edit(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
-      'route' => route(static::ROUTE_NAME . 'update', $id),
-      'controls' => [ 
-        'buttons' => [],
-        'fields' => [],
-      ],
+      'buttons' => static::LIVEWIER_CLASS::editButtons(),
+      'fields' => static::LIVEWIER_CLASS::editFields(),
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => static::MODEL_CLASS::find($id),
