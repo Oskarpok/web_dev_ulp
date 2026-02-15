@@ -15,6 +15,7 @@ class Select extends Input {
   protected array $options = [];
   protected bool $searchable = false;
   protected bool $multiple = false;
+  protected string $view = 'core::components.form_fields.select.select';
 
   public function value($value){
     $this->value = $value;  
@@ -34,10 +35,6 @@ class Select extends Input {
   public function options(array $options){
     $this->options = $options;  
     return $this;
-  }
-
-  protected function resolveView(): string {
-    return 'core::components.form_fields.select.select';
   }
 
 }

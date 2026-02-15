@@ -14,14 +14,11 @@ class TextInput extends Input {
   use BeDisabled, BeReadonly, BeRequired, HasAutocomplete;
 
   protected string $type = 'text';
+  protected string $view = 'core::components.form_fields.text.text';
 
   public function value($value){
     $this->value = (string) $value;  
     return $this;
-  }
-
-  protected function resolveView(): string {
-    return 'core::components.form_fields.text.text';
   }
 
   public function email() {

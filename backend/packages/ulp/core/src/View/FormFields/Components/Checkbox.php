@@ -12,14 +12,11 @@ class Checkbox extends Input {
   use BeDisabled, BeRequired;
 
   protected string $type = 'checkbox';
+  protected string $view = 'core::components.form_fields.select.checkbox';
 
   public function value($value){
     $this->value = (bool) $value;  
     return $this;
-  }
-
-  protected function resolveView(): string {
-    return 'core::components.form_fields.select.checkbox';
   }
 
 }

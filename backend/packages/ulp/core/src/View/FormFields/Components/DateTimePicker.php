@@ -16,6 +16,7 @@ class DateTimePicker extends Input {
   protected string $type = 'date-time';
   protected bool $hasDate = true;
   protected bool $hasTime = true;
+  protected string $view = 'core::components.form_fields.date_time.date_time';
 
   public function value($value){
     $this->value = is_object($value) 
@@ -30,10 +31,6 @@ class DateTimePicker extends Input {
 
   public function hasTime(): bool {
     return (bool) $this->hasTime;
-  }
-
-  protected function resolveView(): string {
-    return 'core::components.form_fields.date_time.date_time';
   }
 
 }

@@ -18,6 +18,7 @@ abstract class Input {
   protected string $label;
   protected mixed $value = null;
   protected string $tooltip = '';
+  protected string $view = '';
   protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
   /**
@@ -86,15 +87,6 @@ abstract class Input {
   }
 
   /**
-   * Abstract method resolveView
-   * Each subclass must implement this method and return the Blade view name 
-   * for the field.
-   * 
-   * @return string Blade view path
-   */
-  abstract protected function resolveView(): string;
-
-  /**
    * 
    */
   abstract public function value($value);
@@ -106,19 +98,7 @@ abstract class Input {
    * @return string HTML of the field
    */
   public function render(array $viewData = []): string {
-    return view($this->resolveView(), $this->dataMerge($viewData))->render();
-  }
-
-  /**
-   * Return data for Livewire to render field
-   * 
-   * @return array of fields
-   */
-  public function toLivewire(array $viewData = []): array{
-    return [
-      ...$this->dataMerge($viewData),
-      'view' => $this->resolveView(),
-    ];
+    return view($this->view, $this->dataMerge($viewData))->render();
   }
 
   /**
