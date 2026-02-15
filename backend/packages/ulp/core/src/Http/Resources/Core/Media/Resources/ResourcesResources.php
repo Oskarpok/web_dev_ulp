@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Resources\Core\Media\Resources;
 
+use Ulp\Core\View\FormFields\Components\TextInput;
+use Ulp\Core\View\FormFields\Components\DateTimePicker;
 use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class ResourcesResources extends \Ulp\Core\Crud\Resources\BaseResource {
@@ -66,7 +68,9 @@ class ResourcesResources extends \Ulp\Core\Crud\Resources\BaseResource {
 
   public static function showFields(): array {
     return [
-
+      TextInput::make('id')->label('Id')->numeric()->readonly(),
+      DateTimePicker::make('created_at')->label('Created At')->readonly(),
+      DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
     ];
   }
 
@@ -88,7 +92,9 @@ class ResourcesResources extends \Ulp\Core\Crud\Resources\BaseResource {
 
   public static function editFields(): array {
     return [
-
+      TextInput::make('id')->label('Id')->numeric()->readonly(),
+      DateTimePicker::make('created_at')->label('Created At')->readonly(),
+      DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
     ];
   }
 
