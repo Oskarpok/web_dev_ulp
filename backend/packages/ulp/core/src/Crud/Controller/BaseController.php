@@ -30,7 +30,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * 
    * @var string
    */
-  protected const LIVEWIER_CLASS = null;
+  protected const RESOURCES_CLASS = null;
 
   /**
    * Route name for operations must be overridden in child controllers.
@@ -86,7 +86,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     $data = $this->indexTable($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::prepareIndexButtons(static::ROUTE_NAME),
+      'buttons' => static::RESOURCES_CLASS::prepareIndexButtons(static::ROUTE_NAME),
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
         'type' => 'intex',
         'labels' => $data['labels'],
@@ -106,8 +106,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function create(): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::createButtons(static::ROUTE_NAME),
-      'fields' => static::LIVEWIER_CLASS::createFields(),
+      'buttons' => static::RESOURCES_CLASS::createButtons(static::ROUTE_NAME),
+      'fields' => static::RESOURCES_CLASS::createFields(),
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => [],
@@ -140,8 +140,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function show(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::showButtons(static::ROUTE_NAME),
-      'fields' => static::LIVEWIER_CLASS::showFields(),
+      'buttons' => static::RESOURCES_CLASS::showButtons(static::ROUTE_NAME),
+      'fields' => static::RESOURCES_CLASS::showFields(),
       'route' => '#',
       'validationRules' => [],
       'data' => static::MODEL_CLASS::find($id),
@@ -157,8 +157,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   public function edit(int $id): \Illuminate\View\View {
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
-      'buttons' => static::LIVEWIER_CLASS::editButtons(static::ROUTE_NAME),
-      'fields' => static::LIVEWIER_CLASS::editFields(),
+      'buttons' => static::RESOURCES_CLASS::editButtons(static::ROUTE_NAME),
+      'fields' => static::RESOURCES_CLASS::editFields(),
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => static::MODEL_CLASS::find($id),

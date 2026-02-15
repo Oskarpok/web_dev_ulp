@@ -12,7 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Users;
 
 class PermissionController extends \Ulp\Core\Crud\Controller\BaseController {
 
-  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Users\PermissionResources::class;
+  protected const RESOURCES_CLASS = \Ulp\Core\Http\Resources\Core\Users\PermissionResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\Permission::class;
   protected const ROUTE_NAME = 'core.permissions.';
 

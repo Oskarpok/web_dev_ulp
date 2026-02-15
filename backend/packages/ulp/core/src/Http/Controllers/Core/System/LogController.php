@@ -12,7 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\System;
 
 class LogController extends \Ulp\Core\Crud\Controller\BaseController {
 
-  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\System\LogResources::class;
+  protected const RESOURCES_CLASS = \Ulp\Core\Http\Resources\Core\System\LogResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\System\Log::class;
   protected const ROUTE_NAME = 'core.logs.';
 

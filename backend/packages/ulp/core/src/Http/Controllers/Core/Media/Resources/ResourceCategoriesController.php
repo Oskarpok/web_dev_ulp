@@ -6,7 +6,7 @@ namespace Ulp\Core\Http\Controllers\Core\Media\Resources;
 
 class ResourceCategoriesController extends \Ulp\Core\Crud\Controller\BaseController {
 
-  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Media\Resources\ResourceCategoriesResources::class;
+  protected const RESOURCES_CLASS = \Ulp\Core\Http\Resources\Core\Media\Resources\ResourceCategoriesResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Media\Resources\ResourceCategory::class;
   protected const ROUTE_NAME = 'core.resource_categories.';
 

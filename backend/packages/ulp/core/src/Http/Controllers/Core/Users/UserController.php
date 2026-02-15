@@ -12,7 +12,7 @@ namespace Ulp\Core\Http\Controllers\Core\Users;
 
 class UserController extends \Ulp\Core\Crud\Controller\BaseController {
 
-  protected const LIVEWIER_CLASS = \Ulp\Core\Http\Resources\Core\Users\UserResources::class;
+  protected const RESOURCES_CLASS = \Ulp\Core\Http\Resources\Core\Users\UserResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\Users\User::class;
   protected const ROUTE_NAME = 'core.users.';
 
