@@ -7,14 +7,14 @@
       {!! $title !!}
     </h1>
     <div class="flex gap-x-2">
-      @foreach ($controls['buttons'] as $button)
+      @foreach ($buttons as $button)
         @continue(is_null($button))
         {!! $button->render() !!}
       @endforeach
     </div>
   </div>
   <livewire:form-fields.form-component
-    :fields="$controls['fields']"
+    :fields="$fields"
     :validationRules="$validationRules"
     :action="$route"
     :data="$data"
