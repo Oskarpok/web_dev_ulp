@@ -37,7 +37,7 @@ class RoleResources extends \Ulp\Core\Crud\Resources\BaseResource {
     ];
   }
 
-  public static function createFields(): array {
+  public static function createFields($data = null): array {
     return [
 
     ];
@@ -54,7 +54,7 @@ class RoleResources extends \Ulp\Core\Crud\Resources\BaseResource {
     ];
   }
 
-  public static function showFields(): array {
+  public static function showFields($data = null): array {
     return [
       TextInput::make('id')->label('Id')->numeric()->readonly(),
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
@@ -71,14 +71,14 @@ class RoleResources extends \Ulp\Core\Crud\Resources\BaseResource {
       ]),
       ButtonsTypeController::make([
         'type' => 'anchore',
-        'routeName' => $routeName. 'index',
+        'routeName' => $routeName . 'index',
         'label' => 'Return',
         'icone' => 'fa-solid fa-arrow-left',
       ]),
     ];
   }
 
-  public static function editFields(): array {
+  public static function editFields($data = null): array {
     return [
       TextInput::make('id')->label('Id')->numeric()->readonly(),
       DateTimePicker::make('created_at')->label('Created At')->readonly(),

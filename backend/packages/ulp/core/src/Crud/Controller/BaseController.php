@@ -138,13 +138,14 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @return \Illuminate\Http\Response
    */
   public function show(int $id): \Illuminate\View\View {
+    $record = static::MODEL_CLASS::find($id);
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
       'buttons' => static::RESOURCES_CLASS::showButtons(static::ROUTE_NAME),
-      'fields' => static::RESOURCES_CLASS::showFields(),
+      'fields' => static::RESOURCES_CLASS::showFields($record),
       'route' => '#',
       'validationRules' => [],
-      'data' => static::MODEL_CLASS::find($id),
+      'data' => $record,
     ]);
   }
 
@@ -155,13 +156,14 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @return \Illuminate\Http\Response
    */
   public function edit(int $id): \Illuminate\View\View {
+    $record = static::MODEL_CLASS::find($id);
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'buttons' => static::RESOURCES_CLASS::editButtons(static::ROUTE_NAME),
-      'fields' => static::RESOURCES_CLASS::editFields(),
+      'fields' => static::RESOURCES_CLASS::editFields($record),
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),
-      'data' => static::MODEL_CLASS::find($id),
+      'data' => $record,
     ]);
   }
 
