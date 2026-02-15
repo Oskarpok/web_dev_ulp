@@ -12,30 +12,30 @@
 </style>
 <div 
   x-data="{ 
-    value: {{ json_encode($value) }},
-    step: {{ json_encode($step) }}, 
-    allowFloat: {{ json_encode($allow_float) }},
+    value: {{ json_encode($field->value) }},
+    step: {{ json_encode($field->step) }}, 
+    allowFloat: {{ json_encode($field->allow_float) }},
   }"
-  class="{{ $wraper }}">
+  class="{{ $field->wraper }}">
   <label class="flex text-sm font-medium text-gray-400 mb-1 items-center gap-2">
-    <span>{{ $label }}</span>
+    <span>{{ $field->label }}</span>
     @component('core::components.form_fields.helpers.tooltip', [
-      'tooltip' => $tooltip,
+      'tooltip' => $field->tooltip,
     ])
     @endcomponent
   </label>
   <div class="flex items-center border border-gray-600 rounded-xl 
-    shadow-inner mt-1 {{ $readonly ? 'bg-[#1e293b]' : '' }}">
+    shadow-inner mt-1 {{ $field->readonly ? 'bg-[#1e293b]' : '' }}">
     <input type="number"
       x-model="value"
       class="w-full bg-transparent text-gray-300 px-3 py-2 rounded-l-xl 
-        focus:outline-none {{ $readonly ? 'cursor-default' : '' }}"
-      name="{{ $name }}"
-      @readonly($readonly)
-      @required($required)
-      @disabled($disabled)
-      max="{{ $max }}"
-      min="{{ $min }}"
+        focus:outline-none {{ $field->readonly ? 'cursor-default' : '' }}"
+      name="{{ $field->name }}"
+      @readonly($field->readonly)
+      @required($field->required)
+      @disabled($field->disabled)
+      max="{{ $field->max }}"
+      min="{{ $field->min }}"
       inputmode="decimal"
       @keydown="
         const key = $event.key;
@@ -65,7 +65,7 @@
       <button type="button"
         @click="value += step"
         class="text-[#898d95] px-1 py-0.5 text-xs rounded-tr-xl
-          {{ $readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]' }}"
+          {{ $field->readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]' }}"
         aria-label="Increment"
         @disabled($readonly)>
         ▲
@@ -73,7 +73,7 @@
       <button type="button"
         @click="value -= step"
         class="text-[#898d95] px-1 py-0.4 text-xs rounded-br-xl
-          {{ $readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]' }}"
+          {{ $field->readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]' }}"
         aria-label="Decrement"
         @disabled($readonly)>
         ▼

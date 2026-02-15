@@ -7,7 +7,7 @@
   <div class="w-full mx-auto p-6 shadow rounded-2xl space-y-6 text-gray-200 
     border border-gray-600 flex flex-wrap gap-5 place-items-center">
     @foreach ($fields as $field)
-      @include($field['view'], $field)
+      @include($field->view, ['field' => $field]) 
     @endforeach
   </div>
 </form>
