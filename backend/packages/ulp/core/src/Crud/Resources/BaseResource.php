@@ -15,5 +15,6 @@ abstract class BaseResource {
   abstract public static function showFields(): array;
   abstract public static function editButtons(): array;
   abstract public static function editFields(): array;
+  abstract public static function prepareIndexButtons(): array;
 
 }

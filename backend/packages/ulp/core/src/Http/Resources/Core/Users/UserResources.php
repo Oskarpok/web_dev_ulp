@@ -13,6 +13,17 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
 
   protected const ROUTE_NAME = 'core.users.';
 
+  public static function prepareIndexButtons(): array {
+    return [
+      ButtonsTypeController::make([
+        'type' => 'anchore',
+        'routeName' => static::ROUTE_NAME . 'create',
+        'label' => 'Add',
+        'icone' => 'fa-solid fa-plus',
+      ]),
+    ];
+  }
+
   public static function createButtons(): array {
     return [
       ButtonsTypeController::make([

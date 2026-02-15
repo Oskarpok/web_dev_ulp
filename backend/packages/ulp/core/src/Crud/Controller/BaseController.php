@@ -6,7 +6,6 @@ namespace Ulp\Core\Crud\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 abstract class BaseController extends \Illuminate\Routing\Controller {
 
@@ -75,18 +74,6 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     ];
   }
 
-  // Prepare buttobs for index vievs
-  protected function prepareIndexButtons(): array {
-    return Route::has(static::ROUTE_NAME . 'create') ? [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => static::ROUTE_NAME . 'create',
-        'label' => $this->titles()['recordAddButton'] ?? 'Add',
-        'icone' => 'fa-solid fa-plus',
-      ]),
-    ] : [];
-  }
-
   /**
    * Prepares the data for the index view by calling the indexTable()
    * method with the current request, and then returns the corresponding
@@ -99,7 +86,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
     $data = $this->indexTable($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
-      'buttons' => $this->prepareIndexButtons(),
+      'buttons' => static::LIVEWIER_CLASS::prepareIndexButtons(),
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
         'type' => 'intex',
         'labels' => $data['labels'],
