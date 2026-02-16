@@ -17,7 +17,7 @@ class User extends \Illuminate\Foundation\Auth\User {
   /** @use HasFactory<\Database\Factories\UserFactory> */
   use HasFactory, Notifiable, DefaultModel, HasRoles;
 
-  /** */
+  // Factores function
   protected static function newFactory() {
     return \Ulp\Core\Database\Factories\UserFactory::new();
   }
@@ -30,12 +30,11 @@ class User extends \Illuminate\Foundation\Auth\User {
   protected $fillable = ['is_active', 'phone', 'email', ];
 
   /**
-   * The attributes that should be hidden for serialization.
+   * The attributes that should be hidden or apend for serialization.
    *
    * @var list<string>
    */
   protected $hidden = ['password', 'remember_token', ];
-
   protected $appends = ['is_active_label', ];
 
   public static function validationRules($id = null): array {
@@ -53,30 +52,27 @@ class User extends \Illuminate\Foundation\Auth\User {
     return $this->getAttribute('is_active') ? 'Yes' : 'No';
   }
 
-  // 1. Relacja do zwykłych detali (Osoba)
+  // Relacja do zwykłych detali (Osoba)
   public function userDetails(): HasOne {
     return $this->hasOne(UserDetail::class, 'user_id')->withDefault();
   }
 
-  // 2. Relacja do firmy
+  // Relacja do firmy
   public function companyDetails(): HasOne {
     return $this->hasOne(CompanyDetail::class, 'user_id')->withDefault();
   }
 
-  // 3. Relacja do pracownika systemu
+  // Relacja do pracownika systemu
   public function systemUserDetails(): HasOne {
     return $this->hasOne(SystemUserDetail::class, 'user_id')->withDefault();
   }
 
-  // 4. Relacja do parametrów (Wiele parametrów dla jednego użytkownika)
+  // Relacja do parametrów (Wiele parametrów dla jednego użytkownika)
   public function params(): HasMany {
     return $this->hasMany(UserParam::class, 'user_id');
   }
 
-  /**
-   * MAGIA: Akcesor "profile"
-   * Pozwala pobrać detale bez wiedzy, w której są tabeli: $user->profile
-   */
+  // Pozwala pobrać detale bez wiedzy, w której są tabeli: $user->profile
   public function getProfileAttribute() {
     $role = $this->roles->first();
 
@@ -92,16 +88,22 @@ class User extends \Illuminate\Foundation\Auth\User {
     };
   }
 
-  public function getSurNameAttribute() {
-    return $this->sur_name ?? $this->profile->sur_name ?? '';
-  }
+  public function getAttribute($key) {
+    $attribute = parent::getAttribute($key);
 
-  public function getFirstNameAttribute() {
-    return $this->first_name ?? $this->profile->first_name ?? '';
-  }
-
-  public function getCompanyNameAttribute() {
-    return $this->company_name ?? $this->profile->company_name ?? '';
+    // Dodajemy zabezpieczenie, żeby nie szukać w profilu, gdy szukamy samego profilu (pętla)
+    // Dorzliw ze dja roles na przyszlao prze z spite
+    if (is_null($attribute) && !in_array($key, [
+      'userDetails', 'companyDetails', 'systemUserDetails', 'params'
+      ])) {
+      $profile = $this->profile;
+          
+      // Jeśli profil istnieje, spróbuj wyciągnąć z niego wartość
+      if ($profile) {
+        return $profile->getAttribute($key);
+      }
+    }
+    return $attribute;
   }
 
 }
