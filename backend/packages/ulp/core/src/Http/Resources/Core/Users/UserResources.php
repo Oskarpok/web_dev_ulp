@@ -79,14 +79,14 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
       Checkbox::make('is_active ')->label('Is Active')->disabled(),
       Select::make('role')->label('Role')->searchable()->multiple()->required()
         ->options(Role::pluck('name', 'id')->toArray())->disabled(),
-        ...array_map(fn($field) => $field->readonly(), 
-          match($data?->roles->first()?->details_table) {
-            'system_user_details' => self::systemUserFields(),
-            'company_details' => self::companyFields(),
-            'user_details' => self::regularUserFields(),
-            default => [],
-          }
-        ),
+      ...array_map(fn($field) => $field->readonly(), 
+        match($data?->roles->first()?->details_table) {
+          'system_user_details' => self::systemUserFields(),
+          'company_details' => self::companyFields(),
+          'user_details' => self::regularUserFields(),
+          default => [],
+        }
+      ),
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
       DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
     ];
@@ -117,12 +117,12 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
       Checkbox::make('is_active ')->label('Is Active'),
       Select::make('role')->label('Role')->searchable()->multiple()->required()
         ->options(Role::pluck('name', 'id')->toArray()),
-        ...match ($data?->roles->first()?->details_table) {
-          'system_user_details' => self::systemUserFields(),
-          'company_details' => self::companyFields(),
-          'user_details' => self::regularUserFields(),
-          default => [],
-        },
+      ...match($data?->roles->first()?->details_table) {
+        'system_user_details' => self::systemUserFields(),
+        'company_details' => self::companyFields(),
+        'user_details' => self::regularUserFields(),
+        default => [],
+      },
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
       DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
     ];
