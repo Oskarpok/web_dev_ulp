@@ -85,10 +85,10 @@ class User extends \Illuminate\Foundation\Auth\User {
     }
 
     return match($role->details_table) {
-      'user_details'        => $this->userDetails,
-      'company_details'     => $this->companyDetails,
+      'user_details' => $this->userDetails,
+      'company_details' => $this->companyDetails,
       'system_user_details' => $this->systemUserDetails,
-      default               => null,
+      default => null,
     };
   }
 
