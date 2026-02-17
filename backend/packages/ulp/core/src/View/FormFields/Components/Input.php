@@ -22,6 +22,11 @@ abstract class Input {
   protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
   /**
+   * 
+   */
+  abstract public function value($value);
+
+  /**
    * Init form fields object and set its name
    */
   public function __construct(string $name) {
@@ -35,6 +40,15 @@ abstract class Input {
    */
   public static function make(string $name): static {
     return new static($name);
+  }
+
+  /**
+   * Getter for the field atributes
+   * 
+   * @return atributes of field
+   */
+  public function __get($key) {
+    return $this->$key ?? null;
   }
 
   /**
@@ -76,20 +90,6 @@ abstract class Input {
     $this->wraper = $wraper;
     return $this;
   }
-
-  /**
-   * Getter for the field atributes
-   * 
-   * @return atributes of field
-   */
-  public function __get($key) {
-    return $this->$key ?? null;
-  }
-
-  /**
-   * 
-   */
-  abstract public function value($value);
 
   /**
    * Renders the field as HTML
