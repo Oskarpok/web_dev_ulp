@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ulp\Core\View\FormFields\Components;
 
+use Closure;
+
 /**
  * Abstract class Input represents a basic form field.
  * Each field has field data for rendering and view (Blade template for render).
@@ -15,11 +17,11 @@ abstract class Input {
    */
   protected string $type;
   protected string $name;
-  protected string $label;
+  protected Closure|string $label;
   protected mixed $value = null;
-  protected string $tooltip = '';
+  protected Closure|string $tooltip = '';
   protected string $view = '';
-  protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
+  protected Closure|string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
   /**
    * 

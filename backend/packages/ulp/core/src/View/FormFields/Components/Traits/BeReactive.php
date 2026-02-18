@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Ulp\Core\View\FormFields\Components\Traits;
 
+use Closure;
+
 trait BeReactive {
 
-  protected bool $reactive = false;
+  protected Closure|bool $reactive = false;
 
   public function reactive(bool $state = true): static {
     $this->reactive = $state;
