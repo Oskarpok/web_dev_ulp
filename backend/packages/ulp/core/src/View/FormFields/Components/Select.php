@@ -18,11 +18,6 @@ class Select extends Input {
   protected bool $multiple = false;
   protected string $view = 'core::components.form_fields.select.select';
 
-  public function value($value){
-    $this->value = $value;  
-    return $this;
-  }
-
   public function multiple(bool $is_multiple = true){
     $this->multiple = $is_multiple;  
     return $this;

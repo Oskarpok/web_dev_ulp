@@ -18,15 +18,9 @@ abstract class Input {
   protected string $type;
   protected string $name;
   protected Closure|string $label;
-  protected mixed $value = null;
   protected Closure|string $tooltip = '';
   protected string $view = '';
   protected Closure|string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
-
-  /**
-   * 
-   */
-  abstract public function value($value);
 
   /**
    * Init form fields object and set its name
