@@ -67,6 +67,10 @@ class User extends \Illuminate\Foundation\Auth\User {
     return $this->hasOne(SystemUserDetail::class, 'user_id')->withDefault();
   }
 
+  public function getRoleAttribute() {
+    return $this->roles->pluck('id')->toArray();
+  }
+
   // Relacja do parametrów (Wiele parametrów dla jednego użytkownika)
   public function params(): HasMany {
     return $this->hasMany(UserParam::class, 'user_id');
@@ -94,7 +98,7 @@ class User extends \Illuminate\Foundation\Auth\User {
     // Dodajemy zabezpieczenie, żeby nie szukać w profilu, gdy szukamy samego profilu (pętla)
     // Dorzliw ze dja roles na przyszlao prze z spite
     if (is_null($attribute) && !in_array($key, [
-      'userDetails', 'companyDetails', 'systemUserDetails', 'params'
+      'userDetails', 'companyDetails', 'systemUserDetails',
       ])) {
       $profile = $this->profile;
           
