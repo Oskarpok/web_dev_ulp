@@ -56,11 +56,11 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   /**
    * Punkty wejścia (Hooks) - puste metody, które dzieci mogą nadpisać.
    */
-  protected function beforeValidation(object &$data): void {}
-  protected function afterValidation(object &$data): void {}
-  protected function beforeStore(array &$data): void {}
+  protected function beforeValidation(object $data): void {}
+  protected function afterValidation(object $data): void {}
+  protected function beforeStore(array &$validate): void {}
   protected function afterStore(object $record): void {}
-  protected function beforeUpdate(array $validate, object $record): void {}
+  protected function beforeUpdate(array &$validate, object $record): void {}
   protected function afterUpdate(object $record): void {}
   protected function beforeDestroy(object $record): void {}
   protected function afterDestroy(object $record): void {}
