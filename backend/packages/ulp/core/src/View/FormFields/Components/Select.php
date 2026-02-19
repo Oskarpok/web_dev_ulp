@@ -6,11 +6,10 @@ namespace Ulp\Core\View\FormFields\Components;
 
 use Ulp\Core\View\FormFields\Components\Traits\BeDisabled;
 use Ulp\Core\View\FormFields\Components\Traits\BeRequired;
-use Ulp\Core\View\FormFields\Components\Traits\BeReactive;
 
 class Select extends Input {
 
-  use BeDisabled, BeRequired, BeReactive;
+  use BeDisabled, BeRequired;
 
   protected string $type = 'select';
   protected array $options = [];
