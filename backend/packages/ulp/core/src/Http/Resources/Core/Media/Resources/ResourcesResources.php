@@ -33,36 +33,9 @@ class ResourcesResources extends \Ulp\Core\Crud\Resources\BaseResource {
     ];
   }
 
-  public static function createButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'submit',
-        'label' => 'Save',
-        'icone' => 'fa-solid fa-file',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
-    ];
-  }
-
   public static function createFields($data = null): array {
     return [
 
-    ];
-  }
-
-  public static function showButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
     ];
   }
 
@@ -71,22 +44,6 @@ class ResourcesResources extends \Ulp\Core\Crud\Resources\BaseResource {
       TextInput::make('id')->label('Id')->numeric()->readonly(),
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
       DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
-    ];
-  }
-
-  public static function editButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'submit',
-        'label' => 'Save',
-        'icone' => 'fa-solid fa-file',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
     ];
   }
 

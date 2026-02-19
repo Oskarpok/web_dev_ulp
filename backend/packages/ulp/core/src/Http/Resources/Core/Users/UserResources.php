@@ -9,36 +9,8 @@ use Ulp\Core\View\FormFields\Components\Select;
 use Ulp\Core\View\FormFields\Components\Checkbox;
 use Ulp\Core\View\FormFields\Components\TextInput;
 use Ulp\Core\View\FormFields\Components\DateTimePicker;
-use Ulp\Core\View\FormFields\Buttons\ButtonsTypeController;
 
 class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
-
-  public static function prepareIndexButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'create',
-        'label' => 'Add',
-        'icone' => 'fa-solid fa-plus',
-      ]),
-    ];
-  }
-
-  public static function createButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'submit',
-        'label' => 'Save',
-        'icone' => 'fa-solid fa-file',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
-    ];
-  }
 
   public static function createFields($data = null): array {
     return [
@@ -56,17 +28,6 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
           default => [],
         }
       ),
-    ];
-  }
-
-  public static function showButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
     ];
   }
 
@@ -89,22 +50,6 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
       ),
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
       DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
-    ];
-  }
-
-  public static function editButtons($routeName): array {
-    return [
-      ButtonsTypeController::make([
-        'type' => 'submit',
-        'label' => 'Save',
-        'icone' => 'fa-solid fa-file',
-      ]),
-      ButtonsTypeController::make([
-        'type' => 'anchore',
-        'routeName' => $routeName . 'index',
-        'label' => 'Return',
-        'icone' => 'fa-solid fa-arrow-left',
-      ]),
     ];
   }
 
