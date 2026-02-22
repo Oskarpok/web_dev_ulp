@@ -14,6 +14,7 @@
     </div>
   </div>
   <livewire:form-fields.form-component
+    :resourcesClass="$resourcesClass"
     :fields="$fields"
     :validationRules="$validationRules"
     :action="$route"
