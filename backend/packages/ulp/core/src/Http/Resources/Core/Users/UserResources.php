@@ -59,7 +59,7 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
         ->visible(fn ($get) => !empty(array_intersect(['1', '3'], 
           (array)($get('role') ?? [])))),
       TextInput::make('company_name')->label('Company Name')->required()
-        ->visible(fn ($get) => in_array('2', ($get('role')))),  
+        ->visible(fn ($get) => in_array('2', (array)($get('role') ?? []))),  
 
       TextInput::make('street')->label('Street')->required()
         ->visible(fn ($get) => !empty(array_intersect(['1', '2'], 
@@ -75,11 +75,11 @@ class UserResources extends \Ulp\Core\Crud\Resources\BaseResource {
         ->visible(fn ($get) => !empty(array_intersect(['1', '3'], 
           (array)($get('role') ?? [])))),
       TextInput::make('nip')->label('Nip')->required()    
-        ->visible(fn ($get) => in_array('2', ($get('role')))),  
+        ->visible(fn ($get) => in_array('2', (array)($get('role') ?? []))),  
       TextInput::make('regon')->label('Regon')->required()        
-        ->visible(fn ($get) => in_array('2', ($get('role')))),  
+        ->visible(fn ($get) => in_array('2', (array)($get('role') ?? []))),  
       TextInput::make('krs')->label('Krs')->required()        
-        ->visible(fn ($get) => in_array('2', ($get('role')))),  
+        ->visible(fn ($get) => in_array('2', (array)($get('role') ?? []))),  
 
       DateTimePicker::make('created_at')->label('Created At')->readonly(),
       DateTimePicker::make('updated_at')->label('Updated At')->readonly(),
