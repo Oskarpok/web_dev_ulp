@@ -10,7 +10,7 @@ namespace Ulp\Core\Http\Controllers\Core\System;
   route: 'core.logs.index',
 )]
 
-class LogController extends \Ulp\Core\Crud\Controller\BaseController {
+class LogController extends \Ulp\Core\Crud\Controller\ReadOnlyController {
 
   protected const RESOURCES_CLASS = \Ulp\Core\Http\Resources\Core\System\LogResources::class;
   protected const MODEL_CLASS = \Ulp\Core\Models\Core\System\Log::class;
