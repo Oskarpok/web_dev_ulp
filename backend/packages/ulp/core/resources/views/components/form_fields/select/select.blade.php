@@ -1,11 +1,11 @@
 <div 
-  x-data="{ 
-    value: {{ json_encode($field->value) }},
+  x-data="{
+    value: @entangle('state.' . $field->name).live,
     options: {{ json_encode($field->options) }},
     disabled: {{ json_encode($field->disabled) }},
     searchable: {{ json_encode($field->searchable) }},
     searchTerm: '',
-    open: false,
+    isOpen: false,
     filteredOptions() {
       if (!this.searchable || !this.searchTerm) return this.options;
       const term = this.searchTerm.toLowerCase();
@@ -26,14 +26,14 @@
     @endcomponent
   </label>
   <button type="button"
-    @click="if (!disabled) { open = !open; searchTerm = '' }"
+    @click="if (!disabled) { isOpen = !isOpen; searchTerm = '' }"
     class="mt-1 w-full border border-gray-600 rounded-xl px-3 py-2 
     text-gray-300 shadow-inner text-left"
     :class="disabled ? 'bg-[#1e293b] cursor-default' : '' ">
     <span x-text="options[value] ?? 'Wybierz opcję'"></span>
   </button>
-  <div x-show="open"
-    @click.away="open = false"
+  <div x-show="isOpen"
+    @click.away="isOpen = false"
     class="absolute z-10 mt-20 w-full cms-primary-color border border-gray-700 
       rounded-xl text-gray-100 shadow-lg max-h-64 overflow-auto p-2 bg-[#0f172a]">
     <template x-if="searchable">
@@ -48,8 +48,10 @@
           <button type="button"
             @disabled($field->disabled)
             class="w-full text-left px-3 py-2 hover:bg-gray-600 rounded"
-            @click="if (!disabled) 
-              { value = key; open = false; $refs.hidden.value = key }"
+            @click="if (!disabled) { 
+              value = key; 
+              isOpen = false; 
+            }"
             x-text="label">
           </button>
         </li>
@@ -59,8 +61,8 @@
       </template>
     </ul>
   </div>
-  <input type="hidden" 
+  <input type="hidden"
     name="{{ $field->name }}"
-    :value="value" 
+    :value="value"
     x-ref="hidden">
 </div>
