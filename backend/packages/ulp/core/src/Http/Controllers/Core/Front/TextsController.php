@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Http\Controllers\Core\Front;
 
+use Ulp\Core\Models\Core\Front\Language;
+
 #[\Ulp\Core\Attributes\Navigation(
   title: 'Texts',
   group: 'Front',
@@ -39,21 +41,39 @@ class TextsController extends \Ulp\Core\Crud\Controller\BaseController {
     ];
   }
 
-  protected function afterStore($record):void {
-    if (!empty($record['translations'])) {                                       
-      $record->languages()->attach(
-        collect($record['translations'])
-          ->map(fn($t) => ['translation' => $t])->toArray()                         
-      );
+  protected function beforEdit($record): void {
+    foreach ($record->translations as $t) {
+      $record->{(string)$t->language_id} = $t->translation;
     }
   }
 
-  protected function afterUpdate($record):void {
-    if (!empty($record['translations'])) {
-      $record->languages()->sync(
-        collect($record['translations'])
-          ->map(fn($t) => ['translation' => $t])->toArray()
-      );
+  protected function beforShow($record): void {
+    foreach ($record->translations as $t) {
+      $record->{(string)$t->language_id} = $t->translation;
+    }
+  }
+
+  protected function afterStore($record, $request): void {
+    foreach ($request->all() as $key => $value) {
+      if(in_array((int)$key, 
+        Language::where('is_active', true)->pluck('id')->toArray())) {
+        $record->translations()->updateOrCreate(
+          ['language_id' => (int)$key],
+          ['translation' => $value],
+        );
+      }
+    }
+  }
+
+  protected function afterUpdate(array &$validate, object $record, object $request): void {
+    foreach ($request->all() as $key => $value) {
+      if (in_array((int)$key, 
+        Language::where('is_active', true)->pluck('id')->toArray())) {
+        $record->translations()->updateOrCreate(
+          ['language_id' => (int)$key],
+          ['translation' => $value],
+        );
+      }
     }
   }
   

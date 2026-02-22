@@ -10,9 +10,7 @@ class Text extends \Ulp\Core\Models\Base {
 
   public static function validationRules($id = null): array {
     return [
-      'name' => ['required', 'string', 'max:255',
-        \Illuminate\Validation\Rule::unique('texts', 'name')->ignore($id)],
-      'translations.*' => ['nullable', 'string'],
+      'name' => ['required', 'string', 'max:255', ],
     ];
   }
 
@@ -21,6 +19,10 @@ class Text extends \Ulp\Core\Models\Base {
       'text_translations', 'text_id', 'language_id')
       ->withPivot(['translation'])
       ->withTimestamps();
+  }
+
+  public function translations()  {
+    return $this->hasMany(TextTranslation::class, 'text_id');
   }
 
 }
