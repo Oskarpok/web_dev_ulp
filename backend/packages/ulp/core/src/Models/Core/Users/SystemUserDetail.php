@@ -6,11 +6,6 @@ namespace Ulp\Core\Models\Core\Users;
 
 class SystemUserDetail extends \Ulp\Core\Models\Base {
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var list<string>
-   */
   protected $fillable = ['user_id', 'first_name', 'sur_name', 'pesel', ];
 
   public static function validationRules($id = null): array {

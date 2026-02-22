@@ -22,19 +22,12 @@ class User extends \Illuminate\Foundation\Auth\User {
     return \Ulp\Core\Database\Factories\UserFactory::new();
   }
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var list<string>
-   */
   protected $fillable = ['is_active', 'phone', 'email', ];
 
-  /**
-   * The attributes that should be hidden or apend for serialization.
-   *
-   * @var list<string>
-   */
+  protected $casts = ['is_active' => 'boolean', ];
+
   protected $hidden = ['password', 'remember_token', ];
+  
   protected $appends = ['is_active_label', ];
 
   public static function validationRules($id = null): array {

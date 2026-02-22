@@ -6,9 +6,9 @@ namespace Ulp\Core\Models\Core\Front;
 
 class Language extends \Ulp\Core\Models\Base {
 
-  protected $fillable = [
-    'name', 'shortcut', 'is_active',
-  ];
+  protected $fillable = [ 'name', 'shortcut', 'is_active', ];
+
+  protected $casts = ['is_active' => 'boolean', ];
 
   protected $appends = ['is_active_label'];
 

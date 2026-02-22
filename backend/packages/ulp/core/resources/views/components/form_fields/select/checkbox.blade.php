@@ -12,6 +12,7 @@
       <input type="checkbox"
         name="{{ $field->name }}"
         value="1"
+        wire:model.live="state.{{ $field->name }}"
         @checked($field->value)
         @disabled($field->disabled)
         class="sr-only peer">
