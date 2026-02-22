@@ -14,6 +14,7 @@ class FormComponent extends \Livewire\Component {
   use \Livewire\WithFileUploads;
 
   public string $resourcesClass;
+  public string $method;
   protected array $fields;
   public array $validationRules;
   public array $state = [];
@@ -27,9 +28,10 @@ class FormComponent extends \Livewire\Component {
    * Component initialization with converting field objects into Livewire 
    * friendly arrays and initialize form state with default field values
   */ 
-  public function mount(string $resourcesClass, array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
+  public function mount(string $resourcesClass,string $method, array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
     $this->fields = $fields;
     $this->action = $action;
+    $this->method = $method;
     $this->httpMethod = $httpMethod;
     $this->resourcesClass = $resourcesClass;
     $this->formId = $formId ?? $this->formId;
@@ -53,9 +55,8 @@ class FormComponent extends \Livewire\Component {
 
   // replase attribute with more readable names for validation messages
   protected function validationAttributes(): array {
-    return collect(
-      $this->resourcesClass::{request()->route()->getActionMethod() . 'Fields'}()
-      )->mapWithKeys(fn ($field) => [
+    return collect($this->resourcesClass::{$this->method . 'Fields'}())
+      ->mapWithKeys(fn ($field) => [
         'state.' . $field->name => $field->label ?? $field->name,
       ])->toArray();
   }
@@ -80,8 +81,7 @@ class FormComponent extends \Livewire\Component {
   }
 
   public function visibleFields(): array {
-    return collect(
-      $this->resourcesClass::{request()->route()->getActionMethod() . 'Fields'}())
+    return collect($this->resourcesClass::{$this->method . 'Fields'}())
       ->filter(fn ($field) => $field->isVisible($this->state))->all();
   }
 
