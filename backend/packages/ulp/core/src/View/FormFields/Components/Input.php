@@ -20,6 +20,7 @@ abstract class Input {
   protected Closure|string $label;
   protected Closure|string $tooltip = '';
   protected string $view = '';
+  protected Closure|bool $visible = true;
   protected Closure|string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
   /**
@@ -77,6 +78,17 @@ abstract class Input {
     return $this;
   }
 
+  public function visible(bool|Closure $condition): static {
+    $this->visible = $condition;
+    return $this;
+  }
+
+  public function isVisible($state = []): bool {
+    return $this->visible instanceof Closure 
+      ? (bool) ($this->visible)(new Get($state)) 
+      : $this->visible;
+  }
+
   /**
    * Method to set wraper for field
    * 
@@ -114,4 +126,14 @@ abstract class Input {
     return $classData;
   }
 
+}
+
+class Get
+{
+    public function __construct(protected array $state) {}
+
+    public function __invoke(string $key)
+    {
+        return data_get($this->state, $key);
+    }
 }
