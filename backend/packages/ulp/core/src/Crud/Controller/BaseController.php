@@ -59,8 +59,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    */
   protected function beforeValidation(object $data): void {}
   protected function afterValidation(object $data): void {}
-  protected function beforeStore(array &$validate , object $request): void {}
-  protected function afterStore(object $record): void {}
+  protected function beforeStore(array &$validate, object $request): void {}
+  protected function afterStore(object $record, object $request): void {}
   protected function beforeUpdate(array &$validate, object $record, object $request): void {}
   protected function afterUpdate(object $record): void {}
   protected function beforeDestroy(object $record): void {}
@@ -126,11 +126,10 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    */
   public function store(Request $request) {
     $this->beforeValidation($request);
-    $validate =  $request->validate(static::MODEL_CLASS::validationRules());   
-    dd();
+    $validate =  $request->validate(static::MODEL_CLASS::validationRules()); 
     $this->afterValidation($request);
     $this->beforeStore($validate, $request);
-    $this->afterStore(static::MODEL_CLASS::create($validate));
+    $this->afterStore(static::MODEL_CLASS::create($validate), $request);
     return redirect()->route(static::ROUTE_NAME . 'index')
       ->with('success', $this->titles()['recordCreatedSucces'] 
       ?? 'Record has been updated');
