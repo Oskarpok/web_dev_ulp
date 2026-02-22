@@ -53,9 +53,11 @@ class FormComponent extends \Livewire\Component {
 
   // replase attribute with more readable names for validation messages
   protected function validationAttributes(): array {
-    return collect($this->resourcesClass::editFields())->mapWithKeys(fn ($field) => [
-      'state.' . $field->name => $field->label ?? $field->name,
-    ])->toArray();
+    return collect(
+      $this->resourcesClass::{request()->route()->getActionMethod() . 'Fields'}()
+      )->mapWithKeys(fn ($field) => [
+        'state.' . $field->name => $field->label ?? $field->name,
+      ])->toArray();
   }
 
   // validate only the updated field (real-time validation) when blur happens
@@ -78,7 +80,8 @@ class FormComponent extends \Livewire\Component {
   }
 
   public function visibleFields(): array {
-    return collect($this->resourcesClass::editFields())
+    return collect(
+      $this->resourcesClass::{request()->route()->getActionMethod() . 'Fields'}())
       ->filter(fn ($field) => $field->isVisible($this->state))->all();
   }
 
