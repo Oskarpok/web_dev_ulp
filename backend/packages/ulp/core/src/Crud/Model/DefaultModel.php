@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ulp\Core\Traits;
+namespace Ulp\Core\Crud\Model;
 
 use Illuminate\Http\Request;
 

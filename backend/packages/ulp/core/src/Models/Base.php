@@ -9,7 +9,7 @@ namespace Ulp\Core\Models;
  */
 abstract class Base extends \Illuminate\Database\Eloquent\Model {
 
-  use \Ulp\Core\Traits\DefaultModel;
+  use \Ulp\Core\Crud\Model\DefaultModel;
 
   /**
    *   use \Ulp\Core\Traits\DefaultModel,

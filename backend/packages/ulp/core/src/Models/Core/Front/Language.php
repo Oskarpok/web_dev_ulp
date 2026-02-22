@@ -6,6 +6,8 @@ namespace Ulp\Core\Models\Core\Front;
 
 class Language extends \Ulp\Core\Models\Base {
 
+  use \Ulp\Core\Crud\Model\Traits\IsActiveLabel;
+
   protected $fillable = [ 'name', 'shortcut', 'is_active', ];
 
   protected $casts = ['is_active' => 'boolean', ];
@@ -18,10 +20,6 @@ class Language extends \Ulp\Core\Models\Base {
       'shortcut' => ['required', 'string', 'max:10'],
       'is_active' => ['required', 'boolean'],
     ];
-  }
-
-  public function getIsActiveLabelAttribute(): string {
-    return $this->getAttribute('is_active') ? 'Yes' : 'No';
   }
 
 }

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Models\Core\Users;
 
-use Ulp\Core\Traits\DefaultModel;
+use Ulp\Core\Crud\Model\DefaultModel;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Ulp\Core\Crud\Model\Traits\IsActiveLabel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class User extends \Illuminate\Foundation\Auth\User {
 
   /** @use HasFactory<\Database\Factories\UserFactory> */
-  use HasFactory, Notifiable, DefaultModel, HasRoles;
+  use HasFactory, Notifiable, DefaultModel, HasRoles, IsActiveLabel;
 
   // Factores function
   protected static function newFactory() {
@@ -39,10 +40,6 @@ class User extends \Illuminate\Foundation\Auth\User {
       'email' => ['required', 'string', 'email', 'max:255', ],
       'type' => ['required', 'integer', ],
     ];
-  }
-
-  public function getIsActiveLabelAttribute(): string {
-    return $this->getAttribute('is_active') ? 'Yes' : 'No';
   }
 
   // Relacja do zwykłych detali (Osoba)

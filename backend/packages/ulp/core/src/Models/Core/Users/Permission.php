@@ -6,7 +6,7 @@ namespace Ulp\Core\Models\Core\Users;
 
 class Permission extends \Spatie\Permission\Models\Permission {
 
-  use \Ulp\Core\Traits\DefaultModel;
+  use \Ulp\Core\Crud\Model\DefaultModel;
 
   protected $fillable = ['name', 'guard_name', 'created_at', 'updated_at', ];
 
