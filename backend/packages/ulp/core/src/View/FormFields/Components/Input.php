@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ulp\Core\View\FormFields\Components;
 
+use Closure;
+
 /**
  * Abstract class Input represents a basic form field.
  * Each field has field data for rendering and view (Blade template for render).
@@ -15,11 +17,11 @@ abstract class Input {
    */
   protected string $type;
   protected string $name;
-  protected string $label;
-  protected mixed $value = null;
-  protected string $tooltip = '';
+  protected Closure|string $label;
+  protected Closure|string $tooltip = '';
   protected string $view = '';
-  protected string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
+  protected Closure|bool $visible = true;
+  protected Closure|string $wraper = 'mb-3 flex flex-col w-full md:w-[32%]';
 
   /**
    * Init form fields object and set its name
@@ -35,6 +37,15 @@ abstract class Input {
    */
   public static function make(string $name): static {
     return new static($name);
+  }
+
+  /**
+   * Getter for the field atributes
+   * 
+   * @return atributes of field
+   */
+  public function __get($key) {
+    return $this->$key ?? null;
   }
 
   /**
@@ -67,6 +78,17 @@ abstract class Input {
     return $this;
   }
 
+  public function visible(bool|Closure $condition): static {
+    $this->visible = $condition;
+    return $this;
+  }
+
+  public function isVisible($state = []): bool {
+    return $this->visible instanceof Closure 
+      ? (bool) ($this->visible)(new Get($state)) 
+      : $this->visible;
+  }
+
   /**
    * Method to set wraper for field
    * 
@@ -76,20 +98,6 @@ abstract class Input {
     $this->wraper = $wraper;
     return $this;
   }
-
-  /**
-   * Getter for the field atributes
-   * 
-   * @return atributes of field
-   */
-  public function __get($key) {
-    return $this->$key ?? null;
-  }
-
-  /**
-   * 
-   */
-  abstract public function value($value);
 
   /**
    * Renders the field as HTML
@@ -118,4 +126,14 @@ abstract class Input {
     return $classData;
   }
 
+}
+
+class Get
+{
+    public function __construct(protected array $state) {}
+
+    public function __invoke(string $key)
+    {
+        return data_get($this->state, $key);
+    }
 }

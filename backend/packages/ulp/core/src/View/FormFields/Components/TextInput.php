@@ -16,11 +16,6 @@ class TextInput extends Input {
   protected string $type = 'text';
   protected string $view = 'core::components.form_fields.text.text';
 
-  public function value($value){
-    $this->value = (string) $value;  
-    return $this;
-  }
-
   public function email() {
     $this->type = 'email';  
     return $this;

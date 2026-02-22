@@ -28,14 +28,14 @@ class RoleController extends \Ulp\Core\Crud\Controller\BaseController {
   protected function indexTable(\Illuminate\Http\Request $request): array {
     return [
       'data' => self::MODEL_CLASS::filter($request, [
-        'id', 'name', 'guard_name', 'created_at', 'updated_at',
+        'id', 'name', 'guard_name', 'details_table', 'created_at', 'updated_at',
       ])->paginate(30), 
       'labels' => [
-        'Id', 'Name', 'Guard Name', 'Created At', 'Updated At',
+        'Id', 'Name', 'Guard Name', 'Details Table', 'Created At', 'Updated At',
       ],
       'filterable' => [
         'id' => true, 'name'=> true, 'guard_name'=> true, 
-        'created_at'=> true, 'updated_at'=> true,
+        'details_table'=> true, 'created_at'=> true, 'updated_at'=> true,
       ],
     ];
   }

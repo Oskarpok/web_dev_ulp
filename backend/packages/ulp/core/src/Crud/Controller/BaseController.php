@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ulp\Core\Crud\Controller;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -56,17 +57,17 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   /**
    * Punkty wejścia (Hooks) - puste metody, które dzieci mogą nadpisać.
    */
-  protected function beforeValidation(object &$data): void {}
-  protected function afterValidation(object &$data): void {}
-  protected function beforeStore(array &$data): void {}
+  protected function beforeValidation(object $data): void {}
+  protected function afterValidation(object $data): void {}
+  protected function beforeStore(array &$validate): void {}
   protected function afterStore(object $record): void {}
-  protected function beforeUpdate(array $validate, object $record): void {}
+  protected function beforeUpdate(array &$validate, object $record): void {}
   protected function afterUpdate(object $record): void {}
   protected function beforeDestroy(object $record): void {}
   protected function afterDestroy(object $record): void {}
 
   //
-  public function heckRowButtonsAcces($destination): array {
+  public function heckActon($destination): array {
     return [
       'show' => Route::has($destination . 'show'),
       'edit' => Route::has($destination . 'edit'),
@@ -82,7 +83,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @param \Illuminate\Http\Request $request  The incoming HTTP request.
    * @return \Illuminate\View\View  The rendered index view.
    */
-  public function index(Request $request): \Illuminate\View\View {
+  public function index(Request $request): View {
     $data = $this->indexTable($request);
     return view(self::CRUD_VIEWS . 'index', [
       'title' => $this->titles()['index'] ?? '',
@@ -93,7 +94,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
         'filterable' => $data['filterable'],
         'data' => $data['data'],
         'destinations' => static::ROUTE_NAME,
-        'resolveButtons' => $this->heckRowButtonsAcces(static::ROUTE_NAME),
+        'resolveButtons' => $this->heckActon(static::ROUTE_NAME),
       ]),
     ]);
   }
@@ -103,7 +104,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function create(): \Illuminate\View\View {
+  public function create(): View {
     return view(self::CRUD_VIEWS . 'create', [
       'title' => $this->titles()['create'] ?? '',
       'buttons' => static::RESOURCES_CLASS::createButtons(static::ROUTE_NAME),
@@ -111,6 +112,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
       'route' => route(static::ROUTE_NAME . 'store'),
       'validationRules' => static::MODEL_CLASS::validationRules(),
       'data' => [],
+      'resourcesClass' => static::RESOURCES_CLASS,
     ]);
   }
 
@@ -137,14 +139,16 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @param  int  $id  The ID of the record to display.
    * @return \Illuminate\Http\Response
    */
-  public function show(int $id): \Illuminate\View\View {
+  public function show(int $id): View {
+    $record = static::MODEL_CLASS::find($id);
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
       'buttons' => static::RESOURCES_CLASS::showButtons(static::ROUTE_NAME),
-      'fields' => static::RESOURCES_CLASS::showFields(),
+      'fields' => static::RESOURCES_CLASS::showFields($record),
       'route' => '#',
       'validationRules' => [],
-      'data' => static::MODEL_CLASS::find($id),
+      'data' => $record,
+      'resourcesClass' => static::RESOURCES_CLASS,
     ]);
   }
 
@@ -154,14 +158,16 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    * @param  int  $id  The ID of the record to be edited.
    * @return \Illuminate\Http\Response
    */
-  public function edit(int $id): \Illuminate\View\View {
+  public function edit(int $id): View {
+    $record = static::MODEL_CLASS::find($id);
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'buttons' => static::RESOURCES_CLASS::editButtons(static::ROUTE_NAME),
-      'fields' => static::RESOURCES_CLASS::editFields(),
+      'fields' => static::RESOURCES_CLASS::editFields($record),
       'route' => route(static::ROUTE_NAME . 'update', $id),
       'validationRules' => static::MODEL_CLASS::validationRules(),
-      'data' => static::MODEL_CLASS::find($id),
+      'data' => $record,
+      'resourcesClass' => static::RESOURCES_CLASS,
     ]);
   }
 

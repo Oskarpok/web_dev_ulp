@@ -4,7 +4,6 @@ namespace Ulp\Core\Livewire\FormFields;
  
 /**
  * Universal Livewire form component
- *
  * - Handles dynamic form fields render
  * - Manages form state
  * - Provides validation
@@ -14,6 +13,7 @@ class FormComponent extends \Livewire\Component {
   
   use \Livewire\WithFileUploads;
 
+  public string $resourcesClass;
   protected array $fields;
   public array $validationRules;
   public array $state = [];
@@ -27,10 +27,11 @@ class FormComponent extends \Livewire\Component {
    * Component initialization with converting field objects into Livewire 
    * friendly arrays and initialize form state with default field values
   */ 
-  public function mount(array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
+  public function mount(string $resourcesClass, array $fields, array $validationRules, string $action, array|object $data,string $httpMethod, ?string $formId = null) {
     $this->fields = $fields;
     $this->action = $action;
     $this->httpMethod = $httpMethod;
+    $this->resourcesClass = $resourcesClass;
     $this->formId = $formId ?? $this->formId;
     $this->validationRules = $validationRules;
 
@@ -52,8 +53,8 @@ class FormComponent extends \Livewire\Component {
 
   // replase attribute with more readable names for validation messages
   protected function validationAttributes(): array {
-    return collect($this->fields)->mapWithKeys(fn ($field) => [
-      'state.' . $field['name'] => $field['label'] ?? $field['name'],
+    return collect($this->resourcesClass::editFields())->mapWithKeys(fn ($field) => [
+      'state.' . $field->name => $field->label ?? $field->name,
     ])->toArray();
   }
 
@@ -76,13 +77,18 @@ class FormComponent extends \Livewire\Component {
       : $this->httpMethod;
   }
 
+  public function visibleFields(): array {
+    return collect($this->resourcesClass::editFields())
+      ->filter(fn ($field) => $field->isVisible($this->state))->all();
+  }
+
   // render the Livewire view
   public function render() {
     return view('core::livewire.form_fields.form', [
       'formId' => $this->formId,
       'action' => $this->action,
       'httpMethod' => $this->httpMethod,
-      'fields' => $this->fields,
+      'fields' => $this->visibleFields(),
       'enctype' => $this->enctype,
       'spm' => $this->spoofedMethod(),
     ]);

@@ -7,7 +7,7 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer"/>
     @vite(['core/resources/css/core.css','core/resources/js/core.js'])
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
 	</head>
 	<body class="core-primary-color text-white">
 		<div class="flex">
