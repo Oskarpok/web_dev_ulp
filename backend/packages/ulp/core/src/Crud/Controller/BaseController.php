@@ -65,6 +65,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
   protected function afterUpdate(object $record): void {}
   protected function beforeDestroy(object $record): void {}
   protected function afterDestroy(object $record): void {}
+  protected function beforEdit(object $record): void {}
+  protected function beforShow(object $record): void {}
 
   //
   public function heckActon($destination): array {
@@ -141,6 +143,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    */
   public function show(int $id): View {
     $record = static::MODEL_CLASS::find($id);
+    $this->beforShow($record);
     return view(self::CRUD_VIEWS . 'show', [
       'title' => $this->titles()['show'] ?? '',
       'buttons' => static::RESOURCES_CLASS::showButtons(static::ROUTE_NAME),
@@ -160,6 +163,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
    */
   public function edit(int $id): View {
     $record = static::MODEL_CLASS::find($id);
+    $this->beforEdit($record);
     return view(self::CRUD_VIEWS . 'edit', [
       'title' => $this->titles()['edit'] ?? '',
       'buttons' => static::RESOURCES_CLASS::editButtons(static::ROUTE_NAME),
