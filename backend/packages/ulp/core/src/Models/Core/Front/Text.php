@@ -14,13 +14,6 @@ class Text extends \Ulp\Core\Models\Base {
     ];
   }
 
-  public function languages() {
-    return $this->belongsToMany(Language::class, 
-      'text_translations', 'text_id', 'language_id')
-      ->withPivot(['translation'])
-      ->withTimestamps();
-  }
-
   public function translations()  {
     return $this->hasMany(TextTranslation::class, 'text_id');
   }
