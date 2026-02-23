@@ -212,7 +212,8 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
 
     if($record) {
       $this->beforeDestroy($record);
-      $this->afterDestroy($record->delete());
+      $record->delete();
+      $this->afterDestroy($record);
       return redirect()->route(static::ROUTE_NAME . 'index')
         ->with('success', $this->titles()['recordDestroySucces'] 
         ?? 'Record has been deleted');
