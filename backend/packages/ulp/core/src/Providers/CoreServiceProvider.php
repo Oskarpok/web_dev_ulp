@@ -20,6 +20,7 @@ class CoreServiceProvider extends \Ulp\Core\Providers\BaseServiceProvider {
 	public function boot(): void {
 		parent::boot();
 		View::share('HelperFrontEndBase', \Ulp\Core\Helpers\Frontend\Base::class);
+		$this->loadRoutesFrom($this->packagePath . 'routes/api.php');
 	}
 
 }
