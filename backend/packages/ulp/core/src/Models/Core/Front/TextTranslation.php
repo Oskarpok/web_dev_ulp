@@ -14,4 +14,8 @@ class TextTranslation extends \Ulp\Core\Models\Base {
     ];
   }
 
+  public function language()  {
+    return $this->belongsTo(Language::class, 'language_id');
+  }
+
 }
