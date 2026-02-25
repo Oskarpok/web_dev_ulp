@@ -1,14 +1,16 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+  import { RouterLink } from 'vue-router'
+  import { TranslationStore } from '@/stores/translations';
+  const translationStore = TranslationStore();
 
-const handleHover = (e) => {
-  const el = e.currentTarget;
-  el.classList.add('is-animating');
-  
-  setTimeout(() => {
-    el.classList.remove('is-animating');
-  }, 700);
-}
+  const handleHover = (e) => {
+    const el = e.currentTarget;
+    el.classList.add('is-animating');
+    
+    setTimeout(() => {
+      el.classList.remove('is-animating');
+    }, 700);
+  }
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const handleHover = (e) => {
     text-white tracking-[0.3em] text-[11px] font-medium mb-8">
     <div class="flex-1 flex justify-start gap-12">
       <RouterLink v-for="link in [
-        { name: 'MODELS', to: '/models' },
+        { name: translationStore.t('asd'), to: '/models' },
         { name: 'CONFIGURATOR', to: '/configurator' },
         { name: 'LOCATE DEALER', to: '/' }
       ]" :key="link.name" :to="link.to" 
