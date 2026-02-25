@@ -91,7 +91,7 @@ abstract class BaseController extends \Illuminate\Routing\Controller {
       'title' => $this->titles()['index'] ?? '',
       'buttons' => static::RESOURCES_CLASS::prepareIndexButtons(static::ROUTE_NAME),
       'table' => new \Ulp\Core\View\FormFields\Extra\Fields\IndexControl([
-        'type' => 'intex',
+        'type' => 'index',
         'labels' => $data['labels'],
         'filterable' => $data['filterable'],
         'data' => $data['data'],

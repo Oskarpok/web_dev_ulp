@@ -68,7 +68,7 @@ class IndexControl extends \Ulp\Core\View\FormFields\BaseField {
   }
 
   protected function resolveView(): string {
-    return 'core::components.form_fields.extra.intex';
+    return 'core::components.form_fields.extra.index';
   }
   
 }
